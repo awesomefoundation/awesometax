@@ -35,19 +35,19 @@
       <li><%= link_to 'Home', root_path %></li>
       <li><%= link_to 'Guide', guide_path %></li>
       <li><%= link_to 'Taxes', taxes_path %></li>
-      <% if logged_in? %>
+      <% if user_signed_in? %>
         <li><%= link_to 'Me', account_path %>
           <ul>
-            <% if current_user.admin? %>
+            <% if admin? %>
               <li><%= link_to 'Admin', mgmt_path %></li>
             <% end %>
             <li><%= link_to 'My Taxes', account_path %></li>
             <li><%= link_to 'My History', history_path %></li>
             <li><%= link_to 'Settings', edit_account_path %></li>
-            <li><%= link_to 'Log out', logout_path %></li>
+            <li><%= link_to 'Log out', destroy_user_session_path %></li>
           </ul>
       <% else %>
-        <li><%= link_to 'Log in', login_path %></li>
+        <li><%= link_to 'Log in', new_user_session_path %></li>
       <% end %>
       </ul>
       <div class='float_right tally tk-ff-tisa-web-pro'><%= raw("#{pluralize(num_taxpayers, 'taxpayer')} &middot; #{number_to_currency(total_monthly)} in monthly taxes") %></div>

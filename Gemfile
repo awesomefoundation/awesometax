@@ -6,9 +6,9 @@ gem 'rails', '3.0.3'
 gem 'mysql2', '< 0.3'
 
 #gem 'smiley',  :path => '../smiley-client'
-gem 'devise'
-gem 'oa-oauth', :require => 'omniauth/oauth'
 gem 'omniauth'
+gem 'devise', '1.4.5'
+gem 'oa-oauth', :require => 'omniauth/oauth'
 
 gem 'activemerchant', '1.9.4'
 gem 'paypal_adaptive'

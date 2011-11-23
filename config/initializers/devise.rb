@@ -66,7 +66,7 @@ Devise.setup do |config|
   # Limiting the stretches to just one in testing will increase the performance of
   # your test suite dramatically. However, it is STRONGLY RECOMMENDED to not use
   # a value less than 10 in other environments.
-  config.stretches = Rails.env.test? ? 1 : 10
+  config.stretches = Rails.env.test? ? 1 : 20
 
   # Setup a pepper to generate the encrypted password.
   # config.pepper = "afab70f3a5746525fb4107f6ffcfb464c37781c9ba2298a70f5798934f59c2e7a41e1aba794c21159ed03eb4bb37ec7ac126f9e70c028222e9c6033e840acd16"
@@ -154,7 +154,7 @@ Devise.setup do |config|
   # :authlogic_sha512 (then you should set stretches above to 20 for default behavior)
   # and :restful_authentication_sha1 (then you should set stretches to 10, and copy
   # REST_AUTH_SITE_KEY to pepper)
-  # config.encryptor = :sha512
+  config.encryptor = :authlogic_sha512
 
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key
