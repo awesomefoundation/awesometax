@@ -1,5 +1,7 @@
 LoveTax3::Application.routes.draw do
 
+  devise_for :users
+
   resources :users
   resource  :account, :controller => 'users'
   match 'account/history' => 'users#history', :as => :history
