@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %meta{'http-equiv' => "Content-Type", 'content' => "text/html; charset=iso-8859-1"}
+    
+  %body
+    %p
+      Congratulations,
+      %a{:href => "http://lovetax.us/users/#{@pledge.user.id}"}= h(@pledge.user.name)
+      signed up to pay your monthly tax,
+      %a{:href => "http://lovetax.us/taxes/#{@pledge.tax.id}"}= h(@pledge.tax.name)
+      \- To see the details including all the taxpayers and cashflow, check
+      %a{:href => "http://lovetax.us/taxes/#{@pledge.tax.id}"} its page.
+    
+    %p
+      Don't forget to invite your friends, family, fans, and total strangers to contribute to your taxes and others you love.
+      If you get stuck or have feedback, email us at team@lovetax.us any time.
+
+    = render :partial => 'shared/email_sig'
+        
+    

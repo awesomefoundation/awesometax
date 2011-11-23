@@ -1,0 +1,12 @@
+<%= form.label :email %><br />
+<%= form.text_field :email %><br />
+<br />
+<%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
+<%= form.password_field :password %><br />
+<br />
+<%= form.label :name %><br />
+<%= form.text_field :name %><br />
+<br />
+<%= check_box_tag :email_pref_comments, 1, @email_pref_comments %>
+<%= label_tag :email_pref_comments, "Email me comments on my taxes" %><br/>
+<br/>

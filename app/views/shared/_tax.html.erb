@@ -1,0 +1,21 @@
+<div class='tax rounded <%= tax.active? ? "active" : "inactive" %>'>
+  <%= link_to 'Support', tax_path(tax), :class => 'button' unless tax.owner_id == current_user.andand.id or !tax.active? %>
+  <h4><%= link_to h(tax.name), tax_path(tax) %></h4>
+  <p><%= auto_link(h(truncate(tax.description.gsub(/<\/?[^>]*>/, ""), :length => 240))) %></p>
+  <p>
+  <% if defined?(mine) and mine %>
+    <%= number_to_currency(tax.total_income) %> raised
+    <% if tax.active? %>
+       &middot; <%= link_to 'Edit', edit_tax_path(tax) %>
+       &middot; <%= link_to 'Terminate', { :controller => 'taxes', :action => 'destroy', :id => tax.id },
+        { :method => :delete, :confirm => "Are you sure you want to stop collecting this tax? You cannot undo this!" } %>
+    <% else %>
+       &middot; <b><%= tax.status_string %> <%= tax.updated_at.strftime('%b %d %Y') %></b>
+    <% end %>
+  <% else %>
+    By <%= tax.owner.andand.name || 'Anonymous' %>
+  <% end %>
+  <% unless !tax.active? or tax.pledges.active.empty? %>
+     &middot; <%= number_to_currency(tax.monthly_income) %> / mo. from <%= pluralize(tax.unique_supporters.count, 'person') %></p>
+  <% end %>
+</div>

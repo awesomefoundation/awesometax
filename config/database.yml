@@ -1,0 +1,35 @@
+local: &local
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  username: root
+  password: 
+  host: localhost
+  encoding: utf8
+
+dreamhost: &dreamhost
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  username: loveland_rails
+  password: huju5Azafu
+  host: db.lemonary.com
+  encoding: utf8
+
+
+
+development:
+  <<: *local
+  database: lovetax_local
+  
+test:
+  <<: *local
+  database: lovetax_test
+
+staging:
+  <<: *dreamhost
+  database: lovetax_stage
+
+production:
+  <<: *dreamhost
+  database: lovetax_prod

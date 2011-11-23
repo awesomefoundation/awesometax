@@ -1,0 +1,27 @@
+development:
+  environment: "sandbox"
+  username: "shoppy_1274735670_biz_api1.gmail.com"
+  password: "1274735677"
+  signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31A.N0-dzJEtTKLRY.kUoeSRyAan5I"
+  application_id: "APP-80W284485P519543T"
+
+test:
+  environment: "sandbox"
+  username: "shoppy_1274735670_biz_api1.gmail.com"
+  password: "1274735677"
+  signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31A.N0-dzJEtTKLRY.kUoeSRyAan5I"
+  application_id: "APP-80W284485P519543T"
+
+staging:
+  environment: "sandbox"
+  username: "shoppy_1274735670_biz_api1.gmail.com"
+  password: "1274735677"
+  signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31A.N0-dzJEtTKLRY.kUoeSRyAan5I"
+  application_id: "APP-80W284485P519543T"
+  
+production:
+  environment: "production"
+  username: "jerry_api1.makeloveland.com"
+  password: "DEWSXFVG4S6FHXLR"
+  signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31AjPU6JOHrrjIOZIn2usb3IPTRImj"
+  application_id: "APP-50N15645BV077162R"

@@ -1,0 +1,35 @@
+common:
+ paypal_nvp: https://api-3t.sandbox.paypal.com/nvp
+ paypal_url: https://www.sandbox.paypal.com/webscr
+ paypal_user: shoppy_1274735670_biz_api1.gmail.com
+ paypal_pass: 1274735677
+ paypal_sig: AFcWxV21C7fd0v3bYYYRCpSSRl31A.N0-dzJEtTKLRY.kUoeSRyAan5I
+ paypal_email: shoppy_1274735670_biz@gmail.com
+ loveland_fee: 0
+
+development:
+ host: tax.local
+ analytics_key: UA
+ fb_app_id: 53634552952
+ 
+staging:
+ host: tax.lemonary.com
+ analytics_key: UA
+ fb_app_id: 53634552952
+ paypal_nvp: https://api-3t.paypal.com/nvp
+ paypal_url: https://www.paypal.com/webscr
+ paypal_user: jerry_api1.makeloveland.com
+ paypal_pass: DEWSXFVG4S6FHXLR
+ paypal_sig: AFcWxV21C7fd0v3bYYYRCpSSRl31AjPU6JOHrrjIOZIn2usb3IPTRImj
+ paypal_email: jerry@makeloveland.com
+ 
+production:
+ host: lovetax.us
+ analytics_key: UA-15180627-6
+ fb_app_id: 375385414659
+ paypal_nvp: https://api-3t.paypal.com/nvp
+ paypal_url: https://www.paypal.com/webscr
+ paypal_user: jerry_api1.makeloveland.com
+ paypal_pass: DEWSXFVG4S6FHXLR
+ paypal_sig: AFcWxV21C7fd0v3bYYYRCpSSRl31AjPU6JOHrrjIOZIn2usb3IPTRImj
+ paypal_email: jerry@makeloveland.com

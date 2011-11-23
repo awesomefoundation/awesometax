@@ -1,0 +1,94 @@
+- @no12 = true
+- @subtitle = @tax.name
+
+.container_12.container
+  .grid_12
+    %h2=h @tax.name
+  
+  .grid_6
+    = notice
+    %p
+      - if @tax.video_type == 'vimeo'
+        %iframe{:src => "http://player.vimeo.com/video/#{@tax.video_id}?byline=0&amp;portrait=0", :width => "460", :height => "300", :frameborder => "0"}
+      - elsif @tax.video_type == 'youtube'
+        %object{:width => "500", :height => "320"}
+          %param{:name=>"movie", :value=>"http://www.youtube.com/v/#{@tax.video_id}?fs=1&amp;hl=en_US&amp;rel=0"}
+          %param{:name=>"allowFullScreen", :value=>"true"}
+          %param{:name=>"allowscriptaccess", :value=>"always"}
+          %param{:name=>"wmode", :value=>"opaque"}
+          %embed{:src=>"http://www.youtube.com/v/#{@tax.video_id}?fs=1&amp;hl=en_US&amp;rel=0", :type=>"application/x-shockwave-flash", :allowscriptaccess=>"always", :allowfullscreen=>"true", :width=>"460", :height=>"300", :wmode=>"opaque"}
+
+
+    %p{:style => 'white-space: pre-wrap;'}= auto_link(h(@tax.description))
+    %p
+      By
+      = link_to h(@tax.owner.name), @tax.owner
+      &middot;
+      Started
+      = @tax.created_at.strftime('%b %d %Y')
+      - if @tax.active?
+        &middot;
+        - if @tax.pledges.active.empty?
+          Be the first to pledge!
+        - else
+          = "#{number_to_currency(@tax.monthly_income)} monthly from #{pluralize(@tax.unique_supporters.count, 'person')}"
+         
+    = render :partial => 'shared/share', :locals => {:url => request.url, :text => "#{h(@tax.name)} | LoveTax" }
+    - unless true || @tax.pledges.active.blank?
+      %h3.clear Supporters
+      - @tax.pledges.active.each do |p|
+        = link_to h(p.user.name), p.user
+        for
+        = p.fuzzy_amount
+        %br/
+    = render :partial => 'shared/comments', :locals => { :comments => @tax.comments, :tax => @tax }
+  
+  .grid_6
+    - if !@tax.active?
+      %p This tax is no longer active.
+    - elsif @tax.owner == current_user
+      %p
+        You started this tax so naturally you can't pay it. We'll have more statistics and goodies here for you shortly. You can
+        = link_to 'edit the description', edit_tax_path(@tax)
+        though.
+        - unless @tax.pledges.active.empty?
+          %h4 Current taxpayers
+          - @tax.pledges.active.each do |p|
+            = number_to_currency(p.amount)
+            from
+            = link_to h(p.user.name), p.user
+            %br/
+
+    - else
+      - form_for @pledge do |f|
+        = f.hidden_field :tax_id
+        %h4{:style=>'margin-left: 32px;'} How much would you like to contribute?
+        %span{:style=>'font-size: 36px; width: 32px; display: inline-block;'} $
+        = f.text_field :amount, :class => 'huge_input', :size => 3, :style => 'margin: 0 8px 12px 0px;'
+        <span style='font-size: 36px;'>a month</span><br/>
+        = image_submit_tag 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif', :style => 'margin-left: 32px;'
+      %script
+        :plain
+          $(document).ready(function() { 
+            $('#pay_link').click(function() {
+              $('#new_pledge').submit();
+              return false;
+            });
+          });
+    
+    - if admin? and @tax.owner != current_user
+      %br/
+      %br/
+      .rounded{:style=>'background-color: #eeffff;'}
+        %h4 Admin tools
+        = link_to 'Close this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to terminate this tax?" } unless @tax.status == Tax::ENDED
+    
+    - unless logged_in?
+      .clear{:style=>'height: 1em;'}
+      .rounded{:style=>'background-color: #eeffff;'}
+        %h4 New here?
+        %p
+          With LoveTax you can easily support people and things you care about in a simple, sustainable, social way.
+          Or invite the world to help with your own projects.
+          = link_to 'Read our guide', guide_path
+          for more!

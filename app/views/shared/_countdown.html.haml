@@ -1,0 +1,12 @@
+%style{:type=>"text/css"} @import "/stylesheets/jquery.countdown.css";
+%script{:type=>"text/javascript", :src=>"/javascripts/jquery.countdown.js"}
+%div{:style=>'text-align: center; color: #888;'} Countdown to next payday:
+#countdown.clear
+%script
+  :plain
+    $(document).ready(function() {
+    	var next = new Date(
+    	#{time.year}, #{time.month}-1, #{time.day}, #{time.hour}, 0, 0, 0
+    	);
+    	$('#countdown').countdown({until: next, format: 'dHMS'});
+    });

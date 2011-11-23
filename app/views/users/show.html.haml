@@ -1,0 +1,30 @@
+- @no12 = true
+- @subtitle = @user.name
+
+.container_12.container
+  .grid_12
+    %h2=h @user.name
+    = render :partial => 'tabs', :locals => { :user => @user } if false
+    = notice
+
+
+.container_12.container
+  .grid_6
+    %h3= @user == current_user ? "I give #{number_to_currency(@total_pledges)} monthly to #{@active_pledges_count} taxes" : "Taxes I give to"
+    - if @pledges.blank?
+      %p
+        Well, it looks like I don't pay any taxes yet! Tsk, tsk.
+        %br/
+        = link_to 'Have you seen all these good things?', taxes_path if @user == current_user
+    - else
+      = render :partial => 'shared/pledge', :collection => @pledges, :locals => { :mine => (@user == current_user) }
+    
+  .grid_6
+    %h3 Taxes I've started
+    - if @taxes.blank?
+      %p
+        I haven't started any yet. It's free to
+        = link_to "create a tax", new_tax_path
+        though...
+    - else
+      = render :partial => 'shared/tax', :collection => @taxes, :locals => { :mine => (@user == current_user) }

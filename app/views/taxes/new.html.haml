@@ -1,0 +1,28 @@
+%h2 Start a LoveTax
+
+= notice
+
+- form_for @tax do |f|
+  = f.error_messages
+  %br/
+  Your PayPal email
+  %br/
+  = f.text_field :paypal_email
+  %br/
+  %br/
+  Name your tax (8-40 letters)
+  %br/
+  = f.text_field :name
+  %br/
+  %br/
+  Add an optional video - paste a Vimeo or YouTube URL here:
+  %br/
+  = text_field_tag :video_url, nil, :size => 30
+  %br/
+  %br/
+  Description (at least 20 letters, write as much as you'd like)
+  %br/
+  = f.text_area :description, :style => 'height: 8em;'
+  %br/
+  %br/
+  = f.submit 'Create it'

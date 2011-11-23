@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %meta{'http-equiv' => "Content-Type", 'content' => "text/html; charset=iso-8859-1"}
+    
+  %body
+    %p
+      So glad you're joining us!
+      The page to manage your tax payments is at #{link_to "http://lovetax.us/account", "http://lovetax.us/account"}.
+      You can press pause if you want to skip a month or more, or you can stop your payments permanently at any time.
+    
+    %p
+      Don't forget to invite your friends, family, fans, and total strangers to contribute to your preferred taxes.
+      If you get stuck or have feedback, email us at team@lovetax.us any time.
+    
+    = render :partial => 'shared/email_sig'

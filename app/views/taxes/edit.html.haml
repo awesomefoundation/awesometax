@@ -1,0 +1,28 @@
+%h2
+  Edit tax:
+  =h @tax.name
+
+- form_for @tax, :url => tax_path, :method => :put do |f|
+  Name
+  %br/
+  = f.text_field :name
+  %br/
+  %br/
+  To embed an optional video, enter the YouTube or Vimeo URL here:
+  %br/
+  = text_field_tag :video_url, nil, :size => 30
+  %br/
+  %br/
+  Description
+  %br/
+  = f.text_area :description, :style => 'height: 8em;'
+  %br/
+  %p
+    Funds will go to the PayPal account for
+    %b= "#{h(@tax.paypal_email)}."
+    %br/
+    You can't change this, but you can
+    = link_to 'discontinue this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to stop collecting this tax? You cannot undo this!" }
+    and start a new one.
+  
+  = f.submit 'Save'

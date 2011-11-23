@@ -1,0 +1,78 @@
+- @no12 = true
+- @subtitle = 'Guide'
+
+.container.container_12
+  .grid_12
+    %h2 The LoveTax Guide
+
+.container.container_12
+  .grid_6
+    %p There's someone or something you want to support. You could give them money once and walk away, or you can use LoveTax to support them in a simple, sustainable, social way, and invite others to do the same. On the 15th of each month you'll be charged whatever amount you'd like (one dollar and up) and the money will go directly to the cause (minus PayPal's industry standard fee). If you'd like to take a month or more off you can pause your payments, and if you'd like to stop forever you can do that too, at any time.
+    
+    %p
+      To create a LoveTax for the cause of your choice, all you need is a PayPal account. Paste your associated email address into a box, describe what the money's for, and
+      %em *POOF!*
+      you're done. It's really silly easy.
+
+    %p Remember: $1 or $5 or $10 a month from one person isn't a lot, but when the number of people grows...well, you might be surprised. So tell your friends, family, fans, and total strangers, and let us know what we can do to improve.
+
+    = render :partial => 'shared/share'
+
+    .clear{:style => 'height: 1em;'}
+    
+    %h3 What kinds of things can you create or pay LoveTaxes for?
+    
+    Some examples that come to mind:
+    %ul
+      %li A charity, nonprofit, or community group
+      %li A friend who needs some help
+      %li An artist, musician, or maker
+      %li Any kind of project or organization
+      %li Miscellaneous awesomeness
+    
+    %br/
+    %br/
+    %h3 Terms of Use
+    %ul
+      %li
+        You must abide by
+        = link_to "PayPal's Acceptable Use Policy", "https://cms.paypal.com/us/cgi-bin/marketingweb?cmd=_render-content&content_ID=ua/AcceptableUse_full&locale.x=en_US"
+        while using LoveTax. In short, don't do anything illegal here or we'll cancel all future funding and
+        revoke your membership.
+      %li We make no guarantee about what the recipients of your taxes do with the money. As such, we cannot offer refunds if they fail to live up to the promises they have written on our site.
+      %li
+        While it's free to start a tax, when you receive your monthly funding, the standard
+        = link_to 'PayPal fees', 'https://www.paypal.com/cgi-bin/webscr?cmd=_display-receiving-fees-outside&countries='
+        will be subtracted from your "paycheck."
+    
+    %p.clear
+      LOVELAND Technologies makes maps and social payment systems. Check out #{link_to 'makeloveland.com', 'http://makeloveland.com'} and #{link_to "Why Don't We Own This?", 'http://whydontweownthis.com'}.
+      
+    %h3 Contact info
+    %p You can reach Jerry Paffendorf any time at jerry@makeloveland.com or 908-343-1981.
+
+  .grid_6
+    .rounded{:style => 'background-color: #ddffdd;'}
+      %h3 How to pay a LoveTax
+      %ol
+        %li #{link_to 'Find a LoveTax', taxes_path} you want to contribute to.
+        %li Type in how much you want to pay each month.
+        %li Click the "Checkout with PayPal" button.
+        %li Follow the directions at the PayPal site to start payments.
+        %li Invite your friends to do it too.
+        %li Bask in joy.
+    
+    .rounded{:style => 'background-color: #ffdddd; margin-top: 1em;'}
+      %h3 How to stop paying a LoveTax
+      %ol
+        %li Go to #{link_to 'your account.', account_path}
+        %li Click the "Pause" or "Stop" button. "Pause" stops payments from happening until you unpause &mdash; you can leave it paused for as long as you want &mdash; while "Stop" completely removes the tax from your record.
+        %li Eat a sandwich.
+
+    .rounded{:style => 'background-color: #e4e4ff; margin-top: 1em;'}
+      %h3 How to start your own
+      %ol
+        %li Go to #{link_to 'this page', new_tax_path}
+        %li Enter the email address you use for #{link_to 'PayPal', 'http://paypal.com'}. #{link_to 'Signing up', 'https://www.paypal.com/cgi-bin/webscr?cmd=_registration-run'} is free and quick.
+        %li Enter a title and write a brief description, and then press "Create it."
+        %li Invite your friends and social networks to contribute!

@@ -1,0 +1,1308 @@
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+
+
+Started GET "/" for 127.0.0.1 at Tue Nov 22 13:27:37 -0800 2011
+
+Mysql2::Error (Unknown database 'lovetax_local'):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (16.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (35.0ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Nov 22 13:49:31 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mTax Load (0.5ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6[0m
+Mysql2::Error: Table 'lovetax_local.taxes' doesn't exist: SELECT  `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6
+Completed   in 281ms
+
+ActiveRecord::StatementInvalid (Mysql2::Error: Table 'lovetax_local.taxes' doesn't exist: SELECT  `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6):
+  app/controllers/home_controller.rb:4:in `index'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.2ms)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+
+
+Started GET "/contact" for 127.0.0.1 at Tue Nov 22 13:54:13 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+
+AbstractController::ActionNotFound (The action 'contact' could not be found for HomeController):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/unknown_action.erb within rescues/layout (0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Nov 22 13:55:47 -0800 2011
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mTax Load (0.3ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6[0m
+Mysql2::Error: Unknown column 'taxes.status' in 'where clause': SELECT  `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6
+Completed   in 103ms
+
+ActiveRecord::StatementInvalid (Mysql2::Error: Unknown column 'taxes.status' in 'where clause': SELECT  `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6):
+  app/controllers/home_controller.rb:4:in `index'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.3ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Nov 22 13:56:19 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6[0m
+Rendered shared/_tax.html.erb (0.0ms)
+Rendered shared/_countdown.html.haml (3.0ms)
+Rendered shared/_share.html.erb (0.4ms)
+Rendered home/index.html.haml within layouts/main (18.9ms)
+Completed   in 110ms
+
+ActionView::Template::Error (No route matches {:controller=>"taxes"}):
+    40:       <li>LOVE<span style='color: #444;'>TAX</span></li>
+    41:       <li><%= link_to 'Home', root_path %></li>
+    42:       <li><%= link_to 'Guide', guide_path %></li>
+    43:       <li><%= link_to 'Taxes', :controller => 'taxes', :action => 'index' %></li>
+    44:       <% if logged_in? %>
+    45:         <li><%= link_to 'Me', account_path %>
+    46:           <ul>
+  app/views/layouts/main.html.erb:43:in `_app_views_layouts_main_html_erb___1760335578_2196779020_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.4ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Nov 22 13:57:38 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6[0m
+Rendered shared/_tax.html.erb (0.0ms)
+Rendered shared/_countdown.html.haml (3.0ms)
+Rendered shared/_share.html.erb (0.4ms)
+Rendered home/index.html.haml within layouts/application (16.9ms)
+Completed   in 37ms
+
+ActionView::Template::Error (No route matches {:controller=>"taxes"}):
+    34:       <li>LOVE<span style='color: #444;'>TAX</span></li>
+    35:       <li><%= link_to 'Home', root_path %></li>
+    36:       <li><%= link_to 'Guide', guide_path %></li>
+    37:       <li><%= link_to 'Taxes', { :controller => 'taxes', :action => 'index' } %></li>
+    38:       <% if logged_in? %>
+    39:         <li><%= link_to 'Me', account_path %>
+    40:           <ul>
+  app/views/layouts/application.html.erb:37:in `_app_views_layouts_application_html_erb__104927066_2197200480_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.4ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Nov 22 13:58:02 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mTax Load (0.9ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6[0m
+Rendered shared/_tax.html.erb (0.0ms)
+Rendered shared/_countdown.html.haml (3.2ms)
+Rendered shared/_share.html.erb (0.3ms)
+Rendered home/index.html.haml within layouts/application (47.9ms)
+Completed   in 68ms
+
+ActionView::Template::Error (uninitialized constant Authlogic):
+    35:       <li><%= link_to 'Home', root_path %></li>
+    36:       <li><%= link_to 'Guide', guide_path %></li>
+    37:       <li><%= link_to 'Taxes', '/taxes' %></li>
+    38:       <% if logged_in? %>
+    39:         <li><%= link_to 'Me', account_path %>
+    40:           <ul>
+    41:             <% if current_user.admin? %>
+  app/models/user_session.rb:1
+  app/controllers/application_controller.rb:15:in `current_user_session'
+  app/controllers/application_controller.rb:20:in `current_user'
+  app/controllers/application_controller.rb:24:in `logged_in?'
+  app/views/layouts/application.html.erb:38:in `_app_views_layouts_application_html_erb__104927066_2197600240_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.5ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.6ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Nov 22 14:00:11 -0800 2011
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6[0m
+Rendered shared/_tax.html.erb (0.0ms)
+Rendered shared/_countdown.html.haml (3.0ms)
+Rendered shared/_share.html.erb (0.3ms)
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (29.7ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered home/index.html.haml within layouts/application (273.6ms)
+Completed   in 292ms
+
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::AppConfig):
+    77:     <script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
+    78:   <![endif]-->
+    79:   <script>
+    80:    var _gaq = [['_setAccount', '<%= AppConfig.analytics_key %>'], ['_trackPageview']];
+    81:    (function(d, t) {
+    82:     var g = d.createElement(t),
+    83:         s = d.getElementsByTagName(t)[0];
+  app/views/layouts/application.html.erb:80:in `_app_views_layouts_application_html_erb__104927066_2197290000_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.1ms)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+
+
+Started GET "/" for 127.0.0.1 at Tue Nov 22 14:00:57 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mTax Load (0.2ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6
+Rendered shared/_tax.html.erb (0.0ms)
+Rendered shared/_countdown.html.haml (85.7ms)
+Rendered shared/_share.html.erb (0.4ms)
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered home/index.html.haml within layouts/application (118.4ms)
+Completed 200 OK in 171ms (Views: 123.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/guide" for 127.0.0.1 at Tue Nov 22 14:01:21 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#guide as HTML
+Rendered shared/_share.html.erb (0.4ms)
+Rendered home/guide.html.haml within layouts/application (21.9ms)
+Completed   in 27ms
+
+ActionView::Template::Error (undefined local variable or method `new_tax_path' for #<#<Class:0x105e50730>:0x105e4c388>):
+    72:     .rounded{:style => 'background-color: #e4e4ff; margin-top: 1em;'}
+    73:       %h3 How to start your own
+    74:       %ol
+    75:         %li Go to #{link_to 'this page', new_tax_path}
+    76:         %li Enter the email address you use for #{link_to 'PayPal', 'http://paypal.com'}. #{link_to 'Signing up', 'https://www.paypal.com/cgi-bin/webscr?cmd=_registration-run'} is free and quick.
+    77:         %li Enter a title and write a brief description, and then press "Create it."
+    78:         %li Invite your friends and social networks to contribute!
+  app/views/home/guide.html.haml:75:in `_app_views_home_guide_html_haml__984577016_2196917660_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (96.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (103.3ms)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+
+
+Started GET "/guide" for 127.0.0.1 at Tue Nov 22 14:03:27 -0800 2011
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#guide as HTML
+Rendered shared/_share.html.erb (0.4ms)
+Rendered home/guide.html.haml within layouts/application (14.0ms)
+Completed   in 19ms
+
+ActionView::Template::Error (No route matches {:singular=>"tax", :plural=>"taxes", :controller=>"taxes"}):
+    55:     .rounded{:style => 'background-color: #ddffdd;'}
+    56:       %h3 How to pay a LoveTax
+    57:       %ol
+    58:         %li #{link_to 'Find a LoveTax', taxes_path} you want to contribute to.
+    59:         %li Type in how much you want to pay each month.
+    60:         %li Click the "Checkout with PayPal" button.
+    61:         %li Follow the directions at the PayPal site to start payments.
+  app/views/home/guide.html.haml:58:in `_app_views_home_guide_html_haml__984577016_2195922000_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.2ms)
+
+
+Started GET "/guide" for 127.0.0.1 at Tue Nov 22 14:03:49 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#guide as HTML
+Rendered shared/_share.html.erb (0.4ms)
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered home/guide.html.haml within layouts/application (32.8ms)
+Completed 200 OK in 37ms (Views: 36.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/taxes" for 127.0.0.1 at Tue Nov 22 14:04:24 -0800 2011
+
+ActionController::RoutingError (No route matches "/taxes"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+
+
+Started GET "/taxes" for 127.0.0.1 at Tue Nov 22 14:04:35 -0800 2011
+
+ActionController::RoutingError (No route matches "/taxes"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/tax" for 127.0.0.1 at Tue Nov 22 14:04:40 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by TaxesController#show as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+Completed   in 97ms
+
+ActiveRecord::RecordNotFound (Couldn't find Tax without an ID):
+  app/controllers/taxes_controller.rb:10:in `show'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.1ms)
+
+
+Started GET "/taxes" for 127.0.0.1 at Tue Nov 22 14:04:43 -0800 2011
+
+ActionController::RoutingError (No route matches "/taxes"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Nov 22 14:04:45 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (34.1ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6[0m
+Rendered home/index.html.haml within layouts/application (7.6ms)
+Completed   in 61ms
+
+ActionView::Template::Error (No route matches {:singular=>"tax", :plural=>"taxes", :controller=>"taxes"}):
+    12:   .grid_6
+    13:     %h2{:style => 'margin-bottom: 0px; padding-bottom: 0px;'} Fresh Taxes
+    14:     %p
+    15:       = link_to 'See them all', taxes_path
+    16:       or
+    17:       = link_to 'create your own.', '/taxes/new'
+    18:     = render :partial => 'shared/tax', :collection => @featured
+  app/views/home/index.html.haml:15:in `_app_views_home_index_html_haml__1743183282_2195989440_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.7ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Nov 22 14:04:59 -0800 2011
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (0.2ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6
+Rendered shared/_tax.html.erb (0.0ms)
+Rendered shared/_countdown.html.haml (2.7ms)
+Rendered shared/_share.html.erb (0.3ms)
+Rendered home/index.html.haml within layouts/application (16.5ms)
+Completed   in 34ms
+
+ActionView::Template::Error (No route matches {:action=>"create", :controller=>"taxes"}):
+    34:       <li>LOVE<span style='color: #444;'>TAX</span></li>
+    35:       <li><%= link_to 'Home', root_path %></li>
+    36:       <li><%= link_to 'Guide', guide_path %></li>
+    37:       <li><%= link_to 'Taxes', tax_path %></li>
+    38:       <% if logged_in? %>
+    39:         <li><%= link_to 'Me', account_path %>
+    40:           <ul>
+  app/views/layouts/application.html.erb:37:in `_app_views_layouts_application_html_erb__104927066_2195874320_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (91.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (95.9ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Nov 22 14:05:11 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6[0m
+Rendered shared/_tax.html.erb (0.0ms)
+Rendered shared/_countdown.html.haml (2.6ms)
+Rendered shared/_share.html.erb (0.3ms)
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/index.html.haml within layouts/application (31.3ms)
+Completed 200 OK in 50ms (Views: 35.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/taxes" for 127.0.0.1 at Tue Nov 22 14:05:14 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by TaxesController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (0.2ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1)
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered taxes/index.html.haml within layouts/application (20.6ms)
+Completed 200 OK in 76ms (Views: 62.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/guide" for 127.0.0.1 at Tue Nov 22 14:05:16 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#guide as HTML
+Rendered shared/_share.html.erb (89.6ms)
+Rendered home/guide.html.haml within layouts/application (103.6ms)
+Completed   in 108ms
+
+ActionView::Template::Error (No route matches {:action=>"create", :controller=>"taxes"}):
+    55:     .rounded{:style => 'background-color: #ddffdd;'}
+    56:       %h3 How to pay a LoveTax
+    57:       %ol
+    58:         %li #{link_to 'Find a LoveTax', tax_path} you want to contribute to.
+    59:         %li Type in how much you want to pay each month.
+    60:         %li Click the "Checkout with PayPal" button.
+    61:         %li Follow the directions at the PayPal site to start payments.
+  app/views/home/guide.html.haml:58:in `_app_views_home_guide_html_haml__984577016_2196330440_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.8ms)
+
+
+Started GET "/guide" for 127.0.0.1 at Tue Nov 22 14:05:34 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#guide as HTML
+Rendered shared/_share.html.erb (0.4ms)
+Rendered home/guide.html.haml within layouts/application (14.3ms)
+Completed   in 19ms
+
+ActionView::Template::Error (No route matches {:action=>"create", :controller=>"taxes"}):
+    55:     .rounded{:style => 'background-color: #ddffdd;'}
+    56:       %h3 How to pay a LoveTax
+    57:       %ol
+    58:         %li #{link_to 'Find a LoveTax', tax_path} you want to contribute to.
+    59:         %li Type in how much you want to pay each month.
+    60:         %li Click the "Checkout with PayPal" button.
+    61:         %li Follow the directions at the PayPal site to start payments.
+  app/views/home/guide.html.haml:58:in `_app_views_home_guide_html_haml__984577016_2196492880_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.6ms)
+
+
+Started GET "/guide" for 127.0.0.1 at Tue Nov 22 14:05:50 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#guide as HTML
+Rendered shared/_share.html.erb (0.4ms)
+Rendered home/guide.html.haml within layouts/application (101.5ms)
+Completed   in 106ms
+
+ActionView::Template::Error (No route matches {:action=>"new", :controller=>"taxes"}):
+    72:     .rounded{:style => 'background-color: #e4e4ff; margin-top: 1em;'}
+    73:       %h3 How to start your own
+    74:       %ol
+    75:         %li Go to #{link_to 'this page', new_tax_path}
+    76:         %li Enter the email address you use for #{link_to 'PayPal', 'http://paypal.com'}. #{link_to 'Signing up', 'https://www.paypal.com/cgi-bin/webscr?cmd=_registration-run'} is free and quick.
+    77:         %li Enter a title and write a brief description, and then press "Create it."
+    78:         %li Invite your friends and social networks to contribute!
+  app/views/home/guide.html.haml:75:in `_app_views_home_guide_html_haml__984577016_2195336860_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.4ms)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+
+
+Started GET "/guide" for 127.0.0.1 at Tue Nov 22 14:10:31 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#guide as HTML
+Rendered shared/_share.html.erb (0.4ms)
+Rendered home/guide.html.haml within layouts/application (15.6ms)
+Completed   in 21ms
+
+ActionView::Template::Error (No route matches {:action=>"new", :controller=>"taxes"}):
+    72:     .rounded{:style => 'background-color: #e4e4ff; margin-top: 1em;'}
+    73:       %h3 How to start your own
+    74:       %ol
+    75:         %li Go to #{link_to 'this page', new_tax_path}
+    76:         %li Enter the email address you use for #{link_to 'PayPal', 'http://paypal.com'}. #{link_to 'Signing up', 'https://www.paypal.com/cgi-bin/webscr?cmd=_registration-run'} is free and quick.
+    77:         %li Enter a title and write a brief description, and then press "Create it."
+    78:         %li Invite your friends and social networks to contribute!
+  app/views/home/guide.html.haml:75:in `_app_views_home_guide_html_haml__984577016_2196272820_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.4ms)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+
+
+Started GET "/guide" for 127.0.0.1 at Tue Nov 22 14:10:42 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#guide as HTML
+Rendered shared/_share.html.erb (0.4ms)
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/guide.html.haml within layouts/application (148.4ms)
+Completed 200 OK in 154ms (Views: 152.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/taxes" for 127.0.0.1 at Tue Nov 22 14:10:47 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by TaxesController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (0.8ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1)
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered taxes/index.html.haml within layouts/application (20.9ms)
+Completed 200 OK in 43ms (Views: 25.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/guide" for 127.0.0.1 at Tue Nov 22 14:10:48 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#guide as HTML
+Rendered shared/_share.html.erb (0.4ms)
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered home/guide.html.haml within layouts/application (31.4ms)
+Completed 200 OK in 36ms (Views: 35.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Nov 22 14:10:50 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1) ORDER BY id desc LIMIT 6[0m
+Rendered shared/_tax.html.erb (0.0ms)
+Rendered shared/_countdown.html.haml (2.7ms)
+Rendered shared/_share.html.erb (0.3ms)
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.5ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/index.html.haml within layouts/application (117.2ms)
+Completed 200 OK in 137ms (Views: 121.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 14:23:44 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (134.4ms)
+Completed 200 OK in 139ms (Views: 138.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/javascripts/magic_xss.js" for 127.0.0.1 at Tue Nov 22 14:23:44 -0800 2011
+
+ActionController::RoutingError (No route matches "/javascripts/magic_xss.js"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 14:25:03 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.5ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (18.4ms)
+Completed 200 OK in 23ms (Views: 22.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 14:25:43 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (105.0ms)
+Completed 200 OK in 110ms (Views: 108.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 14:42:38 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.8ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (19.9ms)
+Completed 200 OK in 24ms (Views: 22.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 14:42:50 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (17.9ms)
+Completed 200 OK in 22ms (Views: 21.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 14:43:02 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (18.2ms)
+Completed 200 OK in 23ms (Views: 21.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 14:43:07 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (18.0ms)
+Completed 200 OK in 22ms (Views: 21.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:12:18 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.5ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (35.6ms)
+Completed 200 OK in 41ms (Views: 39.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:12:26 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (18.5ms)
+Completed 200 OK in 23ms (Views: 22.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:14:10 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (156.7ms)
+Completed 200 OK in 162ms (Views: 160.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:15:16 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (18.1ms)
+Completed 200 OK in 23ms (Views: 21.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/taxes" for 127.0.0.1 at Tue Nov 22 15:15:58 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by TaxesController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (0.2ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1)
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (40.9ms)[0m  [1mSHOW TABLES[0m
+Rendered shared/_tax.html.erb (168.6ms)
+Rendered taxes/index.html.haml within layouts/application (174.0ms)
+Completed   in 312ms
+
+ActionView::Template::Error (undefined method `eq' for nil:NilClass):
+    13:        &middot; <b><%= tax.status_string %> <%= tax.updated_at.strftime('%b %d %Y') %></b>
+    14:     <% end %>
+    15:   <% else %>
+    16:     By <%= tax.owner.nil? ? 'Anonymous' : link_to(h(tax.owner.name), tax.owner) %>
+    17:   <% end %>
+    18:   <% unless !tax.active? or tax.pledges.active.empty? %>
+    19:      &middot; <%= number_to_currency(tax.monthly_income) %> / mo. from <%= pluralize(tax.unique_supporters.count, 'person') %></p>
+  app/views/shared/_tax.html.erb:16:in `_app_views_shared__tax_html_erb___1885908662_2197675840_2536670'
+  app/views/taxes/index.html.haml:9:in `_app_views_taxes_index_html_haml___195348850_2197736820_0'
+  app/views/taxes/index.html.haml:7:in `each'
+  app/views/taxes/index.html.haml:7:in `_app_views_taxes_index_html_haml___195348850_2197736820_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (8.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (106.2ms)
+
+
+Started GET "/taxes" for 127.0.0.1 at Tue Nov 22 15:17:38 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by TaxesController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (0.3ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1)
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+Rendered shared/_tax.html.erb (120.6ms)
+Rendered taxes/index.html.haml within layouts/application (124.8ms)
+Completed   in 150ms
+
+ActionView::Template::Error (undefined method `eq' for nil:NilClass):
+    13:        &middot; <b><%= tax.status_string %> <%= tax.updated_at.strftime('%b %d %Y') %></b>
+    14:     <% end %>
+    15:   <% else %>
+    16:     By <%= tax.owner.andand.name || 'Anonymous' %>
+    17:   <% end %>
+    18:   <% unless !tax.active? or tax.pledges.active.empty? %>
+    19:      &middot; <%= number_to_currency(tax.monthly_income) %> / mo. from <%= pluralize(tax.unique_supporters.count, 'person') %></p>
+  app/views/shared/_tax.html.erb:16:in `_app_views_shared__tax_html_erb___1885908662_2197038620_2536670'
+  app/views/taxes/index.html.haml:9:in `_app_views_taxes_index_html_haml___195348850_2197098860_0'
+  app/views/taxes/index.html.haml:7:in `each'
+  app/views/taxes/index.html.haml:7:in `_app_views_taxes_index_html_haml___195348850_2197098860_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (10.6ms)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/lsheradon/Sites/smiley-client/config/routes.rb:1)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:29:22 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mTax Load (0.2ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1
+Rendered home/widget.js.haml (1.1ms)
+Completed 200 OK in 248ms (Views: 13.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:29:58 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+Rendered home/widget.js.haml (7.7ms)
+Completed 200 OK in 128ms (Views: 17.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:32:12 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (0.2ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1
+Rendered home/widget.js.haml (8.3ms)
+Completed 200 OK in 34ms (Views: 20.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:32:36 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+Rendered home/widget.js.haml (9.5ms)
+Completed 200 OK in 34ms (Views: 20.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:34:39 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (0.2ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1
+Rendered home/widget.js.haml (0.9ms)
+Completed 200 OK in 31ms (Views: 11.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:34:56 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.3ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+Rendered home/widget.js.haml (1.1ms)
+Completed 200 OK in 33ms (Views: 14.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:35:19 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (0.2ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1
+Rendered home/widget.js.haml (1.0ms)
+Completed 200 OK in 132ms (Views: 11.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:36:55 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+Rendered home/widget.js.haml (1.5ms)
+Completed 200 OK in 31ms (Views: 12.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/taxes" for 127.0.0.1 at Tue Nov 22 15:36:59 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by TaxesController#index as HTML
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (0.2ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`status` = 1)
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
+Rendered shared/_tax.html.erb (168.4ms)
+Rendered taxes/index.html.haml within layouts/application (172.6ms)
+Completed   in 216ms
+
+ActionView::Template::Error (undefined method `eq' for nil:NilClass):
+    13:        &middot; <b><%= tax.status_string %> <%= tax.updated_at.strftime('%b %d %Y') %></b>
+    14:     <% end %>
+    15:   <% else %>
+    16:     By <%= tax.owner.andand.name || 'Anonymous' %>
+    17:   <% end %>
+    18:   <% unless !tax.active? or tax.pledges.active.empty? %>
+    19:      &middot; <%= number_to_currency(tax.monthly_income) %> / mo. from <%= pluralize(tax.unique_supporters.count, 'person') %></p>
+  app/views/shared/_tax.html.erb:16:in `_app_views_shared__tax_html_erb___1885908662_2196824580_2770750'
+  app/views/taxes/index.html.haml:9:in `_app_views_taxes_index_html_haml___195348850_2196872280_0'
+  app/views/taxes/index.html.haml:7:in `each'
+  app/views/taxes/index.html.haml:7:in `_app_views_taxes_index_html_haml___195348850_2196872280_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (25.3ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:37:01 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (120.6ms)
+Completed 200 OK in 127ms (Views: 126.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:37:36 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.5ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (38.3ms)
+Completed 200 OK in 45ms (Views: 44.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:37:36 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (0.6ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1
+Rendered home/widget.js.haml (1.9ms)
+Completed 200 OK in 58ms (Views: 14.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:39:30 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered home/mock.html.haml within layouts/application (38.1ms)
+Completed 200 OK in 45ms (Views: 44.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:39:30 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.5ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+Rendered home/widget.js.haml (2.5ms)
+Completed 200 OK in 149ms (Views: 17.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:40:14 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (42.5ms)
+Completed 200 OK in 52ms (Views: 51.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:40:15 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (0.2ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1
+Rendered home/widget.js.haml (1.2ms)
+Completed 200 OK in 129ms (Views: 19.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:40:22 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (1.2ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered home/mock.html.haml within layouts/application (51.0ms)
+Completed 200 OK in 57ms (Views: 54.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:40:23 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.8ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+Rendered home/widget.js.haml (97.4ms)
+Completed 200 OK in 128ms (Views: 108.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:40:32 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (1.0ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (24.8ms)
+Completed 200 OK in 30ms (Views: 28.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:40:32 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (1.6ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1
+Rendered home/widget.js.haml (1.2ms)
+Completed 200 OK in 33ms (Views: 11.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:40:39 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered home/mock.html.haml within layouts/application (21.9ms)
+Completed 200 OK in 28ms (Views: 26.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:40:40 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+Rendered home/widget.js.haml (1.0ms)
+Completed 200 OK in 30ms (Views: 10.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:41:12 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (135.6ms)
+Completed 200 OK in 149ms (Views: 148.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:41:12 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (0.2ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1
+Rendered home/widget.js.haml (1.1ms)
+Completed 200 OK in 30ms (Views: 11.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:42:11 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered home/mock.html.haml within layouts/application (154.4ms)
+Completed 200 OK in 161ms (Views: 159.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:42:11 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+Rendered home/widget.js.haml (1.1ms)
+Completed 200 OK in 31ms (Views: 11.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:46:34 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (182.7ms)
+Completed 200 OK in 188ms (Views: 187.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:46:34 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (0.3ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1
+Completed   in 36ms
+
+NoMethodError (undefined method `include' for #<Tax:0x105fc2898>):
+  app/controllers/home_controller.rb:12:in `widget'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.6ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:46:55 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (8.3ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+Completed   in 87ms
+
+NoMethodError (undefined method `include' for #<Tax:0x105d5c1d0>):
+  app/controllers/home_controller.rb:12:in `widget'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.5ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.0ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:47:03 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (1.6ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1
+Completed   in 47ms
+
+NoMethodError (undefined method `includes' for #<Tax:0x105efaff0>):
+  app/controllers/home_controller.rb:12:in `widget'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.3ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:47:17 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.3ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mPledge Load (0.2ms)[0m  SELECT `pledges`.* FROM `pledges` WHERE (`pledges`.tax_id = 5) AND (`pledges`.`status` = 1)
+Rendered home/widget.js.haml (1.2ms)
+Completed 200 OK in 174ms (Views: 18.5ms | ActiveRecord: 10.8ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:47:22 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (1.0ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered home/mock.html.haml within layouts/application (46.9ms)
+Completed 200 OK in 55ms (Views: 53.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:47:39 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered home/mock.html.haml within layouts/application (129.4ms)
+Completed 200 OK in 135ms (Views: 134.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:47:40 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.3ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mPledge Load (0.3ms)[0m  SELECT `pledges`.* FROM `pledges` WHERE (`pledges`.tax_id = 5) AND (`pledges`.`status` = 1)
+Rendered home/widget.js.haml (1.2ms)
+Completed 200 OK in 57ms (Views: 14.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:47:58 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered home/mock.html.haml within layouts/application (20.1ms)
+Completed 200 OK in 26ms (Views: 24.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:47:58 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mPledge Load (0.2ms)[0m  SELECT `pledges`.* FROM `pledges` WHERE (`pledges`.tax_id = 5) AND (`pledges`.`status` = 1)
+Rendered home/widget.js.haml (1.1ms)
+Completed 200 OK in 45ms (Views: 12.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:49:53 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.4ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mPledge Load (0.5ms)[0m  SELECT `pledges`.* FROM `pledges` WHERE (`pledges`.tax_id = 5) AND (`pledges`.`status` = 1)
+Rendered home/widget.js.haml (1.0ms)
+Completed 200 OK in 67ms (Views: 10.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:50:01 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mPledge Load (0.2ms)[0m  SELECT `pledges`.* FROM `pledges` WHERE (`pledges`.tax_id = 5) AND (`pledges`.`status` = 1)
+Rendered home/widget.js.haml (1.0ms)
+Completed 200 OK in 144ms (Views: 10.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:50:16 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (1.5ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mPledge Load (2.3ms)[0m  SELECT `pledges`.* FROM `pledges` WHERE (`pledges`.tax_id = 5) AND (`pledges`.`status` = 1)
+Rendered home/widget.js.haml (1.1ms)
+Completed 200 OK in 54ms (Views: 12.2ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:50:50 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mPledge Load (0.2ms)[0m  SELECT `pledges`.* FROM `pledges` WHERE (`pledges`.tax_id = 5) AND (`pledges`.`status` = 1)
+Rendered home/widget.js.haml (1.0ms)
+Completed 200 OK in 141ms (Views: 10.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:54:36 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered home/mock.html.haml within layouts/application (20.1ms)
+Completed 200 OK in 26ms (Views: 25.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/javascripts/tax.local/javascripts/xss_magic.js" for 127.0.0.1 at Tue Nov 22 15:54:37 -0800 2011
+
+ActionController::RoutingError (No route matches "/javascripts/tax.local/javascripts/xss_magic.js"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:55:08 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered home/mock.html.haml within layouts/application (51.9ms)
+Completed 200 OK in 58ms (Views: 56.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/widget/5.js" for 127.0.0.1 at Tue Nov 22 15:55:08 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"5"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 5) LIMIT 1[0m
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mPledge Load (1.1ms)[0m  SELECT `pledges`.* FROM `pledges` WHERE (`pledges`.tax_id = 5) AND (`pledges`.`status` = 1)
+Rendered home/widget.js.haml (1.1ms)
+Completed 200 OK in 133ms (Views: 11.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:55:42 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mSQL (1.1ms)[0m  [1mSELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)
+Rendered home/mock.html.haml within layouts/application (44.4ms)
+Completed 200 OK in 51ms (Views: 48.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/widget/9.js" for 127.0.0.1 at Tue Nov 22 15:55:42 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"9"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.8ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 9) LIMIT 1[0m
+Completed   in 16ms
+
+ActiveRecord::RecordNotFound (Couldn't find Tax with ID=9):
+  app/controllers/home_controller.rb:12:in `widget'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (106.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (111.0ms)
+
+
+Started GET "/mock" for 127.0.0.1 at Tue Nov 22 15:56:01 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#mock as HTML
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(distinct user_id) FROM `pledges` WHERE (`pledges`.`status` = 1)
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT SUM(`pledges`.`amount`) AS sum_id FROM `pledges` WHERE (`pledges`.`status` = 1)[0m
+Rendered home/mock.html.haml within layouts/application (18.5ms)
+Completed 200 OK in 24ms (Views: 23.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/widget/7.js" for 127.0.0.1 at Tue Nov 22 15:56:01 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"7"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[35mTax Load (0.2ms)[0m  SELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 7) LIMIT 1
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[36mPledge Load (0.2ms)[0m  [1mSELECT `pledges`.* FROM `pledges` WHERE (`pledges`.tax_id = 7) AND (`pledges`.`status` = 1)[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+Completed   in 133ms
+
+NoMethodError (undefined method `eq' for nil:NilClass):
+  app/models/tax.rb:28:in `unique_supporters'
+  app/models/tax.rb:28:in `unique_supporters'
+  app/controllers/home_controller.rb:17:in `widget'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.1ms)
+
+
+Started GET "/widget/7.js" for 127.0.0.1 at Tue Nov 22 15:56:17 -0800 2011
+DEPRECATION WARNING: Setting filter_parameter_logging in ActionController is deprecated and has no longer effect, please set 'config.filter_parameters' in config/application.rb instead. (called from /Users/lsheradon/Sites/LoveTax3/app/controllers/application_controller.rb:6)
+  Processing by HomeController#widget as JS
+  Parameters: {"id"=>"7"}
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/tax.rb:11)
+  [1m[36mTax Load (0.2ms)[0m  [1mSELECT `taxes`.* FROM `taxes` WHERE (`taxes`.`id` = 7) LIMIT 1[0m
+DEPRECATION WARNING: include ActionController::UrlWriter is deprecated. Instead, include Rails.application.routes.url_helpers. (called from include at /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:2)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/lsheradon/Sites/LoveTax3/app/models/pledge.rb:15)
+  [1m[35mPledge Load (0.3ms)[0m  SELECT `pledges`.* FROM `pledges` WHERE (`pledges`.tax_id = 7) AND (`pledges`.`status` = 1)
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+Completed   in 168ms
+
+NoMethodError (undefined method `eq' for nil:NilClass):
+  app/models/tax.rb:28:in `unique_supporters'
+  app/models/tax.rb:28:in `unique_supporters'
+  app/controllers/home_controller.rb:17:in `widget'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.4ms)
