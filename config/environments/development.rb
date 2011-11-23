@@ -35,7 +35,7 @@ APP_ID = 'lovetax'
 APP_SECRET = 'vie402jv00v,53n2xxyBZ'
 CUSTOM_PROVIDER_URL = 'http://home.local'
 
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :josh_id, APP_ID, APP_SECRET
-end
+#Rails.application.config.middleware.use OmniAuth::Builder do
+#  provider :josh_id, APP_ID, APP_SECRET
+#end
 

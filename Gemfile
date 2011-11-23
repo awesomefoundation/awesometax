@@ -5,12 +5,15 @@ gem 'rack', '1.2.1'
 gem 'rails', '3.0.3'
 gem 'mysql2', '< 0.3'
 
-gem 'smiley',  :path => '../smiley-client'
+#gem 'smiley',  :path => '../smiley-client'
 gem 'devise'
+gem 'oa-oauth', :require => 'omniauth/oauth'
+gem 'omniauth'
 
 gem 'activemerchant', '1.9.4'
 gem 'paypal_adaptive'
 
+gem 'jquery-rails'
 gem 'json'
 gem 'haml'
 gem 'sass'
