@@ -4,19 +4,29 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   filter_parameter_logging :password, :password_confirmation
-  helper_method :current_user_session, :current_user, :logged_in?, :admin?
+  helper_method :current_user_session, :current_user, :admin?, :board?
   helper_method :require_user, :require_no_user, :store_location, :redirect_back_or_default
   helper_method :notice, :num_taxpayers, :total_monthly, :next_collection_time, :time_until_collection
 
   private
   
     def admin?
-      user_signed_in? and current_user.admin?
+      current_user.andand.admin?
+    end
+    def board?
+      current_user.andand.board?
     end
     
     def require_admin
       unless admin?
         flash[:notice] = "Management only beyond this point, sorry."
+        redirect_to root_url
+        return false 
+      end
+    end
+    def require_board
+      unless board?
+        flash[:notice] = "Board members only beyond this point, sorry."
         redirect_to root_url
         return false 
       end

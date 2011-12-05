@@ -12,7 +12,9 @@ class Pledge < ActiveRecord::Base
   FINISHED  = 4 # voluntarily
   FAILED    = 5 # a problem. failed, cancelled, expired...
 
-  named_scope :active, :conditions => { :status => Pledge::ACTIVE }
+  scope :active,   where(:status => ACTIVE)
+  scope :inactive, where(:stauts => INACTIVE)
+  
   validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than => 10000
   
   @@fuzzies = [
@@ -119,9 +121,9 @@ class Pledge < ActiveRecord::Base
       'actionType' => 'PAY',
       'requestEnvelope' => { 'errorLanguage' => 'en_US' },
       'currencyCode' => 'USD',
-      'returnUrl' => url_for(:host => AppConfig.host, :controller => 'pledges', :action => 'completed'),
-      'cancelUrl' => url_for(:host => AppConfig.host, :controller => 'pledges', :action => 'canceled'),
-      'ipnNotificationUrl' => url_for(:host => AppConfig.host, :controller => 'pledges', :action => 'notify'),
+      'returnUrl' => url_for(:controller => 'pledges', :action => 'completed'),
+      'cancelUrl' => url_for(:controller => 'pledges', :action => 'canceled'),
+      'ipnNotificationUrl' => url_for(:controller => 'pledges', :action => 'notify'),
       'fees_payer' => 'EACHRECEIVER',
       'preapprovalKey' => preapproval_key,
       'receiverList' => { 'receiver' => receiverList },

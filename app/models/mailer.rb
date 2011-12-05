@@ -1,10 +1,10 @@
 class Mailer < ActionMailer::Base
   @@from_address = "LoveTax <team@lovetax.us>"
   
-  LL_NEWS       = 1
-  LL_NOTIFY     = 2
-  TAX_NOTIFY    = 3
-  TAX_COMMENTS  = 4
+  #LL_NEWS       = 1
+  #LL_NOTIFY     = 2
+  #TAX_NOTIFY    = 3
+  #TAX_COMMENTS  = 4
   
   def welcome(user)
     recipients    user.email

@@ -13,6 +13,7 @@ gem 'oa-oauth', :require => 'omniauth/oauth'
 gem 'activemerchant', '1.9.4'
 gem 'paypal_adaptive'
 
+gem 'bluecloth'
 gem 'jquery-rails'
 gem 'json'
 gem 'haml'

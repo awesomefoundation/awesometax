@@ -2,12 +2,11 @@ LoveTax3::Application.routes.draw do
 
   devise_for :users
 
-  resources :users
   resource  :account, :controller => 'users'
   match 'account/history' => 'users#history', :as => :history
   #match 'account/:action' => 'users#:action'
   
-  match 'mgmt' => 'mgmt#index', :as => :mgmt
+  match 'admin' => 'admin#index', :as => :admin
   
   #map.login    'login',   :controller => 'user_sessions', :action => 'new'
   #map.logout   'logout',  :controller => 'user_sessions', :action => 'destroy'

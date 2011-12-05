@@ -1,0 +1,61 @@
+!!!
+%head
+  %title= defined?(@subtitle) ? "#{h(@subtitle)} - LoveTax" : "LoveTax"
+  %meta{:content => "", :name => "description"}/
+  %meta{:content => "", :name => "author"}/
+  %meta{:charset => "utf-8"}/
+  %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+  %link{:href => "/stylesheets/style.css?v=2", :rel => "stylesheet"}/
+  %link{:href => "/stylesheets/960.css", :rel => "stylesheet"}/
+  %link{:href => "/stylesheets/lovetax.css", :rel => "stylesheet"}/
+  %link{:href => "/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon"}/
+
+  %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"}
+  %script{:src => "/javascripts/jquery.masonry.js"}
+%body
+  #top.tk-league-gothic
+    .container_12.container
+      .grid_12
+        %ul.nav
+          %li
+            AWESOME
+            %span{:style => "color: #444;"} TAX
+          %li= link_to 'Home', root_path
+          %li= link_to 'Guide', guide_path
+          %li= link_to 'Taxes', taxes_path
+          - if user_signed_in?
+            %li
+              = link_to 'Me', account_path
+              %ul
+                - if admin? or board?
+                  %li= link_to 'Admin', admin_path
+                %li= link_to 'My Taxes', account_path
+                %li= link_to 'My History', history_path
+                %li= link_to 'Settings', edit_account_path
+                %li= link_to 'Log out', destroy_user_session_path
+          - else
+            %li= link_to 'Log in', new_user_session_path
+        .float_right.tally.tk-ff-tisa-web-pro= raw("#{pluralize(num_taxpayers, 'taxpayer')} &middot; #{number_to_currency(total_monthly)} in monthly taxes")
+    .clear
+  - if defined?(@no12) and @no12
+    = yield
+  - else
+    .container_12.container
+      .grid_12
+        = yield
+    / ! end of #container
+  .clear{:style => "height: 3em;"}
+  / Javascript at the bottom for fast page loading
+  %script{:src => "http://use.typekit.com/szj4uep.js", :type => "text/javascript"}
+  :javascript
+    try{Typekit.load();}catch(e){}
+  :javascript
+    var _gaq = [['_setAccount', '#{AppConfig.analytics_key}'], ['_trackPageview']];
+    (function(d, t) {
+     var g = d.createElement(t),
+         s = d.getElementsByTagName(t)[0];
+     g.async = true;
+     g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     s.parentNode.insertBefore(g, s);
+    })(document, 'script');
+  

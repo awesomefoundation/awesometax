@@ -6,14 +6,14 @@ common:
  paypal_sig: AFcWxV21C7fd0v3bYYYRCpSSRl31A.N0-dzJEtTKLRY.kUoeSRyAan5I
  paypal_email: shoppy_1274735670_biz@gmail.com
  loveland_fee: 0
+ invite_only: true
+ 
 
 development:
- host: tax.local
  analytics_key: UA
  fb_app_id: 53634552952
  
 staging:
- host: tax.lemonary.com
  analytics_key: UA
  fb_app_id: 53634552952
  paypal_nvp: https://api-3t.paypal.com/nvp
@@ -24,7 +24,6 @@ staging:
  paypal_email: jerry@makeloveland.com
  
 production:
- host: lovetax.us
  analytics_key: UA-15180627-6
  fb_app_id: 375385414659
  paypal_nvp: https://api-3t.paypal.com/nvp
