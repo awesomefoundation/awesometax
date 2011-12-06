@@ -61,11 +61,11 @@ LoveTax3::Application.configure do
 end
 
 # Omniauth / loveland app ids
-APP_ID = 'lovetax'
-APP_SECRET = 'vie402jv00v,53n2xxyBZ'
-CUSTOM_PROVIDER_URL = 'http://stage.makeloveland.com'
+#APP_ID = 'lovetax'
+#APP_SECRET = 'vie402jv00v,53n2xxyBZ'
+#CUSTOM_PROVIDER_URL = 'http://stage.makeloveland.com'
 
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :josh_id, APP_ID, APP_SECRET
-end
+#Rails.application.config.middleware.use OmniAuth::Builder do
+#  provider :josh_id, APP_ID, APP_SECRET
+#end
 

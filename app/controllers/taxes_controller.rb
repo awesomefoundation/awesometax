@@ -1,6 +1,6 @@
 class TaxesController < ApplicationController
 
-  before_filter :require_user, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :authenticate_user!, :except => [:index]
 
   def index
     @taxes = Tax.active(:order => 'id desc').reverse
@@ -17,18 +17,16 @@ class TaxesController < ApplicationController
   end
   
   def create
+    unless verify_paypal(params[:tax][:paypal_email], params[:paypal_first], params[:paypal_last])
+      redirect_to new_tax_path, :notice => "Sorry, we couldn't verify that PayPal account."
+      return
+    end 
+    
     @tax = Tax.new(params[:tax])
     @tax.owner = current_user
     @tax.status = Tax::ACTIVE
     
-    logger.info "video url: #{params[:video_url]}"
-    if video_details = get_media(params[:video_url])
-      logger.info video_details.inspect
-      @tax.video_type = video_details[:type].to_s
-      @tax.video_id = video_details[:id]
-    end 
-    
-    if logged_in? and @tax.save
+    if user_signed_in? and @tax.save
       redirect_to tax_path(@tax)
       begin; Mailer.deliver_admin_notification("#{@user.name} created a tax: #{@tax.name}", h(url_for(:controller => 'taxes', :action => 'show', @id => @tax.id))); rescue; end
     else
@@ -68,19 +66,20 @@ class TaxesController < ApplicationController
   
   
   private
-  
-  # From a vimeo/flickr/youtube URL, return { :type => :vimeo|:youtube, :id => ID] or nil if unrecognized
-  def get_media(url)
-    return nil if url.empty?
-    
-    result = url.scan(/.*vimeo\.com\/(\d+).*/i)
-    return {:type => :vimeo, :id => result[0][0]} unless result.empty?
-    
-    # http://www.youtube.com/watch?v=9fciD_II7NI
-    result = url.scan(/.*youtube\.com(?:\/)?(?:watch)?\?v=([0-9a-zA-Z_]+).*/i)
-    return {:type => :youtube, :id => result[0][0]} unless result.empty?
-    
-    return nil
+
+ 
+  # Return true if it's valid, false if we can't tell
+  def verify_paypal(email, first, last)
+   data = {
+     "emailAddress"   => email,
+     "matchCriteria"  => "NAME",
+     "firstName"      => first,
+     "lastName"       => last,
+    }
+    request = PaypalAdaptive::Request.new
+    response = pay_request.get_verified_status(data)
+    return r.success? and r['accountStatus'] == 'VERIFIED'
   end
+  
   
 end

@@ -9,9 +9,11 @@ gem 'mysql2', '< 0.3'
 gem 'omniauth'
 gem 'devise', '1.4.5'
 gem 'oa-oauth', :require => 'omniauth/oauth'
+gem 'exception_notification'
 
 gem 'activemerchant', '1.9.4'
-gem 'paypal_adaptive'
+#gem 'paypal_adaptive'
+gem 'paypal_adaptive',  :path => '../paypal_adaptive'
 
 gem 'bluecloth'
 gem 'jquery-rails'

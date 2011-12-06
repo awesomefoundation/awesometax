@@ -12,8 +12,8 @@ LoveTax3::Application.routes.draw do
   #map.logout   'logout',  :controller => 'user_sessions', :action => 'destroy'
   
   match 'guide' => 'home#guide', :as => :guide
-  match 'mock' => 'home#mock',   :as => :mock
  
+  match 'widget/mock' => 'home#mock',   :as => :mock
   match 'widget/:id.js' => 'home#widget', :format => :js
   resources :taxes
   match 'pledges/collect' => 'pledges#collect', :as => :collect

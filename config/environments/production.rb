@@ -51,20 +51,19 @@ LoveTax3::Application.configure do
   
   config.middleware.use ExceptionNotifier,
     :email_prefix => "[LoveTax production] ",
-    :sender_address => %{"Exception Notifier" <info@makeloveland.com>},
+    :sender_address => %{"Exception Notifier" <errors@makeloveland.com>},
     :exception_recipients => %w{larry@makeloveland.com}
-
-end
+  end
 
 
 # Omniauth / loveland app ids
-APP_ID = 'lovetax'
-APP_SECRET = 'vie402jv00v,53n2xxyBZ'
-CUSTOM_PROVIDER_URL = 'http://makeloveland.com'
+#APP_ID = 'lovetax'
+#APP_SECRET = 'vie402jv00v,53n2xxyBZ'
+#CUSTOM_PROVIDER_URL = 'http://makeloveland.com'
 
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :josh_id, APP_ID, APP_SECRET
-end
+#Rails.application.config.middleware.use OmniAuth::Builder do
+#  provider :josh_id, APP_ID, APP_SECRET
+#end
 
 
 

@@ -37,6 +37,10 @@
             %li= link_to 'Log in', new_user_session_path
         .float_right.tally.tk-ff-tisa-web-pro= raw("#{pluralize(num_taxpayers, 'taxpayer')} &middot; #{number_to_currency(total_monthly)} in monthly taxes")
     .clear
+  - if flash[:notice]
+    .container_12.container
+      .grid_12.centered.notice= notice
+      
   - if defined?(@no12) and @no12
     = yield
   - else

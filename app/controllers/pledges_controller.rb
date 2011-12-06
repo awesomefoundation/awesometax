@@ -33,14 +33,14 @@ class PledgesController < ApplicationController
     receiverList << { 'email' => AppConfig.paypal_email, 'amount' => @pledge.loveland_cut.to_s } if AppConfig.loveland_fee > 0
 
     data = {
-      'actionType' => 'PAY',
-      'requestEnvelope' => { 'errorLanguage' => 'en_US' },
-      'currencyCode' => 'USD',
-      'returnUrl' => url_for(:controller => 'pledges', :action => 'completed', :id => @pledge.id, :only_path => false),
-      'cancelUrl' => url_for(:controller => 'pledges', :action => 'canceled', :id => @pledge.id, :only_path => false),
-      'receiverList' => { 'receiver' => receiverList },
-      'fees_payer' => 'EACHRECEIVER',
-      'ipnNotificationUrl' => url_for(:controller => 'pledges', :action => 'notify'),
+      'actionType'          => 'PAY',
+      'requestEnvelope'     => { 'errorLanguage' => 'en_US' },
+      'currencyCode'        => 'USD',
+      'returnUrl'           => url_for(:controller => 'pledges', :action => 'completed', :id => @pledge.id, :only_path => false),
+      'cancelUrl'           => url_for(:controller => 'pledges', :action => 'canceled', :id => @pledge.id, :only_path => false),
+      'receiverList'        => { 'receiver' => receiverList },
+      'fees_payer'          => 'EACHRECEIVER',
+      'ipnNotificationUrl'  => url_for(:controller => 'pledges', :action => 'notify'),
       'maxTotalAmountOfAllPayments' => (12 * @pledge.amount).to_s,
       'maxAmountPerPayment'         => @pledge.amount.to_s,
       'maxNumberOfPayments'         => '12',

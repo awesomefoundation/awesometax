@@ -8,7 +8,8 @@ class Tax < ActiveRecord::Base
   has_many :pledges
   has_many :pledgers, :through => :pledges, :source => :user
   has_many :comments
-  named_scope :active, :conditions => {:status => Tax::ACTIVE}
+  
+  scope:active, where(:status => Tax::ACTIVE)
   
   attr_accessible :name, :description, :paypal_email, :video_type, :video_id
   validates_length_of :name, :minimum => 8
@@ -38,9 +39,11 @@ class Tax < ActiveRecord::Base
   end
   
   @@status_strings = {
-    INACTIVE => "Inactive",
-    ACTIVE => "Active",
-    ENDED => "Terminated" }
+    INACTIVE  => "Inactive",
+    ACTIVE    => "Active",
+    ENDED     => "Terminated"
+  }
+  
   def status_string
     @@status_strings[status]
   end

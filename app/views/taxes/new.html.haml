@@ -1,28 +1,35 @@
-%h2 Start a LoveTax
-
-= notice
-
+.container_12
+  .grid_12
+    %h2 Start a Chapter
+    
 - form_for @tax do |f|
-  = f.error_messages
-  %br/
-  Your PayPal email
-  %br/
-  = f.text_field :paypal_email
-  %br/
-  %br/
-  Name your tax (8-40 letters)
-  %br/
-  = f.text_field :name
-  %br/
-  %br/
-  Add an optional video - paste a Vimeo or YouTube URL here:
-  %br/
-  = text_field_tag :video_url, nil, :size => 30
-  %br/
-  %br/
-  Description (at least 20 letters, write as much as you'd like)
-  %br/
-  = f.text_area :description, :style => 'height: 8em;'
-  %br/
-  %br/
-  = f.submit 'Create it'
+  .container_12
+    .grid_6.suffix_1
+      = f.label "Name your chapter (8-40 characters)"
+      %br/
+      = f.text_field :name
+      %br/
+      %br/
+      = f.label "Description (at least 20 characters, write as much as you'd like)"
+      %br/
+      = f.text_area :description, :style => 'height: 10em; width: 100%;'
+      %br/
+  
+    .grid_5
+      %h3 PayPal Details
+      = f.label "PayPal email address to receive funds"
+      %br/
+      = f.text_field :paypal_email
+      %br/        
+      %br/
+      = f.label "First name on PayPal account"
+      %br/
+      = text_field_tag :paypal_first, nil
+      %br/
+      %br/
+      = f.label "Last name on PayPal account"
+      %br/
+      = text_field_tag :paypal_last, nil
+      
+    .grid_12
+      = f.submit 'Create it'
