@@ -83,7 +83,7 @@
         %h4 Admin tools
         = link_to 'Close this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to terminate this tax?" } unless @tax.status == Tax::ENDED
     
-    - unless logged_in?
+    - unless user_signed_in?
       .clear{:style=>'height: 1em;'}
       .rounded{:style=>'background-color: #eeffff;'}
         %h4 New here?

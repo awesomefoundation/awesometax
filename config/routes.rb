@@ -20,6 +20,7 @@ LoveTax3::Application.routes.draw do
   resources :pledges
   resources :comments, :only => [ :create, :destroy ]
   match 'rounds/notify' => 'pledges#notify', :as => :notify  # IPNs have stale erroneous url
+  resources :users, :only => [ :show ]
   
   root :to => "home#index"
 

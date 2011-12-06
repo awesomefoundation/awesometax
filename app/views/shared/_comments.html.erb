@@ -17,7 +17,7 @@
 
   <%= render :partial => 'shared/comment', :collection => show_comments %>
 
-  <% if logged_in? %>
+  <% if user_signed_in? %>
     <div>
       <% form_tag('/comments/create', :method => :post, :id => 'comment_form') do %>
         <%= text_area_tag :body, nil, :style => 'width: 100%; height: 3em; margin-bottom: 10px;', :placeholder => 'Write a comment...' %>
