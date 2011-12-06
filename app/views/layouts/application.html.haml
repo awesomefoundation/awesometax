@@ -39,7 +39,7 @@
     .clear
   - if flash[:notice]
     .container_12.container
-      .grid_12.centered.notice= notice
+      .grid_12.centered.notice= flash[:notice]
       
   - if defined?(@no12) and @no12
     = yield

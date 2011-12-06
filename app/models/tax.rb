@@ -12,7 +12,7 @@ class Tax < ActiveRecord::Base
   scope:active, where(:status => Tax::ACTIVE)
   
   attr_accessible :name, :description, :paypal_email, :video_type, :video_id
-  validates_length_of :name, :minimum => 8
+  validates_length_of :name, :minimum => 5
   validates_length_of :name, :maximum => 40
   validates_length_of :description, :minimum => 20
   validates_presence_of :owner_id
