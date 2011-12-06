@@ -26,9 +26,12 @@ class TaxesController < ApplicationController
     @tax.owner = current_user
     @tax.status = Tax::ACTIVE
     
-    if user_signed_in? and @tax.save
+    if @tax.save
       redirect_to tax_path(@tax)
-      begin; Mailer.deliver_admin_notification("#{@user.name} created a tax: #{@tax.name}", h(url_for(:controller => 'taxes', :action => 'show', @id => @tax.id))); rescue; end
+      begin
+        Mailer.deliver_admin_notification("#{@user.name} created a tax: #{@tax.name}", h(url_for(:controller => 'taxes', :action => 'show', @id => @tax.id)))
+      rescue => e
+      end
     else
       flash[:now] = "You need to fill out all the boxes. Don't forget to cross your i's and dot your t's!"
       render :action => 'new'
