@@ -1,4 +1,8 @@
 %h2 Widget Testing
 
-#lovetax_widget{'data-id' => 5}
-= javascript_include_tag("http://#{request.host}/javascripts/xss_magic.js")
+- if Tax.count == 0
+  %p There aren't any taxes yet so we can't show you a widget. Oops.
+  
+- else
+  #lovetax_widget{'data-id' => Tax.first.id}
+  = javascript_include_tag("http://#{request.host}/javascripts/xss_magic.js")

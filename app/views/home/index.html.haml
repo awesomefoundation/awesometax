@@ -4,37 +4,6 @@
   .grid_6
     %h1
       AWESOME
-      %span{:style => 'color: #444;'} TAX
+      %span{:style => 'color: #444;'}> TAX
 
-    %h2{:style => 'margin-bottom: 0px; padding-bottom: 0px;'} Fresh Taxes
-    %p
-      = link_to 'See them all', taxes_path
-      or
-      = link_to 'create your own.', '/taxes/new'
-    = render :partial => 'shared/tax', :collection => @featured
-
-  .grid_6
-    %h3 Pay voluntary monthly taxes with your friends to support what you love. Easy to start and stop. Sustainably awesome.
-    = render :partial => 'shared/countdown', :locals => { :time => @nc }
-    %br/
-    %br/
-    %p LoveTax is a simple new way for you and your friends to fund things you care about (dare we say love?) on a manageable, affordable, ongoing monthly basis. Don't just give a one-time donation to something and forget it. Subscribe to the cause and automatically give a little bit each month. You'll be charged whatever amount you'd like on the 15th of every month, and you can pause or stop at any time. Your ongoing support will help attract other loving taxpayers and before you know it all your contributions will add up to make absolutely amazing and sustainable things happen.
-    %p
-      %b Love Note July 2011:
-      We've gotten great feedback and support for the concept of LoveTax and are working on some updates to make it pop. We're also looking for some projects to feature. Get in touch if you've got something awesome that could use an easier way sustainably raise funding streams from existing fans and supporters. Have custom fundraising needs or ideas you think we should pursue? Get in touch! larry@makeloveland.com
-    
-    %h4.float_right= link_to raw('Read the guide &raquo;'), guide_path
     = render :partial => 'shared/share'
-    .quote.clear
-      "The nation should have a tax system that looks like someone designed it on purpose."
-      %br/
-      &mdash;William Simon
-
-  .grid_12.centered
-    %p
-      A beta service brought to you by
-      = link_to 'LOVELAND Technologies,', 'http://makeloveland.com'
-      makers of
-      = link_to 'LOVELAND micro real estate', 'http://inchernet.com'
-      and
-      = link_to 'Living in the Map: Detroit.', 'http://livinginthemap.us'

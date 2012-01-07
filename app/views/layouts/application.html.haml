@@ -5,13 +5,10 @@
   %meta{:content => "", :name => "author"}/
   %meta{:charset => "utf-8"}/
   %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-  %link{:href => "/stylesheets/style.css?v=2", :rel => "stylesheet"}/
-  %link{:href => "/stylesheets/960.css", :rel => "stylesheet"}/
-  %link{:href => "/stylesheets/lovetax.css", :rel => "stylesheet"}/
   %link{:href => "/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon"}/
+  = stylesheet_link_tag 'bootstrap', '960', 'lovetax'
+  = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js'
 
-  %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"}
-  %script{:src => "/javascripts/jquery.masonry.js"}
 %body
   #top.tk-league-gothic
     .container_12.container
@@ -19,27 +16,26 @@
         %ul.nav
           %li
             AWESOME
-            %span{:style => "color: #444;"} TAX
+            %span{:style => "color: #444;"}> TAX
           %li= link_to 'Home', root_path
-          %li= link_to 'Guide', guide_path
-          %li= link_to 'Taxes', taxes_path
+          %li= link_to 'Chapters', taxes_path
+          %li= link_to 'Widget', mock_path
           - if user_signed_in?
             %li
-              = link_to 'Me', account_path
+              = link_to 'My Account', account_path
               %ul
                 - if admin? or board?
-                  %li= link_to 'Admin', admin_path
+                  %li= link_to 'Administration', admin_path
                 %li= link_to 'My Taxes', account_path
                 %li= link_to 'My History', history_path
-                %li= link_to 'Settings', edit_account_path
+                %li= link_to 'Edit Profile', edit_account_path
                 %li= link_to 'Log out', destroy_user_session_path
           - else
-            %li= link_to 'Log in', new_user_session_path
-        .float_right.tally.tk-ff-tisa-web-pro= raw("#{pluralize(num_taxpayers, 'taxpayer')} &middot; #{number_to_currency(total_monthly)} in monthly taxes")
+            %li= link_to 'Log In', new_user_session_path
     .clear
   - if flash[:notice]
     .container_12.container
-      .grid_12.centered.notice= flash[:notice]
+      .grid_12.centered.alsert-message= flash[:notice]
       
   - if defined?(@no12) and @no12
     = yield
