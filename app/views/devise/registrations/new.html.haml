@@ -6,14 +6,14 @@
     = f.label :email
     .input= f.email_field :email
   %div
+    = f.label :name
+    .input= f.text_field :name
+  %div
     = f.label :password
     .input= f.password_field :password
   %div
-    = f.label :password_confirmation
+    = f.label 'Password (again)'
     .input= f.password_field :password_confirmation
-  %div
-    = f.label :name
-    .input= f.text_field :name
     
   %div
     %br/

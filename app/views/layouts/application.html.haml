@@ -16,10 +16,10 @@
         .container
           .h3.float_left AwesomeTax
           %ul.nav
-            %li{:class => current_page?(root_path) ? 'active' : ''}= link_to 'Home', root_path
-            %li{:class => current_page?(taxes_path) ? 'active' : ''}= link_to 'Chapters',    taxes_path
-            %li{:class => current_page?(guide_path) ? 'active' : ''}= link_to 'Guide',       guide_path
-            %li{:class => current_page?(mock_path) ? 'active' : ''}= link_to 'Widget',      mock_path
+            %li{:class => current_page?(root_path)  ? 'active' : ''}= link_to 'Home',     root_path
+            %li{:class => current_page?(taxes_path) ? 'active' : ''}= link_to 'Chapters', taxes_path
+            %li{:class => current_page?(guide_path) ? 'active' : ''}= link_to 'Guide',    guide_path
+            %li{:class => current_page?(mock_path)  ? 'active' : ''}= link_to 'Widget',   mock_path
           - if user_signed_in?
             %ul.nav.secondary-nav
               %li.dropdown
@@ -30,14 +30,14 @@
                   %li= link_to 'My Taxes',          account_path
                   %li= link_to 'My History',        history_path
                   %li= link_to 'Edit Profile',      edit_account_path
-                  %li= link_to 'Log out',           destroy_user_session_path
+                  %li= link_to 'Log out',           logout_path
           - else
             %ul.nav.secondary-nav
-              %li= link_to 'Log In', new_user_session_path
+              %li= link_to 'Log In', login_path
     .clear
   - if flash[:notice]
     .container_12.container
-      .grid_12.centered.alsert-message= flash[:notice]
+      .grid_12.centered.alert-message= flash[:notice]
       
   - if defined?(@no12) and @no12
     = yield

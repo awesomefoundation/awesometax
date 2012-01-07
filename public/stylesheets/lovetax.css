@@ -47,8 +47,6 @@ h4, .h4 {
   font-weight: bold;
   font-size: 14pt; }
 
-label { margin-right: 1em; }
-
 input[type="text"], input[type="password"] {
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
   font-size: 10pt;

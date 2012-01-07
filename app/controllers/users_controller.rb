@@ -41,7 +41,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = @current_user
-    @email_pref_comments = @user.wants_email? Mailer::TAX_COMMENTS
   end
   
   def update

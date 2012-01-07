@@ -1,18 +1,17 @@
 LoveTax3::Application.routes.draw do
 
-  devise_for :user, :path => 'account', :path_names => {
-    :sign_in => 'login',
-    :sign_out => 'logout',
-    :invitation => 'invite'
-  }
+  devise_for :users do
+    get "/login" => "devise/sessions#new"
+    get "/logout" => "devise/sessions#destroy"
+  end
 
   resources :users, :only => [ :show ]
+  resource  :account, :controller => 'users'
+  match     'account/history' => 'users#history', :as => :history
   resources :taxes
   resources :pledges
   resources :comments, :only => [ :create, :destroy ]
 
-  resource  :account, :controller => 'users'
-  match 'account/history' => 'users#history', :as => :history
   
   match 'admin' => 'admin#index', :as => :admin  
   match 'guide' => 'home#guide', :as => :guide 
