@@ -1,8 +1,9 @@
 MyXssMagic = new function() {
-  var BASE_URL = 'http://tax.local';
+  var ROOT = 'lovetax_widget';
+  var BASE_URL = document.getElementById(ROOT).getAttribute('data-host');
+  //var BASE_URL = 'http://tax.local';
   var STYLESHEET = BASE_URL + "/stylesheets/xss_magic.css"
   var CONTENT_URL = BASE_URL + '/widget/';
-  var ROOT = 'lovetax_widget';
 
   function requestStylesheet(stylesheet_url) {
     stylesheet = document.createElement("link");
