@@ -3,7 +3,7 @@
 
 .container.container_12
   .grid_12
-    %h2 The LoveTax Guide
+    %h2 Guide
 
 .container.container_12
   .grid_6
@@ -30,8 +30,6 @@
       %li Any kind of project or organization
       %li Miscellaneous awesomeness
     
-    %br/
-    %br/
     %h3 Terms of Use
     %ul
       %li
@@ -52,7 +50,7 @@
     %p You can reach Jerry Paffendorf any time at jerry@makeloveland.com or 908-343-1981.
 
   .grid_6
-    .rounded{:style => 'background-color: #ddffdd;'}
+    .callout
       %h3 How to pay a LoveTax
       %ol
         %li #{link_to 'Find a LoveTax', taxes_path} you want to contribute to.
@@ -62,14 +60,14 @@
         %li Invite your friends to do it too.
         %li Bask in joy.
     
-    .rounded{:style => 'background-color: #ffdddd; margin-top: 1em;'}
+    .callout
       %h3 How to stop paying a LoveTax
       %ol
         %li Go to #{link_to 'your account.', account_path}
         %li Click the "Pause" or "Stop" button. "Pause" stops payments from happening until you unpause &mdash; you can leave it paused for as long as you want &mdash; while "Stop" completely removes the tax from your record.
         %li Eat a sandwich.
 
-    .rounded{:style => 'background-color: #e4e4ff; margin-top: 1em;'}
+    .callout
       %h3 How to start your own
       %ol
         %li Go to #{link_to 'this page', new_tax_path}

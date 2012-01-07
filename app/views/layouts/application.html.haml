@@ -17,6 +17,8 @@
           .h3.float_left AwesomeTax
           %ul.nav
             %li{:class => current_page?(root_path)  ? 'active' : ''}= link_to 'Home',     root_path
+            %li= link_to 'Foundation', 'http://awesomefoundation.org'
+            %li= link_to 'IHAS', 'http://blog.awesomestudies.org'
             %li{:class => current_page?(taxes_path) ? 'active' : ''}= link_to 'Chapters', taxes_path
             %li{:class => current_page?(guide_path) ? 'active' : ''}= link_to 'Guide',    guide_path
             %li{:class => current_page?(mock_path)  ? 'active' : ''}= link_to 'Widget',   mock_path
@@ -30,10 +32,10 @@
                   %li= link_to 'My Taxes',          account_path
                   %li= link_to 'My History',        history_path
                   %li= link_to 'Edit Profile',      edit_account_path
-                  %li= link_to 'Log out',           logout_path
+                  %li= link_to 'Sign Out',          logout_path
           - else
             %ul.nav.secondary-nav
-              %li= link_to 'Log In', login_path
+              %li= link_to 'Sign In', login_path
     .clear
   - if flash[:notice]
     .container_12.container
@@ -50,7 +52,7 @@
   / Javascript at the bottom for fast page loading
   %script{:src => "http://use.typekit.com/szj4uep.js", :type => "text/javascript"}
   :javascript
-    try{Typekit.load();}catch(e){}
+    //try{Typekit.load();}catch(e){}
   :javascript
     var _gaq = [['_setAccount', '#{AppConfig.analytics_key}'], ['_trackPageview']];
     (function(d, t) {
