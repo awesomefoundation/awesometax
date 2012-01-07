@@ -1,35 +1,43 @@
 .container_12
-  .grid_12
+  .grid_8
     %h2 Start a Chapter
     
-- form_for @tax do |f|
-  .container_12
-    .grid_6.suffix_1
-      = f.label "Name your chapter (5-40 characters)"
+    %br/
+    
+    - form_for @tax do |f|
+      = f.label "Name Your Chapter"
+      .input
+        = f.text_field :name, :style => 'width: 100%;'
+        .help-block Most likely just your city's name. 5-40 characters.
       %br/
-      = f.text_field :name
-      %br/
-      %br/
-      = f.label "Description (at least 20 characters, write as much as you'd like)"
-      %br/
-      = f.text_area :description, :style => 'height: 10em; width: 100%;'
+      = f.label "Summary"
+      .input
+        = f.text_area :description, :style => 'height: 15em; width: 100%;'
+        .help-block
+          Tell the world about your chapter, what it's accomplished, and its hopes and dreams.
+          Charm us, woo us. Write at least 20 characters, but as much as you'd like.
+          Feel free to use
+          = link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', :target => '_blank'
+          formatting.
       %br/
   
-    .grid_5
       %h3 PayPal Details
-      = f.label "PayPal email address to receive funds"
+      = f.label "Email Address"
+      .input
+        = f.text_field :paypal_email, :style => 'width: 100%;'
+        .help-block
+          The email address you'll receive funding at. We'll verify that this is registered, and the
+          first and last names you provide below must match what's on the PayPal account.
       %br/
-      = f.text_field :paypal_email
-      %br/        
+      = f.label "First Name"
+      .input
+        = text_field_tag :paypal_first, nil, :style => 'width: 100%;'
       %br/
-      = f.label "First name on PayPal account"
+      = f.label "Last Name"
+      .input
+        = text_field_tag :paypal_last, nil, :style => 'width: 100%;'
       %br/
-      = text_field_tag :paypal_first, nil
-      %br/
-      %br/
-      = f.label "Last name on PayPal account"
-      %br/
-      = text_field_tag :paypal_last, nil
+      %br/ 
+      = f.submit 'Create It'
       
-    .grid_12
-      = f.submit 'Create it'
+    .grid_4
