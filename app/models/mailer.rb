@@ -11,14 +11,14 @@ class Mailer < ActionMailer::Base
   def welcome(user)
     @user = user
     category 'welcome'
-    mail(:to => user.email, :subject => tag("Welcome to AwesomeTax!")
+    mail(:to => user.email, :subject => tag("Welcome to AwesomeTax!"))
   end
 
   def payment(user, pledges)
     @user = user
     @pledges = pledges
     category 'payment'
-    mail(:to => user.email, :subject => tag("It's that time of the month")
+    mail(:to => user.email, :subject => tag("It's that time of the month"))
   end
 
   def new_pledge(owner, pledge)
