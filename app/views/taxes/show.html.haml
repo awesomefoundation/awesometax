@@ -61,11 +61,10 @@
     - else
       - form_for @pledge do |f|
         = f.hidden_field :tax_id
-        %h4{:style=>'margin-left: 32px;'} How much would you like to contribute?
+        %h4{:style=>'margin-left: 32px;'} How much would you like to contribute per month?
         %span{:style=>'font-size: 36px; width: 32px; display: inline-block;'} $
         = f.text_field :amount, :class => 'huge_input', :size => 3, :style => 'margin: 0 8px 12px 0px;'
-        <span style='font-size: 36px;'>a month</span><br/>
-        = image_submit_tag 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif', :style => 'margin-left: 32px;'
+        = image_submit_tag 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif', :style => 'margin-left: 32px; border-width: 0px; width: 145px; height: 42px;'
       %script
         :plain
           $(document).ready(function() { 
@@ -84,7 +83,7 @@
     
     - unless user_signed_in?
       .clear{:style=>'height: 1em;'}
-      .rounded{:style=>'background-color: #eeffff;'}
+      .callout{:style=>'background-color: #eeffff;'}
         %h4 New here?
         %p
           With LoveTax you can easily support people and things you care about in a simple, sustainable, social way.
