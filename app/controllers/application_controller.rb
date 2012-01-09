@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user, :admin?, :board?
   helper_method :require_user, :require_no_user, :store_location, :redirect_back_or_default
-  helper_method :notice, :num_taxpayers, :total_monthly, :next_collection_time, :time_until_collection
+  helper_method :markdown, :num_taxpayers, :total_monthly, :next_collection_time, :time_until_collection
 
   private
   
@@ -40,11 +40,10 @@ class ApplicationController < ActionController::Base
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
     end
-    
-    def notice
-      flash[:notice].nil? ? '' : "<p class='notice'>#{flash[:notice]}</p>"
+        
+    def markdown(str)
+      BlueCloth::new(str).to_html
     end
-    
     
     def num_taxpayers
       Pledge.count(:select => 'distinct user_id', :conditions => { :status => Pledge::ACTIVE })

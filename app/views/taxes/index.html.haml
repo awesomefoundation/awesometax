@@ -7,11 +7,6 @@
       - @taxes.each do |t|
         %div{:style => 'width: 450px; padding-bottom: 2em;'}
           = render :partial => 'shared/tax', :object => t
-    :javascript
-      $(document).ready(function() { 
-        $('#wrapper').masonry({ columnWidth: 470, singleMode: true,  });
-      });
-  
 
   .grid_6
     %h2 Start a Chapter

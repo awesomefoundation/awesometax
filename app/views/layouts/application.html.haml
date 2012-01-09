@@ -28,8 +28,8 @@
             %li.dropdown
               %a.dropdown-toggle{:href => '#'} Foundation
               %ul.dropdown-menu
-                %li= link_to 'Awesome Foundation', 'http://awesomefoundation.org'
-                %li= link_to 'Institute on Higher Awesome Studies', 'http://blog.awesomestudies.org'
+                %li= link_to 'Awesome Foundation', 'http://awesomefoundation.org', :target => '_blank'
+                %li= link_to 'Institute on Higher Awesome Studies', 'http://blog.awesomestudies.org', :target => '_blank'
             
           - if user_signed_in?
             %ul.nav.secondary-nav
