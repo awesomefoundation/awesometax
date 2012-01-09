@@ -1,54 +1,52 @@
 class Mailer < ActionMailer::Base
-  @@from_address = "AwesomeTax <team@lovetax.us>"
+  default :from => "team@lovetax.us"
+  @@admins = [ 'larry@makeloveland.com', 'jerry@makeloveland.com', 'mary@makeloveland.com' ]
   
   #LL_NEWS       = 1
   #LL_NOTIFY     = 2
   #TAX_NOTIFY    = 3
   #TAX_COMMENTS  = 4
+
   
   def welcome(user)
-    recipients    user.email
-    from          @@from_address
-    subject       "[AwesomeTax] Welcome to AwesomeTax!"
-    sent_on       Time.now
-    body          :user => user
-    content_type  'text/html'
+    @user = user
+    category 'welcome'
+    mail(:to => user.email, :subject => tag("Welcome to AwesomeTax!")
   end
 
   def payment(user, pledges)
-    recipients    user.email
-    from          @@from_address
-    subject       "[AwesomeTax] It's that time of the month"
-    sent_on       Time.now
-    body          :user => user, :pledges => pledges
-    content_type  'text/html'
+    @user = user
+    @pledges = pledges
+    category 'payment'
+    mail(:to => user.email, :subject => tag("It's that time of the month")
   end
 
   def new_pledge(owner, pledge)
-    recipients    owner.email
-    from          @@from_address
-    subject       "[AwesomeTax] You have a new taxpayer!"
-    sent_on       Time.now
-    body          :owner => owner, :pledge => pledge
-    content_type  'text/html'
+    @owner = owner
+    @pledge = pledge
+    category 'new_pledge'
+    mail(:to => owner.email, :subject => tag("You have a new taxpayer!"))
   end
   
   def comment(owner, comment)
-    recipients    owner.email
-    from          @@from_address
-    subject       "[AwesomeTax] #{comment.user.name} commented on your tax"
-    sent_on       Time.now
-    body          :owner => owner, :comment => comment
-    content_type  'text/html'
+    @owner = owner
+    @comment = comment
+    category 'comment'
+    mail(:to => owner.email, :subject => tag("#{comment.user.name} commented on your tax"))
   end
   
   def admin_notification(subj, message)
-    recipients    ['larry@makeloveland.com', 'jerry@makeloveland.com', 'mary@makeloveland.com']
-    from          @@from_address
-    subject       "[AwesomeTax] #{subj}"
-    sent_on       Time.now
-    body          :message => message
-    content_type  'text/html'
+    @message = message
+    category 'admin_notification'
+    mail(:to => @@admins, :subject => tag(subj))
+  end
+
+  private  
+  def tag(str)
+    "[AwesomeTax#{Rails.env == 'production' ? '' : (' ' + Rails.env)}] #{str}"
+  end
+  def category(c)
+    headers({ 'X-SMTPAPI' => { 'category' => "tax_#{Rails.env}_#{c}" }.to_json })
   end
 
 end

@@ -21,7 +21,10 @@ class Tax < ActiveRecord::Base
   validates_length_of :name, :minimum => 5
   validates_length_of :name, :maximum => 40
   validates_length_of :description, :minimum => 20
-  validates_presence_of :owner_id
+  #validates_presence_of :owner_id
+  
+  after_create :notify
+  
 
   def monthly_income
     pledges.active.inject(0) { |sum,p| sum + p.amount }
@@ -52,6 +55,16 @@ class Tax < ActiveRecord::Base
   
   def status_string
     @@status_strings[status]
+  end
+  
+  def notify(tax)
+    begin
+      Mailer.admin_notification("#{tax.managers.first.name} created a tax: #{tax.name}",
+        h(tax_url(:id => tax.id, :only_path => false))).deliver
+    rescue => e
+      logger.info e.inspect
+      logger.info e.backtrace
+    end
   end
     
 end

@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :status
   
   has_many :pledges
-  has_many :taxes, :class_name => 'Tax', :foreign_key => 'owner_id'
+  #has_many :taxes, :class_name => 'Tax', :foreign_key => 'owner_id'
 
   has_many :roles, :dependent => :destroy
   has_many :funder_roles,  :class_name => 'Role', :conditions => { :kind => Role::FUNDER }

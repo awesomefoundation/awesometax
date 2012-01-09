@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_filter :authenticate_user!, :only => [ :create, :destroy ]
   include ActionView::Helpers::TextHelper
+  before_filter :authenticate_user!, :only => [ :create, :destroy ]
 
   def create
     @tax = Tax.find(params[:tax])
@@ -13,12 +13,6 @@ class CommentsController < ApplicationController
       flash[:notice] = "Error saving the comment! What!"
       logger.info @comment.errors.inspect
       return
-    end
-    begin
-      Mailer.deliver_comment(@tax.owner, @comment) if @tax.owner.wants_email?(Mailer::TAX_COMMENTS)
-    rescue => e
-      logger.info e.inspect
-      logger.info e.backtrace
     end
   end
 

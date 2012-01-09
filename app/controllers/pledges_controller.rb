@@ -22,7 +22,7 @@ class PledgesController < ApplicationController
       :starts => Time.zone.now,
       :status => Pledge::INACTIVE
     }
-    unless @pledge.save
+    unless @pledge.tax.andand.active? and @pledge.save
       redirect_to new_pledge_path(:id => @pledge.tax.id)
       return
     end
@@ -83,7 +83,12 @@ class PledgesController < ApplicationController
     pledge.update_attribute(:status, Pledge::ACTIVE)
     pledge.tax.funders << current_user
     
-    begin; Mailer.deliver_new_pledge(pledge.tax.owner, pledge); rescue; end
+    begin
+      Mailer.new_pledge(pledge.tax.owner, pledge).deliver
+    rescue => e
+      logger.info e.inspect
+      logger.info e.backtrace
+    end
     
     flash[:notice] = 'Thank you for pledging!'
     #redirect_to :action => 'thanks', :id => pledge.id

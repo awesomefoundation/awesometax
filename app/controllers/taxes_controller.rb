@@ -31,15 +31,11 @@ class TaxesController < ApplicationController
     
     @tax = Tax.new(params[:tax])
     @tax.status = Tax::ACTIVE
-    @tax.owner = current_user # Deprecated, just holds the creator
+    #@tax.owner = current_user # Deprecated, just holds the creator
     
     if @tax.save
       @tax.managers << current_user
       redirect_to tax_path(@tax)
-      begin
-        Mailer.deliver_admin_notification("#{@user.name} created a tax: #{@tax.name}", h(url_for(:controller => 'taxes', :action => 'show', @id => @tax.id)))
-      rescue => e
-      end
     else
       flash[:now] = "You need to fill out all the boxes. Don't forget to cross your i's and dot your t's!"
       render :action => 'new'

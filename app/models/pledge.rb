@@ -16,6 +16,7 @@ class Pledge < ActiveRecord::Base
   scope :inactive, where(:stauts => INACTIVE)
   
   validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than => 10000
+  validates_presence_of :user, :tax
   
   @@fuzzies = [
     [1,     'a little'],
@@ -158,7 +159,7 @@ class Pledge < ActiveRecord::Base
     users = pledges.collect { |p| p.user }.uniq
     users.each do |u|
       begin
-        Mailer.deliver_payment(u, u.pledges.active)
+        Mailer.payment(u, u.pledges.active).deliver
       rescue => e
         logger.info "Error sending mail to #{u.email}"
         logger.info e.inspect
