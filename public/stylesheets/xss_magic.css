@@ -1,3 +1,12 @@
-#lovetax_widget { display: none; width: 200px; border: 1px solid #888; padding: 10px; overflow: hidden; font-size: 16px; }
+#lovetax_widget { 
+  width: 400px;
+  background-color: rgba(255, 245, 250, 0.8);
+  border: 6px solid #ddd; 
+  padding: 1em;
+  margin-bottom: 1em;
+  overflow: hidden;
+  font-size: 18px;
+  display: none;
+  }
 #lovetax_widget p { font-size: 12px; }
 #lovetax_widget .button { }

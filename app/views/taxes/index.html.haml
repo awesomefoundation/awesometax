@@ -1,7 +1,7 @@
 - @no12 = true
 
 .container.container_12
-  .grid_12
+  .grid_6
     %h2 Chapters
     #wrapper
       - @taxes.each do |t|
@@ -12,3 +12,8 @@
         $('#wrapper').masonry({ columnWidth: 470, singleMode: true,  });
       });
   
+
+  .grid_6
+    %h2 Start a Chapter
+    %p
+      This will be invite-only, but for testing you can #{link_to 'start a chapter', new_tax_path}.

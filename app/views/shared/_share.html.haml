@@ -1,0 +1,6 @@
+%script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}
+%script{:src => "http://static.ak.fbcdn.net/connect.php/js/FB.Share", :type => "text/javascript"}
+.float_left
+  %a{:name => "fb_share", :share_url => defined?(url) ? url : 'http://lovetax.us', :type => "button"} Share
+.float_left{:style => "padding: 4px 10px;"}
+  %a.twitter-share-button{:href => "http://twitter.com/share?url=#{defined?(url) ? url : 'http://lovetax.us'}&text=#{defined?(text) ? text : ''}", :style => "padding-top: 20px;"} Tweet

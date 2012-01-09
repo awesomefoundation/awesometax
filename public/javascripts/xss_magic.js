@@ -34,8 +34,9 @@ MyXssMagic = new function() {
       if (txt.length > 0) { txt += ", "; }
       txt += data[i];
     }
-    div.innerHTML = "<b>" + data.name + "</b><p>" + data.description + "</p>" +
-      "<div>$" + data.monthly + "/mo from " + data.supporters + " people</div>" +
+    div.innerHTML = "<a class='lovetax_title' href='#'>" + data.name + "</a>" + 
+      "<p>" + data.description + "</p>" +
+      "<div>$" + data.monthly + "/mo. from " + data.supporters + " people</div>" +
       "<a href='" + BASE_URL + "/taxes/" + data.id + "' class=''>Pledge!</a>";
     div.style.display = 'block';
   };

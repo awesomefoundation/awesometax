@@ -9,7 +9,6 @@ body {
   font-size: 11pt;
   line-height: 1.5;
   display: block;
-  text-align: center;
   }
 
 a {
@@ -46,9 +45,10 @@ h2, .h2 {
   padding-bottom: 0.5em; }
 
 h3, .h3 {
+  text-transform: uppercase;
+  text-shadow: 2px 2px 1px #CCC;
   font-weight: bold;
   font-size: 18pt;
-  text-shadow: 0px 1px 0px white;
   padding-bottom: 0.5em; }
 
 h4, .h4 {
@@ -64,6 +64,8 @@ textarea {
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
   font-size: 10pt;
   padding: 2px; }
+  
+.help-block { color: #999; }
 
 input[type="submit"] {
   font-size: 9pt; }
@@ -111,11 +113,6 @@ input.huge_input {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px; }
-
-.container {
-  text-align: left;
-  margin-left: auto; 
-  margin-right: auto; }
   
 .callout { 
   background-color: rgba(255, 245, 250, 0.8);
