@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user, :admin?, :board?
-  helper_method :require_user, :require_no_user, :store_location, :redirect_back_or_default
+  helper_method :store_location, :redirect_back_or_default
   helper_method :markdown, :num_taxpayers, :total_monthly, :next_collection_time, :time_until_collection
 
   private

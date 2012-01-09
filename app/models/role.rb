@@ -2,8 +2,8 @@ class Role < ActiveRecord::Base
   belongs_to :user
   belongs_to :tax
   
-  
-  MANAGER = 1
-  FUNDER  = 2
-  
+  # Kinds
+  MANAGER   = 1
+  FUNDER    = 2
+  FAVORITE  = 3
 end

@@ -23,10 +23,11 @@ class TaxesController < ApplicationController
     end 
     
     @tax = Tax.new(params[:tax])
-    @tax.owner = current_user
     @tax.status = Tax::ACTIVE
+    @tax.owner = current_user # Deprecated, just holds the creator
     
     if @tax.save
+      @tax.managers << current_user
       redirect_to tax_path(@tax)
       begin
         Mailer.deliver_admin_notification("#{@user.name} created a tax: #{@tax.name}", h(url_for(:controller => 'taxes', :action => 'show', @id => @tax.id)))

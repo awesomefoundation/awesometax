@@ -1,7 +1,7 @@
 %br.clear/
 .comments
   %h3 Discussion
-  - num = [4, comments.length].min
+  - num = [10, comments.length].min
   - show_comments = comments.slice(-num, num)
   - folded_comments = comments.slice(0, comments.length - num)
   - unless folded_comments.empty?
@@ -11,10 +11,10 @@
   = render :partial => 'shared/comment', :collection => show_comments
   - if user_signed_in?
     %div
-      - form_tag('/comments/create', :method => :post, :id => 'comment_form') do
+      - form_tag('/comments', :method => :post, :id => 'comment_form') do
         = text_area_tag :body, nil, :style => 'width: 100%; height: 3em; margin-bottom: 10px;', :placeholder => 'Write a comment...'
         = hidden_field_tag :tax, tax.id
-        .float_right= link_to 'Post', '#', :id => "post_comment", :class => 'minibutton'
+        .float_right= link_to 'Post', '#', :id => "post_comment", :class => 'btn'
         .clear
     :javascript
       $(document).ready(function() {
@@ -28,5 +28,5 @@
           return false;
         });
       });
-      - else
+  - else
     You can #{link_to 'log in', login_path} to leave comments.

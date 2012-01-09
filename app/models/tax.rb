@@ -9,6 +9,12 @@ class Tax < ActiveRecord::Base
   has_many :pledgers, :through => :pledges, :source => :user
   has_many :comments
   
+  has_many :roles, :dependent => :destroy
+  has_many :funder_roles,  :class_name => 'Role', :conditions => { :kind => Role::FUNDER }
+  has_many :manager_roles, :class_name => 'Role', :conditions => { :kind => Role::MANAGER }
+  has_many :funders,  :class_name => 'User',  :through => :funder_roles,  :source => :user
+  has_many :managers, :class_name => 'User',  :through => :manager_roles, :source => :user
+  
   scope:active, where(:status => Tax::ACTIVE)
   
   attr_accessible :name, :description, :paypal_email, :video_type, :video_id

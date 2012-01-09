@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :require_user, :only => [ :create, :destroy ]
+  before_filter :authenticate_user!, :only => [ :create, :destroy ]
   include ActionView::Helpers::TextHelper
 
   def create

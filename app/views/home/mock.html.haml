@@ -12,7 +12,7 @@
   
 %h3 The Code
 %p Copy and paste this snippet into your HTML page where you want the widget to appear:
-%pre
+%pre.prettyprint
   = "<div id='lovetax_widget' data-id='#{Tax.first.id}' data-host='http://#{request.host}'></div>"
   %br/
   = "<script src='http://#{request.host}/javascripts/xss_magic.js'></script>"

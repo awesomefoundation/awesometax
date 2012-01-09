@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  #before_filter :require_no_user, :only => [:new, :create]
-  #before_filter :require_user, :only => [:edit, :update, :history]
+  before_filter :authenticate_user!, :only => [:history, :edit, :update]
   
   def new
     @user = User.new
@@ -24,9 +23,8 @@ class UsersController < ApplicationController
     @user = params[:id].nil? ? current_user : User.find(params[:id])
     redirect_to root_url and return if @user.nil?
     myself = current_user.andand.id == @user.id
-    @taxes = @user.taxes.sort { |a,b| a.status <=> b.status }
-    @pledges = Pledge.all(:conditions => myself ? ['user_id = ? and status > ?', @user.id, Pledge::INACTIVE] :
-      ['user_id = ? and status = ?', @user.id, Pledge::ACTIVE], :order => 'status, created_at desc')
+    @taxes = @user.managed_taxes.sort { |a,b| a.status <=> b.status }
+    @pledges = (myself ? @user.pledges : @user.pledges.active).order('status, created_at desc')
     @total_pledges = Pledge.sum(:amount, :conditions => { :user_id => @user.id, :status => Pledge::ACTIVE })
     @active_pledges_count = Pledge.count(:conditions => ['user_id = ? and status = ?', @user.id, Pledge::ACTIVE])
   end

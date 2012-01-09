@@ -1,7 +1,6 @@
 class PledgesController < ApplicationController
 
-  before_filter :require_user, :only => [:index, :new, :create, :edit, :update, :destroy, :start, :pause, :stop, :collect]
-  #before_filter :require_admin, :only => [:collect_all]
+  before_filter :authenticate_user!, :only => [:index, :new, :create, :edit, :update, :destroy, :start, :pause, :stop, :collect]
   protect_from_forgery :except => :notify # IPN gets invalid auth token messages otherwise
 
   def index

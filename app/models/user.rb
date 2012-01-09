@@ -15,8 +15,13 @@ class User < ActiveRecord::Base
   
   has_many :pledges
   has_many :taxes, :class_name => 'Tax', :foreign_key => 'owner_id'
-  has_many :roles
-  #has_many :taxes, :through => :roles
+
+  has_many :roles, :dependent => :destroy
+  has_many :funder_roles,  :class_name => 'Role', :conditions => { :kind => Role::FUNDER }
+  has_many :manager_roles, :class_name => 'Role', :conditions => { :kind => Role::MANAGER }
+  has_many :funded_taxes,  :class_name => 'Tax',  :through => :funder_roles,  :source => :tax
+  has_many :managed_taxes, :class_name => 'Tax',  :through => :manager_roles, :source => :tax
+  
   has_many :transactions
   
   scope :admins, where(:status => ADMIN)

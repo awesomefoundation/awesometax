@@ -1,38 +1,43 @@
-%h2 My History
+- @no12 = true
 
-= notice
+.container_12
+  .grid_8
+    %h2 My History
 
-- if @transactions.blank?
-  %p You don't have any transactions yet. How sad. Taxes are collected on the 15th of each month. For you,
+    - if @transactions.blank?
+      %p You don't have any transactions yet. How sad. Taxes are collected on the 15th of each month. For you,
+    
+    %h4
+      = number_to_currency(@active_sum)
+      will be collected in
+      = pluralize((time_until_collection / 1.day).to_i, 'day')
+      for
+      = "#{pluralize(@active_count, 'pledge')}."
+      = link_to 'See details here', account_path
+    
+    - unless @transactions.blank?
+      %br/
+      %table{:width => '100%'}
+        %thead{:style=>'font-weight: bold;'}
+          %tr
+            %td Tax
+            %td Amount
+            %td Type
+            %td Date
+        %tbody
+          - @transactions.each do |t|
+            %tr{:style => 'border-top: 1px dotted #aaa;'}
+              %td= link_to h(t.pledge.tax.name), tax_path(t.pledge.tax)
+              %td= number_to_currency(t.amount)
+              %td= t.kind == Transaction::SENT ? 'Sent' : 'Received'
+              %td= t.created_at.to_date
 
-%h4
-  = number_to_currency(@active_sum)
-  will be collected in
-  = pluralize((time_until_collection / 1.day).to_i, 'day')
-  for
-  = "#{pluralize(@active_count, 'pledge')}."
-  = link_to 'See details here', account_path
 
-- if Rails.env != 'production'
-  %p
-    %b For testing only:
-    you may also
-    = link_to 'execute these pending transactions now', :controller => 'pledges', :action => 'collect'
-    simulating tax-collection day. (This message won't appear in the public release of the site.)
+  .grid_4
+    - if Rails.env != 'production'
+      .callout
+        %b For testing only:
+        you may also
+        = link_to 'execute these pending transactions now', :controller => 'pledges', :action => 'collect'
+        simulating tax-collection day. (This message won't appear in the public release of the site.)
 
-- unless @transactions.blank?
-  %br/
-  %table{:width => '100%'}
-    %thead{:style=>'font-weight: bold;'}
-      %tr
-        %td Tax
-        %td Amount
-        %td Type
-        %td Date
-    %tbody
-      - @transactions.each do |t|
-        %tr{:style => 'border-top: 1px dotted #aaa;'}
-          %td= link_to h(t.pledge.tax.name), tax_path(t.pledge.tax)
-          %td= number_to_currency(t.amount)
-          %td= t.kind == Transaction::SENT ? 'Sent' : 'Received'
-          %td= t.created_at.to_date
