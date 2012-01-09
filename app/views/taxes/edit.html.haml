@@ -3,21 +3,25 @@
   =h @tax.name
 
 - form_for @tax, :url => tax_path, :method => :put do |f|
-  Name
+  = f.label :name
+  .input
+    = f.text_field :name, :style => 'width: 480px;'
   %br/
-  = f.text_field :name
+  = f.label "Summary"
+  .input
+    = f.text_area :description, :style => 'height: 14em; width: 480px;'
+    .help-block
+      You can use
+      = link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', :target => '_blank'
+      formatting to prettify your summary.
+
   %br/
-  %br/
-  Description
-  %br/
-  = f.text_area :description, :style => 'height: 8em;'
-  %br/
-  %p
-    Funds will go to the PayPal account for
+  %p.input
+    Funds will go to the PayPal account
     %b= "#{h(@tax.paypal_email)}."
     %br/
-    You can't change this, but you can
+    You can't change this, but you can always
     = link_to 'discontinue this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to stop collecting this tax? You cannot undo this!" }
     and start a new one.
   
-  = f.submit 'Save'
+  .input= f.submit 'Save'
