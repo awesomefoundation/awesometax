@@ -1,50 +1,47 @@
 - @no12 = true
+= javascript_include_tag 'bootstrap-tabs'
 
 .container_12.container
   .grid_12
     %h2 Management
+    
+    %ul.tabs{'data-tabs' => 'tabs'}
+      %li.active= link_to "Taxes", '#taxes'
+      %li= link_to "Users", '#users'
+      %li= link_to "Transactions", '#transactions'
+      
+      
+    .tab-content
+      #taxes.active
+        %h3 Taxes
+        .grid_6.alpha
+          = render :partial => 'shared/tax', :collection => @taxes
+        .grid_6.omega
+            
+      #users
+        %h3 Users
+        .grid_6.alpha
+          - @users.each do |u|
+            = link_to u.name, u
+            (#{u.email})
+        .grid_6.omega
+        
 
-.container_12.container
-  .grid_6
-    %h3 Users
-    - @users.each do |u|
-      = link_to h(u.name), u
-      =h "(#{u.email})"
-      %br/
-
-  .grid_6
-    %h3 Taxes
-    - @taxes.each do |t|
-      %b
-        = link_to h(t.name), tax_path(t)
-        by
-        = link_to h(t.owner.name), t.owner
-        = "(#{t.status_string})"
-        %br/
-      - t.pledges.active.each do |p|
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        = number_to_currency(p.amount)
-        from
-        = link_to h(p.user.name), p.user
-        %br/
-
-.container_12.container
-  .grid_12
-    %br/
-    %h3 Transactions
-    %table{:width => '100%'}
-      %thead{:style => 'font-weight: bold;'}
-        %tr
-          %td User
-          %td Type
-          %td Amount
-          %td Tax
-          %td Date
-      %tbody
-        - @transactions.each do |t|
-          %tr{:style => 'border-top: 1px dotted #aaa;'}
-            %td= (t.user_id == 0) ? 'LOVELAND' : (link_to h(t.user.name), t.user)
-            %td= t.kind == Transaction::SENT ? 'Sent' : 'Received'
-            %td= number_to_currency(t.amount)
-            %td= link_to h(t.pledge.tax.name), tax_path(t.pledge.tax)
-            %td= t.created_at.to_date
+      #transactions
+        %h3 Transactions
+        %table{:width => '100%'}
+          %thead{:style => 'font-weight: bold;'}
+            %tr
+              %td User
+              %td Type
+              %td Amount
+              %td Tax
+              %td Date
+          %tbody
+            - @transactions.each do |t|
+              %tr{:style => 'border-top: 1px dotted #aaa;'}
+                %td= (t.user_id == 0) ? 'LOVELAND' : (link_to h(t.user.name), t.user)
+                %td= t.kind == Transaction::SENT ? 'Sent' : 'Received'
+                %td= number_to_currency(t.amount)
+                %td= link_to h(t.pledge.tax.name), tax_path(t.pledge.tax)
+                %td= t.created_at.to_date

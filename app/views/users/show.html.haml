@@ -19,15 +19,21 @@
     .tab-content
       #giving{:class => skip ? '' : 'active'}
         %h3 My Giving
-        - if @myself
-          %h3 I give #{number_to_currency(@total_pledges)} monthly to #{pluralize(@active_count, 'tax')}
-        
         - if @pledges.blank?
           %p I haven't started funding any taxes yet.
         - else
           .grid_6.alpha
             = render :partial => 'shared/pledge', :collection => @pledges, :locals => { :mine => @myself }
           .grid_6.omega
+            - if @myself
+              .stats
+                %h4 Funding:
+                %h3= pluralize(@active_count, 'tax')
+                %h4 Monthly Total:
+                %h3= number_to_currency(@active_count)
+                %h4 Given to Date:
+                %h3= number_to_currency(@total_given)
+
         
       #taxes{:class => skip ? 'active' : ''}
         %h3 My Taxes
@@ -38,6 +44,14 @@
           .grid_6.alpha
             = render :partial => 'shared/tax', :collection => @managed, :locals => { :mine => @myself }
           .grid_6.omega
+            - if @myself
+              .stats
+                %h4 Receiving:
+                %h3= pluralize(@managed_count, 'tax')
+                %h4 Monthly Total:
+                %h3= number_to_currency(@managed_sum)
+                %h4 Income to Date:
+                %h3= number_to_currency(@total_received)
 
       - if @myself
         #messages
@@ -50,7 +64,7 @@
           .grid_8.alpha
             %h3 Transaction History
             - if @transactions.blank?
-              %p You don't have any transactions yet. Taxes are collected on the 15th of each month.
+              %p You don't have any transactions yet.
             
             - unless @transactions.blank?
               %br/

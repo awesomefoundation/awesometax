@@ -6,18 +6,6 @@
     %h2=h @tax.name
   
   .grid_8
-    %p
-      - if @tax.video_type == 'vimeo'
-        %iframe{:src => "http://player.vimeo.com/video/#{@tax.video_id}?byline=0&amp;portrait=0", :width => "460", :height => "300", :frameborder => "0"}
-      - elsif @tax.video_type == 'youtube'
-        %object{:width => "500", :height => "320"}
-          %param{:name=>"movie", :value=>"http://www.youtube.com/v/#{@tax.video_id}?fs=1&amp;hl=en_US&amp;rel=0"}
-          %param{:name=>"allowFullScreen", :value=>"true"}
-          %param{:name=>"allowscriptaccess", :value=>"always"}
-          %param{:name=>"wmode", :value=>"opaque"}
-          %embed{:src=>"http://www.youtube.com/v/#{@tax.video_id}?fs=1&amp;hl=en_US&amp;rel=0", :type=>"application/x-shockwave-flash", :allowscriptaccess=>"always", :allowfullscreen=>"true", :width=>"460", :height=>"300", :wmode=>"opaque"}
-
-
     %p{:style => 'white-space: pre-wrap;'}= auto_link(markdown(@tax.description))
     %p
       By
@@ -66,7 +54,7 @@
         = f.text_field :amount, :class => 'huge_input', :size => 3, :style => 'margin: 0 8px 12px 0px;'
         = image_submit_tag 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif', :style => 'margin-left: 32px; border-width: 0px; width: 145px; height: 42px;'
     
-    - if admin? and @tax.owner != current_user
+    - if admin?
       %br/
       %br/
       .rounded{:style=>'background-color: #eeffff;'}
