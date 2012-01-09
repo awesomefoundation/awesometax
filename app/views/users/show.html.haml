@@ -9,13 +9,15 @@
     %br/
 
     %ul.tabs{'data-tabs' => 'tabs'}
-      %li.active= link_to "My Giving", '#giving'
-      %li= link_to "My Taxes", '#taxes'
+      - skip = (@pledges.empty? and !@managed.empty?)
+      %li{:class => skip ? '' : 'active'}= link_to "My Giving", '#giving'
+      %li{:class => skip ? 'active' : ''}= link_to "My Taxes", '#taxes'
       - if @myself
+        %li= link_to 'Messages', '#messages'
         %li= link_to "History", '#history'
         
     .tab-content
-      #giving.active
+      #giving{:class => skip ? '' : 'active'}
         %h2 My Giving
         - if @myself
           %h3 I give #{number_to_currency(@total_pledges)} monthly to #{pluralize(@active_count, 'tax')}
@@ -27,7 +29,7 @@
             = render :partial => 'shared/pledge', :collection => @pledges, :locals => { :mine => @myself }
           .grid_6.omega
         
-      #taxes
+      #taxes{:class => skip ? 'active' : ''}
         %h2 My Taxes
         - if @managed.blank?
           %p
@@ -38,6 +40,12 @@
           .grid_6.omega
 
       - if @myself
+        #messages
+          %h2 Messages
+          .grid_8.alpha
+            %p You'll receive periodic communications here from the taxes you pledge or subscribe to.
+          .grid_4.omega
+          
         #history
           .grid_8.alpha
             %h2 Transaction History
