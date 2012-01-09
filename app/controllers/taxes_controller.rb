@@ -3,7 +3,7 @@ class TaxesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index]
 
   def index
-    @taxes = Tax.active(:order => 'id desc').reverse
+    @taxes = Tax.active(:order => 'id asc').reverse
   end
   
   def show
