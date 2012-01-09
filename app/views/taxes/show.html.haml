@@ -56,8 +56,7 @@
     
     - if admin?
       %br/
-      %br/
-      .rounded{:style=>'background-color: #eeffff;'}
+      .callout
         %h4 Admin tools
         = link_to 'Close this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to terminate this tax?" } unless @tax.status == Tax::ENDED
     

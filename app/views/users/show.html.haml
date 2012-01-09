@@ -69,16 +69,16 @@
             - unless @transactions.blank?
               %br/
               %table{:width => '100%'}
-                %thead{:style=>'font-weight: bold;'}
+                %thead
                   %tr
-                    %td Tax
-                    %td Amount
-                    %td Type
-                    %td Date
+                    %th Tax
+                    %th Amount
+                    %th Type
+                    %th Date
                 %tbody
                   - @transactions.each do |t|
                     %tr{:style => 'border-top: 1px dotted #aaa;'}
-                      %td= link_to h(t.pledge.tax.name), tax_path(t.pledge.tax)
+                      %td= link_to t.pledge.tax.name, tax_path(t.pledge.tax)
                       %td= number_to_currency(t.amount)
                       %td= t.kind == Transaction::SENT ? 'Sent' : 'Received'
                       %td= t.created_at.to_date
