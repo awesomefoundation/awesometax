@@ -162,3 +162,9 @@ input.huge_input {
 
 #folded_comments {
   display: none; }
+  
+
+input[type=email] { padding: 2px; }
+#user_edit input[type=text],
+#user_edit input[type=email],
+#user_edit input[type=password] { width: 300px; }

@@ -4,10 +4,11 @@
   %div
     = f.label :email
     .input= f.email_field :email
+  %br/
   %div
     = f.label :password
     .input= f.password_field :password
-    
+  %br/
   - if devise_mapping.rememberable?
     .input
       = f.check_box :remember_me

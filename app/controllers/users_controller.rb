@@ -37,9 +37,9 @@ class UsersController < ApplicationController
     @active_count = Pledge.count(:conditions => { :user_id => current_user.id, :status => Pledge::ACTIVE })
   end
 
-  def edit
-    @user = @current_user
-  end
+  #def edit
+  #  @user = @current_user
+  #end
   
   def update
     @user = @current_user # makes our views "cleaner" and more consistent
