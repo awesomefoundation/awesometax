@@ -22,36 +22,20 @@ class UsersController < ApplicationController
   def show
     @user = params[:id].nil? ? current_user : User.find(params[:id])
     redirect_to root_url and return if @user.nil?
-    myself = current_user.andand.id == @user.id
-    @taxes = @user.managed_taxes.sort { |a,b| a.status <=> b.status }
-    @pledges = (myself ? @user.pledges : @user.pledges.active).order('status, created_at desc')
-    @total_pledges = Pledge.sum(:amount, :conditions => { :user_id => @user.id, :status => Pledge::ACTIVE })
-    @active_pledges_count = Pledge.count(:conditions => ['user_id = ? and status = ?', @user.id, Pledge::ACTIVE])
-  end
-  
-  # Transaction history
-  def history
-    @user = current_user
-    @transactions = current_user.transactions.sort { |a,b| b.id <=> a.id }
-    @active_sum = Pledge.sum(:amount, :conditions => { :user_id => current_user.id, :status => Pledge::ACTIVE })
-    @active_count = Pledge.count(:conditions => { :user_id => current_user.id, :status => Pledge::ACTIVE })
-  end
-
-  #def edit
-  #  @user = @current_user
-  #end
-  
-  def update
-    @user = @current_user # makes our views "cleaner" and more consistent
-    logger.info "Hi, #{params[:email_pref_comments].to_i}"
-    wants_comments = params[:email_pref_comments].to_i == 1
-    params[:user][:email_prefs] = @user.set_email_pref(Mailer::TAX_COMMENTS, wants_comments)
-    if @user.update_attributes(params[:user])
-      flash[:notice] = "Account updated!"
-      redirect_to account_url
+    @myself = current_user.andand.id == @user.id
+    
+    @managed = @user.managed_taxes.order('status, created_at desc')
+    #@funded = @user.funded_taxes.order('status, created_at desc')
+    
+    if @myself
+      @pledges = @user.pledges.order('status, created_at desc')
+      @total_given = @user.transactions.sent.sum(:amount)
+      @active_sum = @user.pledges.active.sum(:amount)
+      @active_count = @user.pledges.active.count
+      @transactions = @user.transactions.sort { |a,b| b.id <=> a.id }
     else
-      render :action => :edit
+      @pledges = @user.pledges.active.order('created_at desc')
     end
   end
-  
+    
 end

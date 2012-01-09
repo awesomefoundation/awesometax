@@ -12,7 +12,8 @@
   %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
   %link{:href => "/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon"}/
   = stylesheet_link_tag 'bootstrap', '960', 'lovetax'
-  = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js', 'bootstrap-dropdown.js'
+  = javascript_include_tag 'jquery.min.js', 'jquery_ujs.js', 'bootstrap-dropdown.js'
+  = csrf_meta_tag
 
 %body
   .topbar-wrapper{:style => "z-index: 5;"}
@@ -38,9 +39,8 @@
                 %ul.dropdown-menu
                   - if admin? or board?
                     %li= link_to 'Administration',  admin_path
-                  %li= link_to 'My Taxes',          account_path
-                  %li= link_to 'My History',        history_path
-                  %li= link_to 'Edit Profile',      edit_user_registration_path
+                  %li= link_to 'My Account',        account_path
+                  %li= link_to 'Edit Account',      edit_user_registration_path
                   %li= link_to 'Sign Out',          logout_path
           - else
             %ul.nav.secondary-nav

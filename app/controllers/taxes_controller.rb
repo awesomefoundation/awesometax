@@ -61,14 +61,12 @@ class TaxesController < ApplicationController
   
   def destroy
     @tax = Tax.find params[:id]
-    unless @tax.owner == current_user or admin?
-      redirect_to :action => 'show', :id => @tax.id
-      flash[:notice] = "You don't own that tax so you can't end it."
-      return
+    if @tax.managers.include?(current_user) or admin?
+      @tax.stop
+      redirect_to @tax, :notice => "You have discontinued this tax."
+    else
+      redirect_to @tax, :notice => "You don't own that tax so you can't end it."
     end
-    @tax.stop
-    redirect_to @tax
-    flash[:notice] = "You have discontinued this tax."
   end
   
   

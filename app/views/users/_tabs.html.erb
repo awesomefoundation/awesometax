@@ -1,8 +1,0 @@
-<ul class='tabs'>
-  <li><%= link_to 'Taxes', account_path, :class => 'tab_taxes' %></li>
-  <li><%= link_to 'Pledges', account_path, :class => 'tab_pledges' %></li>
-  <% if @user == current_user %>
-    <li><%= link_to 'History', { :controller => 'users', :action => 'history' }, :class => 'tab_history' %></li>
-    <li><%= link_to 'Settings', edit_account_path, :class => 'tab_settings' %></li>
-  <% end %>
-</ul>
