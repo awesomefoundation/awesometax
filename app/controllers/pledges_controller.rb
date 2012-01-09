@@ -85,7 +85,7 @@ class PledgesController < ApplicationController
     
     flash[:notice] = 'Thank you for pledging!'
     #redirect_to :action => 'thanks', :id => pledge.id
-    redirect_to pledge
+    redirect_to pledge.tax
   end
   
   def thanks
