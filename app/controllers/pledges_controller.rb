@@ -81,6 +81,7 @@ class PledgesController < ApplicationController
     end
     
     pledge.update_attribute(:status, Pledge::ACTIVE)
+    pledge.tax.funders << current_user
     
     begin; Mailer.deliver_new_pledge(pledge.tax.owner, pledge); rescue; end
     
