@@ -1,6 +1,11 @@
 !!!
 %head
-  %title= defined?(@subtitle) ? "#{h(@subtitle)} - AwesomeTax" : "AwesomeTax"
+  %title
+    - if defined?(@subtitle)
+      = "#{@subtitle} -"
+    AwesomeTax
+    - if Rails.env != 'production'
+      = "(#{Rails.env})"
   %meta{:content => "", :name => "description"}/
   %meta{:content => "", :name => "author"}/
   %meta{:charset => "utf-8"}/
