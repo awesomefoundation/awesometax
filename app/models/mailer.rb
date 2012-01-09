@@ -25,14 +25,14 @@ class Mailer < ActionMailer::Base
     @owner = owner
     @pledge = pledge
     category 'new_pledge'
-    mail(:to => owner.email, :subject => tag("You have a new taxpayer!"))
+    mail(:to => owner.email, :subject => tag("You have a new taxpayer on #{pledge.tax.name}"))
   end
   
   def comment(owner, comment)
     @owner = owner
     @comment = comment
     category 'comment'
-    mail(:to => owner.email, :subject => tag("#{comment.user.name} commented on your tax"))
+    mail(:to => owner.email, :subject => tag("#{comment.user.name} commented on your tax, #{comment.tax.name}"))
   end
   
   def admin_notification(subj, message)
