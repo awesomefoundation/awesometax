@@ -1,20 +1,31 @@
-%h2 Sign In
+- @no12 = true
 
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %div
-    = f.label :email
-    .input= f.email_field :email
-  %br/
-  %div
-    = f.label :password
-    .input= f.password_field :password
-  %br/
-  - if devise_mapping.rememberable?
-    .input
-      = f.check_box :remember_me
-      %span Remember me
-  %div
-    %br/
-    .input= f.submit "Sign in"
-    
-= render :partial => "devise/shared/links"
+.container_12
+  .grid_6
+    %h2 Sign In
+
+    = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+      %div
+        = f.label :email
+        .input= f.email_field :email
+      %br/
+      %div
+        = f.label :password
+        .input= f.password_field :password
+      %br/
+      - if devise_mapping.rememberable?
+        .input
+          = f.check_box :remember_me
+          %span Remember me
+      %div
+        %br/
+        .input= f.submit "Sign in"
+        
+
+  .grid_6{:style => 'padding-top: 4em;'}
+    .callout
+      %p
+        If you don't have an account here yet, you'll need to make one before participating in the funding fun.
+        That way you can return any time to manage your taxes and stay updated.
+      %h3= link_to "Sign up here", new_registration_path(resource_name)
+    = render :partial => "devise/shared/links"

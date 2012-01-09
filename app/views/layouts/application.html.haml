@@ -45,10 +45,14 @@
           - else
             %ul.nav.secondary-nav
               %li= link_to 'Sign In', login_path
+              %li= link_to 'Register', new_user_registration_path
     .clear
   - if flash[:notice]
     .container_12.container
       .grid_12.centered.alert-message= flash[:notice]
+  - if flash[:alert]
+    .container_12.container
+      .grid_12.centered.alert-message.warning= flash[:alert]
       
   - if defined?(@no12) and @no12
     = yield

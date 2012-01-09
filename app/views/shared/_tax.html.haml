@@ -1,5 +1,4 @@
 .callout.rounded{:class => tax.active? ? "active" : "inactive"}
-  = link_to 'Support', tax_path(tax), :class => 'float_right' unless tax.owner_id == current_user.andand.id or !tax.active?
   %h4= link_to h(tax.name), tax_path(tax)
   %p= auto_link(h(truncate(tax.description.gsub(/<\/?[^>]*>/, ""), :length => 240)))
   %p
@@ -15,6 +14,7 @@
           = tax.status_string
           = tax.updated_at.strftime('%b %d %Y')
     - else
+      = link_to 'Support', tax_path(tax), :class => 'float_right btn' unless tax.owner_id == current_user.andand.id or !tax.active?
       Started by #{link_to tax.owner.andand.name, tax.owner}
     - unless !tax.active? or tax.pledges.active.empty?
       \&middot; #{number_to_currency(tax.monthly_income)} / mo. from #{pluralize(tax.unique_supporters.count, 'person')}

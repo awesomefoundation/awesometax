@@ -16,7 +16,7 @@ class Pledge < ActiveRecord::Base
   scope :inactive, where(:stauts => INACTIVE)
   
   validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than => 10000
-  validates_presence_of :user, :tax
+  validates_presence_of :tax
   
   @@fuzzies = [
     [1,     'a little'],

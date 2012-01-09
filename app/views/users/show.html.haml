@@ -5,7 +5,7 @@
 
 .container_12.container
   .grid_12
-    %h1= @user.name
+    %h2= @user.name
     %br/
 
     %ul.tabs{'data-tabs' => 'tabs'}
@@ -18,7 +18,7 @@
         
     .tab-content
       #giving{:class => skip ? '' : 'active'}
-        %h2 My Giving
+        %h3 My Giving
         - if @myself
           %h3 I give #{number_to_currency(@total_pledges)} monthly to #{pluralize(@active_count, 'tax')}
         
@@ -30,7 +30,7 @@
           .grid_6.omega
         
       #taxes{:class => skip ? 'active' : ''}
-        %h2 My Taxes
+        %h3 My Taxes
         - if @managed.blank?
           %p
             I haven't started any yet, but it's free and easy to #{link_to "create a tax", new_tax_path}.
@@ -41,14 +41,14 @@
 
       - if @myself
         #messages
-          %h2 Messages
+          %h3 Messages
           .grid_8.alpha
             %p You'll receive periodic communications here from the taxes you pledge or subscribe to.
           .grid_4.omega
           
         #history
           .grid_8.alpha
-            %h2 Transaction History
+            %h3 Transaction History
             - if @transactions.blank?
               %p You don't have any transactions yet. Taxes are collected on the 15th of each month.
             

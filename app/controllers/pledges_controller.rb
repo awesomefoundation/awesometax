@@ -1,18 +1,10 @@
 class PledgesController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:index, :new, :create, :edit, :update, :destroy, :start, :pause, :stop, :collect]
+  before_filter :authenticate_user!, :only => [:create, :update, :destroy, :start, :pause, :stop, :collect]
   protect_from_forgery :except => :notify # IPN gets invalid auth token messages otherwise
-
-  def index
-    redirect_to account_path
-  end
 
   def show
     @pledge = Pledge.find params[:id]
-  end
-  
-  def new
-    redirect_to tax_path(params[:id])
   end
   
   def create
@@ -23,7 +15,7 @@ class PledgesController < ApplicationController
       :status => Pledge::INACTIVE
     }
     unless @pledge.tax.andand.active? and @pledge.save
-      redirect_to new_pledge_path(:id => @pledge.tax.id)
+      redirect_to @pledge.tax, :notice => "That wasn't allowed, sorry."
       return
     end
     
@@ -36,7 +28,7 @@ class PledgesController < ApplicationController
       'requestEnvelope'     => { 'errorLanguage' => 'en_US' },
       'currencyCode'        => 'USD',
       'returnUrl'           => url_for(:controller => 'pledges', :action => 'completed', :id => @pledge.id, :only_path => false),
-      'cancelUrl'           => url_for(:controller => 'pledges', :action => 'canceled', :id => @pledge.id, :only_path => false),
+      'cancelUrl'           => url_for(:controller => 'pledges', :action => 'canceled',  :id => @pledge.id, :only_path => false),
       'receiverList'        => { 'receiver' => receiverList },
       'fees_payer'          => 'EACHRECEIVER',
       'ipnNotificationUrl'  => url_for(:controller => 'pledges', :action => 'notify'),
@@ -60,6 +52,7 @@ class PledgesController < ApplicationController
   
   def completed
     pledge = Pledge.find params[:id]
+    pledge.user ||= current_user
     preapproval_key = pledge.preapproval_key
     pay_request = PaypalAdaptive::Request.new
     data = {
