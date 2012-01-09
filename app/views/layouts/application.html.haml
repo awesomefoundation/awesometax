@@ -22,11 +22,15 @@
           .h3.float_left AwesomeTax
           %ul.nav
             %li{:class => current_page?(root_path)  ? 'active' : ''}= link_to 'Home',     root_path
-            %li= link_to 'Foundation', 'http://awesomefoundation.org'
-            %li= link_to 'IHAS', 'http://blog.awesomestudies.org'
             %li{:class => current_page?(taxes_path) ? 'active' : ''}= link_to 'Chapters', taxes_path
             %li{:class => current_page?(guide_path) ? 'active' : ''}= link_to 'Guide',    guide_path
             %li{:class => current_page?(mock_path)  ? 'active' : ''}= link_to 'Widget',   mock_path
+            %li.dropdown
+              %a.dropdown-toggle{:href => '#'} Foundation
+              %ul.dropdown-menu
+                %li= link_to 'Awesome Foundation', 'http://awesomefoundation.org'
+                %li= link_to 'Institute on Higher Awesome Studies', 'http://blog.awesomestudies.org'
+            
           - if user_signed_in?
             %ul.nav.secondary-nav
               %li.dropdown
