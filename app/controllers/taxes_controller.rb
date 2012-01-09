@@ -13,7 +13,14 @@ class TaxesController < ApplicationController
   
   def new
     @tax = Tax.new
-    @tax.paypal_email = current_user.email
+    if Rails.env == 'production'
+      @tax.paypal_email = current_user.email
+      @paypal_first = @paypal_last = nil
+    else
+      @tax.paypal_email = 'sherad_1274768045_per@gmail.com'
+      @paypal_first = 'Test'
+      @paypal_last = 'User'
+    end
   end
   
   def create

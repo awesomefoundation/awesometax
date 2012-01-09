@@ -22,6 +22,10 @@
       %br/
   
       %h3 PayPal Details
+      - unless Rails.env == 'production'
+        %p
+          %b TESTING NOTE: Don't enter real PayPal info here, just use the info we've pre-filled for you. :)
+          
       = f.label "Email Address"
       .input
         = f.text_field :paypal_email, :style => 'width: 100%;'
@@ -31,11 +35,11 @@
       %br/
       = f.label "First Name"
       .input
-        = text_field_tag :paypal_first, nil, :style => 'width: 100%;'
+        = text_field_tag :paypal_first, @paypal_first, :style => 'width: 100%;'
       %br/
       = f.label "Last Name"
       .input
-        = text_field_tag :paypal_last, nil, :style => 'width: 100%;'
+        = text_field_tag :paypal_last, @paypal_last, :style => 'width: 100%;'
       %br/
       %br/ 
       = f.submit 'Create It'
