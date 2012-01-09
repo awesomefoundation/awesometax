@@ -18,7 +18,7 @@
           %embed{:src=>"http://www.youtube.com/v/#{@tax.video_id}?fs=1&amp;hl=en_US&amp;rel=0", :type=>"application/x-shockwave-flash", :allowscriptaccess=>"always", :allowfullscreen=>"true", :width=>"460", :height=>"300", :wmode=>"opaque"}
 
 
-    %p{:style => 'white-space: pre-wrap;'}= auto_link(h(@tax.description))
+    %p{:style => 'white-space: pre-wrap;'}= auto_link(markdown(@tax.description))
     %p
       By
       = link_to h(@tax.owner.name), @tax.owner

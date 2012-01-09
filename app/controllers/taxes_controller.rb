@@ -56,11 +56,11 @@ class TaxesController < ApplicationController
     redirect_to :controller => 'taxes', :action => 'show', :id => @tax.id
     return unless @tax.owner_id == current_user.id and @tax.active?
     @tax.update_attributes(params[:tax])
-    if video_details = get_media(params[:video_url])
-      @tax.update_attributes({:video_type => video_details[:type].to_s, :video_id => video_details[:id]})
-    else
-      @tax.update_attributes({:video_type => nil, :video_id => nil})
-    end 
+    #if video_details = get_media(params[:video_url])
+    #  @tax.update_attributes({:video_type => video_details[:type].to_s, :video_id => video_details[:id]})
+    #else
+    #  @tax.update_attributes({:video_type => nil, :video_id => nil})
+    #end 
   end
   
   def destroy

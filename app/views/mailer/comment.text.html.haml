@@ -6,12 +6,11 @@
   %body
     %p
       Hi #{h(@owner.name)},
-      %a{:href => "http://lovetax.us/users/#{@comment.user.id}"}= h(@comment.user.name)
-      left a comment on your LoveTax,
-      %a{:href => "http://lovetax.us/taxes/#{@comment.tax.id}"}= h(@comment.tax.name)
+      = link_to @comment.user.name, user_url(:id => @comment.user.id, :only_path => false)
+      left a comment on your tax, #{link_to @comment.tax.name, tax_url(:id => @comment.tax.id, :only_path => false)}:
     
     %p{:style => 'margin: 2em 0'}
-      "#{h(@comment.body)}"
+      "#{@comment.body}"
 
     = render :partial => 'shared/email_sig'
         

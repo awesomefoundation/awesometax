@@ -1,5 +1,5 @@
 class Mailer < ActionMailer::Base
-  @@from_address = "LoveTax <team@lovetax.us>"
+  @@from_address = "AwesomeTax <team@lovetax.us>"
   
   #LL_NEWS       = 1
   #LL_NOTIFY     = 2
@@ -9,7 +9,7 @@ class Mailer < ActionMailer::Base
   def welcome(user)
     recipients    user.email
     from          @@from_address
-    subject       "[LoveTax] Welcome to LoveTax!"
+    subject       "[AwesomeTax] Welcome to AwesomeTax!"
     sent_on       Time.now
     body          :user => user
     content_type  'text/html'
@@ -18,7 +18,7 @@ class Mailer < ActionMailer::Base
   def payment(user, pledges)
     recipients    user.email
     from          @@from_address
-    subject       "[LoveTax] It's that time of the month"
+    subject       "[AwesomeTax] It's that time of the month"
     sent_on       Time.now
     body          :user => user, :pledges => pledges
     content_type  'text/html'
@@ -27,7 +27,7 @@ class Mailer < ActionMailer::Base
   def new_pledge(owner, pledge)
     recipients    owner.email
     from          @@from_address
-    subject       "[LoveTax] You have a new taxpayer!"
+    subject       "[AwesomeTax] You have a new taxpayer!"
     sent_on       Time.now
     body          :owner => owner, :pledge => pledge
     content_type  'text/html'
@@ -36,7 +36,7 @@ class Mailer < ActionMailer::Base
   def comment(owner, comment)
     recipients    owner.email
     from          @@from_address
-    subject       "[LoveTax] #{comment.user.name} commented on your tax"
+    subject       "[AwesomeTax] #{comment.user.name} commented on your tax"
     sent_on       Time.now
     body          :owner => owner, :comment => comment
     content_type  'text/html'
@@ -45,7 +45,7 @@ class Mailer < ActionMailer::Base
   def admin_notification(subj, message)
     recipients    ['larry@makeloveland.com', 'jerry@makeloveland.com', 'mary@makeloveland.com']
     from          @@from_address
-    subject       "[LoveTax] #{subj}"
+    subject       "[AwesomeTax] #{subj}"
     sent_on       Time.now
     body          :message => message
     content_type  'text/html'

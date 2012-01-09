@@ -6,11 +6,9 @@
   %body
     %p
       Congratulations,
-      %a{:href => "http://lovetax.us/users/#{@pledge.user.id}"}= h(@pledge.user.name)
-      signed up to pay your monthly tax,
-      %a{:href => "http://lovetax.us/taxes/#{@pledge.tax.id}"}= h(@pledge.tax.name)
-      \- To see the details including all the taxpayers and cashflow, check
-      %a{:href => "http://lovetax.us/taxes/#{@pledge.tax.id}"} its page.
+      = link_to @pledge.user.name, user_url(:id => @pledge.user.id, :only_path => false)
+      signed up to pay your monthly tax, #{link_to @pledge.tax.name, tax_url(:id => @pledge.tax.id, :only_path => false)}.
+      To see the details including all taxpayers and cashflow, refer to #{link_to 'its page', tax_url(:id => @pledge.tax.id, :only_path => false)}.
     
     %p
       Don't forget to invite your friends, family, fans, and total strangers to contribute to your taxes and others you love.
