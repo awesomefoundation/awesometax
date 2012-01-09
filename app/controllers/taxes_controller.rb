@@ -31,7 +31,7 @@ class TaxesController < ApplicationController
     
     @tax = Tax.new(params[:tax])
     @tax.status = Tax::ACTIVE
-    #@tax.owner = current_user # Deprecated, just holds the creator
+    @tax.owner = current_user # Deprecated, just holds the creator
     
     if @tax.save
       @tax.managers << current_user

@@ -15,6 +15,6 @@
           = tax.status_string
           = tax.updated_at.strftime('%b %d %Y')
     - else
-      Started by #{tax.owner.andand.name || 'Anonymous'}
+      Started by #{link_to tax.owner.andand.name, tax.owner}
     - unless !tax.active? or tax.pledges.active.empty?
       \&middot; #{number_to_currency(tax.monthly_income)} / mo. from #{pluralize(tax.unique_supporters.count, 'person')}
