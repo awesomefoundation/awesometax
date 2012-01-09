@@ -57,10 +57,10 @@ class Tax < ActiveRecord::Base
     @@status_strings[status]
   end
   
-  def notify_admins(tax)
+  def notify_admins
     begin
-      Mailer.admin_notification("#{tax.managers.first.name} created a tax: #{tax.name}",
-        h(tax_url(:id => tax.id, :only_path => false))).deliver
+      Mailer.admin_notification("#{self.managers.first.name} created a tax: #{self.name}",
+        h(tax_url(:id => self.id, :only_path => false))).deliver
     rescue => e
       logger.info e.inspect
       logger.info e.backtrace

@@ -13,9 +13,9 @@ class Comment < ActiveRecord::Base
     user == u or u.admin? or u == tax.owner
   end
 
-  def notify_managers(comment)
+  def notify_managers
     begin
-      Mailer.comment(@tax.owner, @comment).deliver
+      Mailer.comment(self.tax.owner, self).deliver
     rescue => e
       logger.info e.inspect
       logger.info e.backtrace
