@@ -14,9 +14,9 @@ class User < ActiveRecord::Base
   attr_accessible :name, :status
   
   has_many :pledges
-  #has_many :taxes, :class_name => 'Tax', :foreign_key => 'owner_id'
+  has_many :taxes, :class_name => 'Tax', :foreign_key => 'owner_id'
   has_many :roles
-  has_many :taxes, :through => :roles
+  #has_many :taxes, :through => :roles
   has_many :transactions
   
   scope :admins, where(:status => ADMIN)
