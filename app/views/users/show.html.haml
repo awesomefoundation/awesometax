@@ -74,6 +74,6 @@
             .callout
               %b For testing only:
               you may also
-              = link_to 'execute these pending transactions now', collect_path
+              = link_to 'execute these pending transactions now', :controller => 'pledges', :action => 'collect'
               simulating tax-collection day. (This message won't appear in the public release of the site.)
       

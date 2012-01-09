@@ -16,8 +16,8 @@ LoveTax3::Application.routes.draw do
   match 'pledges/:id/start' => 'pledges#start', :as => :start
   match 'pledges/:id/pause' => 'pledges#pause', :as => :pause
   match 'pledges/:id/stop'  => 'pledges#stop', :as =>  :stop
-  match 'pledges/collect'   => 'pledges#collect', :as => :collect
-  match 'pledges/:action', :controller => 'pledges'
+  match 'pledges/:id/:action', :controller => 'pledges'
+  match 'pledges/:action',     :controller => 'pledges'
   
   match 'admin' => 'admin#index', :as => :admin  
   match 'guide' => 'home#guide', :as => :guide 
