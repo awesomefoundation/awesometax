@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   
   validates_presence_of :user_id, :tax_id
   validates_length_of :body, :minimum => 1
-  after_create :notify
+  after_create :notify_managers
   
   attr_accessible :body, :user_id, :tax_id, :user, :tax
   
@@ -13,7 +13,7 @@ class Comment < ActiveRecord::Base
     user == u or u.admin? or u == tax.owner
   end
 
-  def notify(comment)
+  def notify_managers(comment)
     begin
       Mailer.comment(@tax.owner, @comment).deliver
     rescue => e

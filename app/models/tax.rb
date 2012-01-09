@@ -23,7 +23,7 @@ class Tax < ActiveRecord::Base
   validates_length_of :description, :minimum => 20
   #validates_presence_of :owner_id
   
-  after_create :notify
+  after_create :notify_admins
   
 
   def monthly_income
@@ -57,7 +57,7 @@ class Tax < ActiveRecord::Base
     @@status_strings[status]
   end
   
-  def notify(tax)
+  def notify_admins(tax)
     begin
       Mailer.admin_notification("#{tax.managers.first.name} created a tax: #{tax.name}",
         h(tax_url(:id => tax.id, :only_path => false))).deliver
