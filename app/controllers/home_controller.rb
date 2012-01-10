@@ -4,8 +4,8 @@ class HomeController < ApplicationController
   include ActionView::Helpers::TextHelper
   
   def index
-    @featured = Tax.all(:order => 'id desc', :limit => 6, :conditions => {:status => Tax::ACTIVE})
-    @nc = next_collection_time
+    @featured_left  = Tax.find 1
+    @featured_right = Tax.find 2
   end
   
   def mock

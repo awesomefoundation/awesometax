@@ -37,10 +37,10 @@
               %li.dropdown
                 %a.dropdown-toggle{:href => '#'} Account
                 %ul.dropdown-menu
-                  - if admin? or board?
-                    %li= link_to 'Administration',  admin_path
                   %li= link_to 'My Account',        account_path
                   %li= link_to 'Edit Account',      edit_user_registration_path
+                  - if admin? or board?
+                    %li= link_to 'Administration',  admin_path
                   %li= link_to 'Sign Out',          logout_path
           - else
             %ul.nav.secondary-nav
@@ -60,7 +60,7 @@
     .container_12.container
       .grid_12
         = yield
-    / ! end of #container
+
   .clear{:style => "height: 3em;"}
   / Javascript at the bottom for fast page loading
   %script{:src => "http://use.typekit.com/szj4uep.js", :type => "text/javascript"}

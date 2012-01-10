@@ -5,7 +5,12 @@
 
 .container_12.container
   .grid_12
-    %h2= @user.name
+    %span.h2= @user.name
+    - if @user.admin?
+      %span.label{:style => 'margin-left: 2em;'} Administrator
+    - if @user.board?
+      %span.label{:style => 'margin-left: 2em;'} Trustee
+    %br/
     %br/
 
     %ul.tabs{'data-tabs' => 'tabs'}

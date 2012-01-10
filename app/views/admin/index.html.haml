@@ -6,9 +6,10 @@
     %h2 Management
     
     %ul.tabs{'data-tabs' => 'tabs'}
-      %li.active= link_to "Taxes", '#taxes'
-      %li= link_to "Users", '#users'
-      %li= link_to "Transactions", '#transactions'
+      %li.active= link_to "Taxes (#{@taxes.length})", '#taxes'
+      %li= link_to "Users (#{@users.length})", '#users'
+      %li= link_to "Transactions (#{@transactions.length})", '#transactions'
+      %li= link_to "Comments (#{@comments.length})", '#comments'
       
       
     .tab-content
@@ -46,3 +47,11 @@
                 %td= number_to_currency(t.amount)
                 %td= link_to h(t.pledge.tax.name), tax_path(t.pledge.tax)
                 %td= t.created_at.to_date
+
+      #comments
+        %h3 Comments
+        .grid_6.alpha
+          - @comments.each do |c|
+            %b On #{link_to c.tax.name, c.tax}:
+            = render :partial => 'shared/comment', :object => c
+        .grid_6.omega

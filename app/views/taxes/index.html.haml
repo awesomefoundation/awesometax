@@ -3,10 +3,9 @@
 .container.container_12
   .grid_6
     %h2 Chapters
-    #wrapper
-      - @taxes.each do |t|
-        %div{:style => 'width: 450px; padding-bottom: 2em;'}
-          = render :partial => 'shared/tax', :object => t
+    - @taxes.each do |t|
+      %div{:style => 'width: 450px; padding-bottom: 2em;'}
+        = render :partial => 'shared/tax', :object => t
 
   .grid_6
     %br/

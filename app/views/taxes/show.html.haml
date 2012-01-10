@@ -6,7 +6,7 @@
     %h2=h @tax.name
   
   .grid_8
-    %p{:style => 'white-space: pre-wrap;'}= auto_link(markdown(@tax.description))
+    = auto_link(markdown(@tax.description))
     %p
       By
       = link_to h(@tax.owner.name), @tax.owner
@@ -32,12 +32,7 @@
   
   .grid_4
     - if !@tax.active?
-      %p This tax is no longer active.
-    - elsif @tax.owner == current_user
-      %p
-        You started this tax so naturally you can't pay it. We'll have more statistics and goodies here for you shortly. You can
-        = link_to 'edit the description', edit_tax_path(@tax)
-        though.
+      %h4 This tax is no longer active.
         
     - unless @tax.pledges.active.empty?
       %h4 Current taxpayers
@@ -45,13 +40,12 @@
         = link_to p.user.name, p.user
         %br/
 
-    - else
-      - form_for @pledge do |f|
-        = f.hidden_field :tax_id
-        %h4{:style=>'margin-left: 32px;'} How much would you like to contribute per month?
-        %span{:style=>'font-size: 36px; width: 32px; display: inline-block;'} $
-        = f.text_field :amount, :class => 'huge_input', :size => 3, :style => 'margin: 0 8px 12px 0px;'
-        = image_submit_tag 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif', :style => 'margin-left: 32px; border-width: 0px; width: 145px; height: 42px;'
+    - form_for @pledge do |f|
+      = f.hidden_field :tax_id
+      %h4{:style=>'margin-left: 32px;'} How much would you like to contribute per month?
+      %span{:style=>'font-size: 36px; width: 32px; display: inline-block;'} $
+      = f.text_field :amount, :class => 'huge_input', :size => 3, :style => 'margin: 0 8px 12px 0px;'
+      = image_submit_tag 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif', :style => 'margin-left: 32px; border-width: 0px; width: 145px; height: 42px;'
     
     - if admin?
       %br/
