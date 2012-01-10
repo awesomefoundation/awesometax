@@ -4,6 +4,7 @@
 .container_12.container
   .grid_12
     %h2 Management
+    %br/
     
     %ul.tabs{'data-tabs' => 'tabs'}
       %li.active= link_to "Taxes (#{@taxes.length})", '#taxes'
@@ -26,7 +27,20 @@
             .user
               = link_to u.name, u
               (#{u.email})
-        .grid_6.omega
+        .grid_4.omega.prefix_2
+          .callout
+            %h4 Invite a Trustee
+            = form_tag(invite_path, :method => :post) do
+              = email_field_tag :email, nil, :placeholder => "Email address"
+              %br/
+              %br/
+              = text_field_tag :name, nil, :placeholder => "Their name"
+              .help-block{:style => 'padding-top: 1em;'}
+                They'll receive an invitation to create an account as a trustee. That means
+                they'll be able to create taxes, receive funding, and invite other trustees.
+              %br/
+              %br/
+              = submit_tag 'Send invitation'
         
 
       #transactions

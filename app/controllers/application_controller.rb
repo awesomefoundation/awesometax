@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   filter_parameter_logging :password, :password_confirmation
-  helper_method :current_user_session, :current_user, :admin?, :board?
+  helper_method :current_user_session, :current_user, :admin?, :trustee?
   helper_method :store_location, :redirect_back_or_default
   helper_method :markdown, :num_taxpayers, :total_monthly, :next_collection_time, :time_until_collection
 
@@ -13,25 +13,33 @@ class ApplicationController < ActionController::Base
     def admin?
       current_user.andand.admin?
     end
-    def board?
-      current_user.andand.board?
+    def trustee?
+      current_user.andand.trustee?
     end
     
     def require_admin
       unless admin?
-        flash[:notice] = "Management only beyond this point, sorry."
-        redirect_to root_url
+        redirect_to root_url, :notice => "Administrators only beyond this point, sorry."
         return false 
       end
     end
-    def require_board
-      unless board?
-        flash[:notice] = "Board members only beyond this point, sorry."
-        redirect_to root_url
+    def require_trustee
+      unless trustee?
+        redirect_to root_url, :notice => "Board members only beyond this point, sorry."
         return false 
+      end
+    end
+    def require_admin_or_trustee
+      unless admin? or trustee?
+        redirect_to root_url, :notice => "Trustees and admins only beyond this point, sorry."
+        return false
       end
     end
     
+    def authenticate_inviter!
+      admin? or trustee?
+    end
+      
     def store_location
       session[:return_to] = request.request_uri
     end

@@ -19,9 +19,10 @@ LoveTax3::Application.routes.draw do
   match 'pledges/:id/:action', :controller => 'pledges'
   match 'pledges/:action',     :controller => 'pledges'
   
-  match 'admin' => 'admin#index', :as => :admin  
-  match 'guide' => 'home#guide', :as => :guide 
-  match 'widget/mock' => 'home#mock',   :as => :mock
+  match 'admin' => 'admin#index',         :as => :admin
+  match 'admin/invite' => 'admin#invite', :as => :invite, :method => :post
+  match 'guide' => 'home#guide',          :as => :guide 
+  match 'widget/mock' => 'home#mock',     :as => :mock
   match 'widget/:id.js' => 'home#widget', :format => :js  
   match 'rounds/notify' => 'pledges#notify', :as => :notify  # IPNs have stale erroneous url
   

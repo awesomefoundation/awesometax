@@ -8,6 +8,7 @@ gem 'mysql2', '< 0.3'
 #gem 'smiley',  :path => '../smiley-client'
 gem 'omniauth'
 gem 'devise', '1.4.5'
+gem 'devise_invitable'
 gem 'oa-oauth', :require => 'omniauth/oauth'
 gem 'exception_notification'
 

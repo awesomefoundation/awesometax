@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :token_authenticatable, :omniauthable, :confirmable, :recoverable,
+  devise :invitable, :database_authenticatable, :token_authenticatable, :omniauthable, :confirmable, :recoverable,
     :registerable, :rememberable, :trackable, :validatable, :encryptable
 
   # status
   NORMAL   = 0
   ADMIN    = 1
   VERIFIED = 2
-  BOARD    = 3
+  TRUSTEE  = 3
   DISABLED = 4
 
   # Setup accessible (or protected) attributes for your model
@@ -24,15 +24,15 @@ class User < ActiveRecord::Base
   
   has_many :transactions
   
-  scope :admins, where(:status => ADMIN)
-  scope :board_members, where(:status => BOARD)
+  scope :admins,   where(:status => ADMIN)
+  scope :trustees, where(:status => TRUSTEE)
 
   def admin?
     status == ADMIN
   end
   
-  def board?
-    status == BOARD
+  def trustee?
+    status == TRUSTEE
   end
 
 end
