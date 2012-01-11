@@ -30,9 +30,16 @@ class User < ActiveRecord::Base
   def admin?
     status == ADMIN
   end
-  
   def trustee?
     status == TRUSTEE
+  end
+  
+  def status_s
+    { NORMAL    => 'Normal',
+      ADMIN     => 'Admin',
+      VERIFIED  => 'Verified',
+      TRUSTEE   => 'Trustee',
+      DISABLED  => 'Disabled' }[status]
   end
 
 end

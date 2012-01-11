@@ -22,12 +22,25 @@
             
       #users
         %h3 Users
-        .grid_6.alpha
-          - @users.each do |u|
-            .user
-              = link_to u.name, u
-              (#{u.email})
-        .grid_4.omega.prefix_2
+        .grid_8.alpha
+          %table{:width => '100%'}
+            %thead
+              %tr
+                %th Name
+                %th Email
+                %th Status
+                %th Joined
+                %th Inviter
+            %tbody
+              - @users.each do |u|
+                %tr
+                  %td= link_to u.name, u
+                  %td= u.email
+                  %td= u.status_s
+                  %td= u.created_at.to_date
+                  %td= u.invited_by.nil? ? '-' : link_to(u.invited_by.name, u.invited_by)
+              
+        .grid_4.omega
           .callout
             %h4 Invite a Trustee
             = form_tag(invite_path, :method => :post) do
@@ -64,8 +77,18 @@
 
       #comments
         %h3 Comments
-        .grid_6.alpha
-          - @comments.each do |c|
-            %b On #{link_to c.tax.name, c.tax}:
-            = render :partial => 'shared/comment', :object => c
-        .grid_6.omega
+        %table{:width => '100%'}
+          %thead
+            %tr
+              %th User
+              %th Tax
+              %th Comment
+              %th Posted
+          %tbody
+            - @comments.each do |c|
+              %tr
+                %td= link_to c.user.name, c.user
+                %td= link_to c.tax.name, c.tax
+                %td= c.body
+                %td= c.created_at
+
