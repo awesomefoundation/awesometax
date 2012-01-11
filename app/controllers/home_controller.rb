@@ -17,9 +17,10 @@ class HomeController < ApplicationController
       :id           => @tax.id,
       :name         => @tax.name,
       :description  => markdown(truncate(@tax.description.gsub(/<\/?[^>]*>/, ""), :length => 240)),
-      :supporters   => @tax.unique_supporters.count,
-      :monthly      => number_to_currency(@tax.monthly_income),
-      :created      => @tax.created_at.strftime('%m-%d-%y')
+      :supporters   => pluralize(@tax.unique_supporters.count, 'person'),
+      :monthly      => number_to_currency(@tax.monthly_income, :precision => 0),
+      :created      => @tax.created_at.strftime('%m-%d-%y'),
+      :goal         => @tax.goal,
     }.to_json
   end
   

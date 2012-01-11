@@ -36,7 +36,9 @@ MyXssMagic = new function() {
     }
     div.innerHTML = "<a class='lovetax_title' href='" + BASE_URL + "/taxes/" + data.id + "'>" + data.name + "</a>" + 
       "<p>" + data.description + "</p>" +
-      "<p>Raising " + data.monthly + " monthly from " + data.supporters + " people</p>";
+      "<p>Raising " + data.monthly + " monthly from " + data.supporters +
+      (data.goal ? " ($" + data.goal + " needed)" : "") +
+      "</p>";
     div.style.display = 'block';
   };
 

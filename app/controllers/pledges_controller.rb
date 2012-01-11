@@ -12,6 +12,7 @@ class PledgesController < ApplicationController
     @pledge.attributes = {
       :user => current_user,
       :starts => Time.zone.now,
+      :ends => Time.zone.now + 1.year,
       :status => Pledge::INACTIVE
     }
     unless @pledge.tax.andand.active? and @pledge.save
@@ -35,8 +36,8 @@ class PledgesController < ApplicationController
       'maxTotalAmountOfAllPayments' => (12 * @pledge.amount).to_s,
       'maxAmountPerPayment'         => @pledge.amount.to_s,
       'maxNumberOfPayments'         => '12',
-      'startingDate'                => Time.zone.now.strftime('%Y-%m-%dT%H:%M:%S-00:00'),
-      'endingDate'                  => (Time.zone.now + 1.year).strftime('%Y-%m-%dT%H:%M:%S-00:00')
+      'startingDate'                => @pledge.starts.strftime('%Y-%m-%dT%H:%M:%S-00:00'),
+      'endingDate'                  => @pledge.ends.strftime('%Y-%m-%dT%H:%M:%S-00:00')
     }
     pay_response = @response = pay_request.preapproval(data)
     
