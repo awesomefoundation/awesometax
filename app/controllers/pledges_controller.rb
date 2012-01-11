@@ -98,10 +98,10 @@ class PledgesController < ApplicationController
       pledge.delete
     end
     flash[:notice] = 'Canceled your payment.'
-    redirect_to  pledge.tax
+    redirect_to pledge.tax
   end
   
-  
+  # IPN, we don't have to do anything
   def notify
     render :text => 'Ok, thank you.'
   end

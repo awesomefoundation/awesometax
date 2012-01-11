@@ -155,11 +155,13 @@ class Pledge < ActiveRecord::Base
     end
     
     done = 0
-    pledges = Pledge.all(:conditions => {:status => Pledge::ACTIVE}, :include => [:transactions])
+    pledges = Pledge.active.includes(:transactions, :tax).select { |p| p.tax.meets_goal }
+    
+    # Send emails
     users = pledges.collect { |p| p.user }.uniq
     users.each do |u|
       begin
-        Mailer.payment(u, u.pledges.active).deliver
+        Mailer.payment(u, u.pledges.active.select { |p| p.tax.meets_goal }).deliver
       rescue => e
         logger.info "Error sending mail to #{u.email}"
         logger.info e.inspect
@@ -167,8 +169,9 @@ class Pledge < ActiveRecord::Base
       end
     end
 
+    # Do the transactions
     pledges.each do |p|
-      next unless p.transactions.empty? or Time.zone.now - p.transactions.last.created_at > 1.day
+      next if Time.zone.now - p.transactions.last.created_at < 1.day  # Safety net to not run twice in the same day
       done += 1 if p.collect
     end
     puts "Collected #{done} taxes successfully."

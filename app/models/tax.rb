@@ -8,6 +8,7 @@ class Tax < ActiveRecord::Base
   has_many :pledges
   has_many :pledgers, :through => :pledges, :source => :user
   has_many :comments
+  has_many :transactions, :through => :pledges
   
   has_many :roles, :dependent => :destroy
   has_many :funder_roles,  :class_name => 'Role', :conditions => { :kind => Role::FUNDER }
@@ -15,7 +16,7 @@ class Tax < ActiveRecord::Base
   has_many :funders,  :class_name => 'User',  :through => :funder_roles,  :source => :user
   has_many :managers, :class_name => 'User',  :through => :manager_roles, :source => :user
   
-  scope:active, where(:status => Tax::ACTIVE)
+  scope :active, where(:status => Tax::ACTIVE)
   
   attr_accessible :name, :description, :paypal_email, :video_type, :video_id
   validates_length_of :name, :minimum => 5
@@ -25,15 +26,19 @@ class Tax < ActiveRecord::Base
   
   after_create :notify_admins
   
-
+  def meets_goal
+    goal.nil? or monthly_income > goal
+  end
+  
   def monthly_income
-    pledges.active.inject(0) { |sum,p| sum + p.amount }
+    pledges.active.sum(:amount)
   end
   
   def total_income
-    pledges.active.inject(0) { |sum,p| sum + p.cumulative }
+    transactions.received.sum(:amount)
   end
   
+  # aka "funders" assoc
   def unique_supporters
     pledges.active.collect { |p| p.user }.uniq
   end

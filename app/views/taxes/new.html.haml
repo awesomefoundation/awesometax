@@ -8,7 +8,7 @@
       = f.label "Name Your Chapter"
       .input
         = f.text_field :name, :style => 'width: 100%;'
-        .help-block Most likely just your city's name. 5-40 characters.
+        .help-block Most likely your city's name. 5-40 characters.
       %br/
       = f.label "Summary"
       .input
@@ -19,6 +19,16 @@
           Feel free to use
           = link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', :target => '_blank'
           formatting.
+      %br/
+      = f.label "Monthly Minimum"
+      .input
+        $
+        = f.text_field :goal, :class => 'span2'
+        .help-block
+          The "tipping point" for this chapter. The monthly funding and payout will only happen if
+          your funders have pledged at least this much. Otherwise, nobody pays and nobody receives, and you'll
+          have to wait until next month's cycle.
+          %em Leave it blank for no minimum.
       %br/
   
       %h3 PayPal Details

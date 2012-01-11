@@ -12,7 +12,7 @@ class TaxesController < ApplicationController
   end
   
   def new
-    @tax = Tax.new
+    @tax = Tax.new(:goal => 1000)
     if Rails.env == 'production'
       @tax.paypal_email = current_user.email
       @paypal_first = @paypal_last = nil
@@ -32,7 +32,6 @@ class TaxesController < ApplicationController
     @tax = Tax.new(params[:tax])
     @tax.status = Tax::ACTIVE
     @tax.owner = current_user # Deprecated, just holds the creator
-    @tax.goal = 1000 # Tipping point?
     
     if @tax.save
       @tax.managers << current_user
