@@ -19,7 +19,7 @@ class Pledge < ActiveRecord::Base
   validates_presence_of :tax
   
   @@fuzzies = [
-    [1,     'a little'],
+    [1,     'a little bit'],
     [2,     'a couple of bucks'],
     [8,     'a few bucks'],
     [19,    'a good amount'],

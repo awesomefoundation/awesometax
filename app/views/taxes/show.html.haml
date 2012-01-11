@@ -19,40 +19,39 @@
           Be the first to pledge!
         - else
           = "#{number_to_currency(@tax.monthly_income)} monthly from #{pluralize(@tax.unique_supporters.count, 'person')}"
+        - unless @tax.goal.nil?
+          (#{number_to_currency(@tax.goal, :precision => 0)} needed)
+
          
     = render :partial => 'shared/share', :locals => {:url => request.url, :text => "#{h(@tax.name)} | LoveTax" }
-    - unless true || @tax.pledges.active.blank?
-      %h3.clear Supporters
-      - @tax.pledges.active.each do |p|
-        = link_to h(p.user.name), p.user
-        for
-        = p.fuzzy_amount
-        %br/
+
     = render :partial => 'shared/comments', :locals => { :comments => @tax.comments, :tax => @tax }
   
   .grid_4
     - if !@tax.active?
       %h4 This tax is no longer active.
         
-    - unless @tax.pledges.active.empty?
-      %h4 Current taxpayers
-      - @tax.pledges.active.each do |p|
-        = link_to p.user.name, p.user
-        %br/
-
-    - form_for @pledge do |f|
-      = f.hidden_field :tax_id
-      %h4{:style=>'margin-left: 32px;'} How much would you like to contribute per month?
-      %span{:style=>'font-size: 36px; width: 32px; display: inline-block;'} $
-      = f.text_field :amount, :class => 'huge_input', :size => 3, :style => 'margin: 0 8px 12px 0px;'
-      = image_submit_tag 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif', :style => 'margin-left: 32px; border-width: 0px; width: 145px; height: 42px;'
-    
+    .callout
+      - form_for @pledge do |f|
+        = f.hidden_field :tax_id
+        %h4{:style=>'margin-left: 32px; line-height: 25px; margin-bottom: 10px;'} How much would you like to contribute per month?
+        %span{:style=>'font-size: 36px; width: 20px; display: inline-block;'} $
+        = f.text_field :amount, :class => 'huge_input', :size => 3, :style => 'margin: 0 8px 12px 0px;'
+        = image_submit_tag 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif', :style => 'margin-left: 32px; border-width: 0px; width: 145px; height: 42px;'
+      
     - if admin?
-      %br/
       .callout
         %h4 Admin tools
         = link_to 'Close this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to terminate this tax?" } unless @tax.status == Tax::ENDED
     
+    - unless @pledges.empty?
+      %h3.clear Supporters
+      - @pledges.each do |p|
+        = link_to h(p.user.name), p.user
+        for
+        = p.fuzzy_amount
+        %br/
+        
     - unless user_signed_in?
       .clear{:style=>'height: 1em;'}
       .callout

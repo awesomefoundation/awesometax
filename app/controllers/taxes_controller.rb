@@ -9,6 +9,7 @@ class TaxesController < ApplicationController
   def show
     @tax = Tax.find params[:id]
     @pledge = Pledge.new(:amount => 10, :tax_id => @tax.id)
+    @pledges = @tax.pledges.active.order('amount desc')
   end
   
   def new
