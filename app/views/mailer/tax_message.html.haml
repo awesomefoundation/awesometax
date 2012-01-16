@@ -7,6 +7,6 @@
     %p #{@message.user.name} sent a message to all funders of #{@message.tax.name}:
     
     %p
-      = @message.body
+      = markdown(@message.body)
 
     = render :partial => 'shared/email_sig'
