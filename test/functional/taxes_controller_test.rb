@@ -11,7 +11,6 @@ class TaxesControllerTest < ActionController::TestCase
     UserSession.find.destroy unless UserSession.find.nil?
   end
 
-  # Replace this with your real tests.
   test "anyone can start a tax" do
     t = Factory.build :tax
     u = t.owner

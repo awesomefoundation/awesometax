@@ -1,4 +1,6 @@
 #lovetax_widget { 
+  font-family: sans-serif;
+  font-size: 11pt;
   width: 400px;
   background-color: rgba(255, 245, 250, 0.8);
   border: 6px solid #ddd; 
@@ -8,5 +10,72 @@
   font-size: 18px;
   display: none;
   }
-#lovetax_widget p { font-size: 12px; }
+#lovetax_widget h4 {
+  font-weight: bold;
+  font-size: 14pt;
+  margin-top: 0; }
+  
+#lovetax_widget p { font-size: 11pt; }
+#lovetax_widget a {
+  color: #F33486;
+  text-decoration: none;
+  border-bottom: 1px dotted #F33486;
+  }
+
 #lovetax_widget .button { }
+
+
+
+/* CSS3 progress bar */
+
+#lovetax_widget .bar_container {
+  margin: 0 auto;
+  padding: 5px;
+  height: 20px;
+  background: #a0a0a0;
+  -webkit-box-shadow: 0px 1px 1px 0px #f0f0f0;
+  -moz-box-shadow: 0px 1px 1px 0px #f0f0f0;
+  box-shadow: 0px 1px 0px 0px #f0f0f0;
+}
+
+#lovetax_widget .bar_mortice {
+  height: 20px;
+  background: #777;
+  -webkit-box-shadow: inset 0px 1px 2px 0px #333;
+  -moz-box-shadow: inset 0px 1px 2px 0px #333;
+  box-shadow: inset 0px 1px 2px 0px #333;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+#lovetax_widget .progress {
+  height: 19px;
+  background: #FFF;
+  float: left;
+  background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5));
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
+  background: -o-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
+  background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
+  background: linear-gradient(top,  #ffffff 0%,#e5e5e5 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 );
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #999;
+}
+
+#lovetax_widget .pink {
+  background: #FF00AA;
+  background: -moz-linear-gradient(top,  #FF00AA 0%, #dd0093 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FF00AA), color-stop(100%,#dd0093));
+  background: -webkit-linear-gradient(top,  #FF00AA 0%,#dd0093 100%);
+  background: -o-linear-gradient(top,  #FF00AA 0%,#dd0093 100%);
+  background: -ms-linear-gradient(top,  #FF00AA 0%,#dd0093 100%);
+  background: linear-gradient(top,  #FF00AA 0%,#dd0093 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FF00AA', endColorstr='#dd0093',GradientType=0 );
+  border-top: 1px solid #f6c;
+  border-bottom: 1px solid #906;
+}
+#lovetax_widget .pink_container {background: #906;}
+#lovetax_widget .pink_mortice {
+  background: #604;
+  border-bottom: 1px solid #c08;
+}

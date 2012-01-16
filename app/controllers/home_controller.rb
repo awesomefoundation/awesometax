@@ -9,6 +9,7 @@ class HomeController < ApplicationController
   end
   
   def mock
+    render :layout => false if params[:unstyled] == '1'
   end
   
   def widget
@@ -21,6 +22,7 @@ class HomeController < ApplicationController
       :monthly      => number_to_currency(@tax.monthly_income, :precision => 0),
       :created      => @tax.created_at.strftime('%m-%d-%y'),
       :goal         => @tax.goal,
+      :percent      => @tax.percent_funded,
     }.to_json
   end
   

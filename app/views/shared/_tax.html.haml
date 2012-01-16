@@ -1,6 +1,9 @@
 .callout.rounded{:class => tax.active? ? "active" : "inactive"}
   %h4= link_to h(tax.name), tax_path(tax)
   %p= auto_link(h(truncate(tax.description.gsub(/<\/?[^>]*>/, ""), :length => 240)))
+  
+  = render :partial => 'shared/progress', :object => tax.percent_funded
+  
   %p
     - if defined?(mine) and mine
       = number_to_currency(tax.total_income)

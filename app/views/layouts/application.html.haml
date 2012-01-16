@@ -10,8 +10,18 @@
   %meta{:content => "", :name => "author"}/
   %meta{:charset => "utf-8"}/
   %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+
+  %link{:rel => "image_src", :type => "image/jpeg", :href => "http://#{request.host}/images/seal.png"}
+  %link{:rel => "apple-touch-icon", :href => "/images/seal.png"}
+  %meta{:property => "og:image", :content => "http://#{request.host}/images/seal.png"}
+  %meta{:property => "og:title", :content => (defined?(@subtitle) ? "#{@subtitle}: " : '') + " - AwesomeTax"}
+  %meta{:property => "og:type", :content => (params[:controller] == 'home' and params[:action] == 'index') ? 'website' : 'article'}
+  %meta{:property => "og:url", :content => request.url}
+  %meta{:property => "fb:admins", :content => "2901636,620415163"}
+
+  
   %link{:href => "/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon"}/
-  = stylesheet_link_tag 'bootstrap', '960', 'lovetax'
+  = stylesheet_link_tag 'bootstrap', '960', 'lovetax', 'css3-progress-bar.css'
   = javascript_include_tag 'jquery.min.js', 'jquery_ujs.js', 'bootstrap-dropdown.js'
   = csrf_meta_tag
 
@@ -37,10 +47,13 @@
               %li.dropdown
                 %a.dropdown-toggle{:href => '#'} Account
                 %ul.dropdown-menu
+                  %li= link_to current_user.name,   account_path
+                  %li.divider
                   %li= link_to 'My Account',        account_path
                   %li= link_to 'Edit Account',      edit_user_registration_path
                   - if admin? or trustee?
                     %li= link_to 'Administration',  admin_path
+                  %li.divider
                   %li= link_to 'Sign Out',          logout_path
           - else
             %ul.nav.secondary-nav

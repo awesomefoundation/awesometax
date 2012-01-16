@@ -41,11 +41,20 @@
         - unless Rails.env == 'production'
           .help-block
             %br/
-            %b Test with these PayPal details:
-            %br/
-            Email: sherad_1274768045_per@gmail.com
-            %br/
-            Pass: frequency
+            %b Test PayPal like so:
+            %ol
+              %li= link_to 'Log in at the sandbox', 'http://developer.paypal.com', :target => '_blank'
+              %li
+                With
+                %b sheradon@gmail.com
+                and password
+                %b frequency
+              %li Come back here and press the checkout button, then use...
+              %li
+                Email
+                %b sherad_1274768045_per@gmail.com
+                and password
+                %b frequency
       
     - if admin?
       .callout
