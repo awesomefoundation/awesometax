@@ -26,10 +26,19 @@
     1: 'Save, Publish and Send',
     2: 'Trash'
   };
+  var old_status = #{message.status};
   $(document).ready(function(e) {
     $('#message_status').change(function(e) {
       var val = $(this).val();
       $('#message_submit').val(labels[val]);
+    });
+    $('form.edit_message').submit(function(e) {
+      var val = parseInt($('#message_status').val());
+      if(val == 1 && val != old_status) {
+        var ok = confirm('This is going to e-mail all funders of this tax. Are you really sure? If not, cancel and save as a draft instead.');
+        return ok;
+      }
+      return true;
     });
     var val = $('#message_status').val();
     $('#message_submit').val(labels[val]);

@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %meta{'http-equiv' => "Content-Type", 'content' => "text/html; charset=iso-8859-1"}
+    
+  %body
+    %p #{@message.user.name} sent a message to all funders of #{@message.tax.name}:
+    
+    %p
+      = @message.body
+
+    = render :partial => 'shared/email_sig'

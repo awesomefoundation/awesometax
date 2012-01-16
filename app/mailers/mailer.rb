@@ -40,6 +40,12 @@ class Mailer < ActionMailer::Base
     category 'admin_notification'
     mail(:to => @@admins, :subject => tag(subj))
   end
+  
+  def tax_message(message)
+    @message = message
+    category 'tax_message'
+    mail(:to => message.recipients.collect { |u| u.email }, :subject => message.effective_title)
+  end
 
   private  
   def tag(str)
