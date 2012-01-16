@@ -1,0 +1,37 @@
+= form_for message do |f|
+  = f.label 'To funders of'
+  .input
+    = f.select :tax_id, options_for_select(tax_options)
+  %br/ 
+  = f.label :title
+  .input
+    = f.text_field :title, :class => 'span8'
+    .help-block You can also leave this blank.
+  %br/
+  = f.label :body
+  .input
+    = f.text_area :body, :class => 'span8', :style => 'height: 16em;'
+  %br/
+  = f.label :status
+  .input
+    = f.select :status, options_for_select([ ['Save as Draft', Message::DRAFT], ['Save, Publish and Send', Message::PUBLISHED], ['Trash', Message::TRASH] ], message.status)
+
+  %br/    
+  .input
+    = f.submit 'Save as Draft'
+    
+:javascript
+  var labels = {
+    0: 'Save as Draft',
+    1: 'Save, Publish and Send',
+    2: 'Trash'
+  };
+  $(document).ready(function(e) {
+    $('#message_status').change(function(e) {
+      var val = $(this).val();
+      $('#message_submit').val(labels[val]);
+    });
+    var val = $('#message_status').val();
+    $('#message_submit').val(labels[val]);
+  });
+    

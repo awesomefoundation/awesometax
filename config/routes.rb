@@ -12,6 +12,7 @@ LoveTax3::Application.routes.draw do
   resources :taxes
   resources :pledges, :only => [ :show, :create ]
   resources :comments, :only => [ :create, :destroy ]
+  resources :messages, :only => [ :new, :create, :edit, :update, :destroy ]
   
   match 'pledges/:id/start' => 'pledges#start', :as => :start
   match 'pledges/:id/pause' => 'pledges#pause', :as => :pause

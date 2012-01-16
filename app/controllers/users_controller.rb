@@ -39,7 +39,9 @@ class UsersController < ApplicationController
       @total_given    = @user.transactions.sent.sum(:amount)
       @total_received = @user.transactions.received.sum(:amount)
       @transactions   = @user.transactions.sort { |a,b| b.id <=> a.id }
-      @messages       = @user.messages
+      
+      @messages       = @user.messages.published
+      @sent           = @user.sent_messages
     else
       @pledges = @user.pledges.active.order('created_at desc')
     end
