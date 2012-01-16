@@ -43,7 +43,7 @@ class Mailer < ActionMailer::Base
   
   def tax_message(message)
     @message = message
-    category 'tax_message'
+    category 'message'
     mail(:to => message.recipients.collect { |u| u.email }, :subject => message.effective_title)
   end
 
