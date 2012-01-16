@@ -112,18 +112,21 @@ class PledgesController < ApplicationController
     @pledge = Pledge.find params[:id]
     redirect_to account_path
     return unless @pledge.user_id == current_user.id and @pledge.status == Pledge::PAUSED
+    current_user.funded_taxes << @pledge.tax
     @pledge.start
   end
   def pause
     @pledge = Pledge.find params[:id]
     redirect_to account_path
     return unless @pledge.user_id == current_user.id and @pledge.status == Pledge::ACTIVE
+    current_user.funded_taxes.delete(@pledge.tax)
     @pledge.pause
   end
   def stop
     @pledge = Pledge.find params[:id]
     redirect_to account_path
     return unless @pledge.user_id == current_user.id and [Pledge::ACTIVE, Pledge::PAUSED].include? @pledge.status
+    current_user.funded_taxes.delete(@pledge.tax)
     @pledge.stop
   end
   

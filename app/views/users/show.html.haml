@@ -63,6 +63,8 @@
           %h3 Messages
           .grid_8.alpha
             %p You'll receive periodic communications here from the taxes you pledge or subscribe to.
+            = render :partial => 'shared/message', :collection => @messages
+            
           .grid_4.omega
           
         #history

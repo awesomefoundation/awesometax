@@ -2,13 +2,10 @@
   %h4
     = link_to h(pledge.tax.name), tax_path(pledge.tax)
     = "(#{pledge.status_string})" unless pledge.active?
-  - if pledge.active?
-    = number_to_currency(pledge.tax.monthly_income)
-    monthly from #{pluralize(pledge.tax.unique_supporters.count, 'person')}
-    %br/
   - if defined?(mine) and mine
-    Your pledge: #{number_to_currency(pledge.amount)} / month &middot;
+    %b Your pledge: #{number_to_currency(pledge.amount)} / month
+    %br/
     \#{link_to raw('Resume &middot;'), start_path(pledge.id) if pledge.paused?}
     \#{link_to raw('Pause &middot;'),  pause_path(pledge.id) if pledge.active?}
     \#{link_to 'Stop', stop_path(pledge.id), {:confirm => "Are you sure? You can't undo this, except by starting another monthly payment for this tax."} if pledge.active? or pledge.paused?}
-    \#{'Ended' if pledge.stopped?}
+    \#{'You are no longer paying this tax.' if pledge.stopped?}

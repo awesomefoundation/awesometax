@@ -6,15 +6,16 @@ class Tax < ActiveRecord::Base
   
   belongs_to :owner, :class_name => 'User'
   has_many :pledges
-  has_many :pledgers, :through => :pledges, :source => :user
+  has_many :pledgers, :through => :pledges, :source => :user, :conditions => { :status => Pledge::ACTIVE }, :uniq => true
   has_many :comments
   has_many :transactions, :through => :pledges
+  has_many :messages
   
   has_many :roles, :dependent => :destroy
-  has_many :funder_roles,  :class_name => 'Role', :conditions => { :kind => Role::FUNDER }
-  has_many :manager_roles, :class_name => 'Role', :conditions => { :kind => Role::MANAGER }
-  has_many :funders,  :class_name => 'User',  :through => :funder_roles,  :source => :user
-  has_many :managers, :class_name => 'User',  :through => :manager_roles, :source => :user
+  has_many :funder_roles,  :class_name => 'Role', :conditions => { :kind => Role::FUNDER }, :uniq => true
+  has_many :manager_roles, :class_name => 'Role', :conditions => { :kind => Role::MANAGER }, :uniq => true
+  has_many :funders,  :class_name => 'User',  :through => :funder_roles,  :source => :user, :uniq => true
+  has_many :managers, :class_name => 'User',  :through => :manager_roles, :source => :user, :uniq => true
   
   scope :active, where(:status => Tax::ACTIVE)
   
@@ -51,6 +52,7 @@ class Tax < ActiveRecord::Base
   def stop
     update_attribute(:status, Tax::ENDED)
     pledges.each { |p| p.stop }
+    funders.clear
   end
   
   def active?

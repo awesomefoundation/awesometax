@@ -7,12 +7,12 @@ class Pledge < ActiveRecord::Base
   
   INACTIVE  = 0 # has not been confirmed yet
   ACTIVE    = 1
-  PENDING   = 2
   PAUSED    = 3 # you can do this thru paypal site ("suspended") or ours
   FINISHED  = 4 # voluntarily
   FAILED    = 5 # a problem. failed, cancelled, expired...
 
   scope :active,   where(:status => ACTIVE)
+  scope :approved, where('status > 0')
   scope :inactive, where(:stauts => INACTIVE)
   
   validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than => 10000
@@ -40,7 +40,6 @@ class Pledge < ActiveRecord::Base
   @@status_strings = {
     INACTIVE => 'inactive',
     ACTIVE   => 'active',
-    PENDING  => 'pending',
     PAUSED   => 'paused',
     FINISHED => 'ended',
     FAILED   => 'failed'

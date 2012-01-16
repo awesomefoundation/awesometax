@@ -1,0 +1,9 @@
+.comments
+  %h4= message.title.blank? ? "Message" : message.title
+  .help-block
+    Sent on #{message.created_at.strftime('%B %d, %Y')}
+    from #{link_to message.user.name, message.user} to all funders of #{link_to message.tax.name, message.tax}
+  
+  
+  %p= message.body
+  

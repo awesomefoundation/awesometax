@@ -9,20 +9,17 @@ class User < ActiveRecord::Base
   TRUSTEE  = 3
   DISABLED = 4
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :name, :status
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :status
   
   has_many :pledges
-  #has_many :taxes, :class_name => 'Tax', :foreign_key => 'owner_id'
+  has_many :transactions
+  has_many :sent_messages, :class_name => 'Message'
 
   has_many :roles, :dependent => :destroy
-  has_many :funder_roles,  :class_name => 'Role', :conditions => { :kind => Role::FUNDER }
-  has_many :manager_roles, :class_name => 'Role', :conditions => { :kind => Role::MANAGER }
-  has_many :funded_taxes,  :class_name => 'Tax',  :through => :funder_roles,  :source => :tax
-  has_many :managed_taxes, :class_name => 'Tax',  :through => :manager_roles, :source => :tax
-  
-  has_many :transactions
+  has_many :funder_roles,  :class_name => 'Role', :conditions => { :kind => Role::FUNDER }, :uniq => true
+  has_many :manager_roles, :class_name => 'Role', :conditions => { :kind => Role::MANAGER }, :uniq => true
+  has_many :funded_taxes,  :class_name => 'Tax',  :through => :funder_roles,  :source => :tax, :uniq => true
+  has_many :managed_taxes, :class_name => 'Tax',  :through => :manager_roles, :source => :tax, :uniq => true
   
   scope :admins,   where(:status => ADMIN)
   scope :trustees, where(:status => TRUSTEE)
@@ -41,5 +38,11 @@ class User < ActiveRecord::Base
       TRUSTEE   => 'Trustee',
       DISABLED  => 'Disabled' }[status]
   end
+  
+  def messages
+    tax_ids = pledges.approved.collect { |p| p.tax_id }.uniq
+    Message.where(:tax_id => tax_ids).order('id desc')
+  end
+  
 
 end
