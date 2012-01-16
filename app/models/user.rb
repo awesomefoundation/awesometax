@@ -1,7 +1,12 @@
 class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :token_authenticatable, :omniauthable, :confirmable, :recoverable,
     :registerable, :rememberable, :trackable, :validatable, :encryptable
-
+    
+  has_settings
+  # Use mailer method names, eg user.settings['email.new_pledge'] is true/false. defaults in config/initializers/settings.rb
+  # More at https://github.com/ledermann/rails-settings
+  #accepts_nested_attributes_for :settings, :allow_destroy => true
+    
   # status
   NORMAL   = 0
   ADMIN    = 1
@@ -9,7 +14,7 @@ class User < ActiveRecord::Base
   TRUSTEE  = 3
   DISABLED = 4
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :status
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :status, :settings
   
   has_many :pledges
   has_many :transactions
@@ -23,6 +28,8 @@ class User < ActiveRecord::Base
   
   scope :admins,   where(:status => ADMIN)
   scope :trustees, where(:status => TRUSTEE)
+  
+  after_create :notify_created
 
   def admin?
     status == ADMIN
@@ -44,5 +51,21 @@ class User < ActiveRecord::Base
     Message.where(:tax_id => tax_ids).order('id desc')
   end
   
+  # s is a (potentially incomplete) hash of the email preferences from a form (so => "1"). For missing ones, set them to false
+  def update_settings(s)
+    s.each { |k,v| self.settings[k] = (v.to_i == 1) }
+    Settings.defaults.each { |k,v| self.settings[k] = false if s[k].to_i == 0 }
+  end
+  
+  protected
+  
+  def notify_created
+    begin
+      Mailer.admin_notification("New user #{@user.name}", "Just letting you know someone joined!").deliver
+    rescue => e
+      logger.info e.inspect
+      logger.info e.backtrace
+    end
+  end
 
 end

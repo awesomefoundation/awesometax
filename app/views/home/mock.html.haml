@@ -9,6 +9,9 @@
   #lovetax_widget{'data-id' => Tax.first.id, 'data-host' => "http://#{request.host}"}
   = javascript_include_tag("http://#{request.host}/javascripts/xss_magic.js")
   
+- unless params[:unstyled].to_i == 1
+  %p Also try it #{link_to 'on an unstyled page', mock_path(:unstyled => 1)} to ensure the CSS works.
+  
   
 %h3 The Code
 %p Copy and paste this snippet into your HTML page where you want the widget to appear:

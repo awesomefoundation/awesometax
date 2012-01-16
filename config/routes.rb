@@ -1,13 +1,12 @@
 LoveTax3::Application.routes.draw do
 
-  devise_for :users do
+  devise_for :users, :controllers => { :registrations => "registrations" } do
     get "/login" => "devise/sessions#new"
     get "/logout" => "devise/sessions#destroy"
   end
 
   resources :users, :only => [ :show ]
   resource  :account, :controller => 'users'
-  match     'account/history' => 'users#history', :as => :history
   match     'account' => 'users#show', :as => :my_account, :method => :get
   resources :taxes
   resources :pledges, :only => [ :show, :create ]

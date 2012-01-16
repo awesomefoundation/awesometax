@@ -20,6 +20,12 @@
       - if @myself
         %li= link_to 'Messages', '#messages'
         %li= link_to "History", '#history'
+    :javascript     
+      $(document).ready(function() {
+        if(window.location.hash != '') {
+          $('a[href="' + window.location.hash + '"]').click();
+        }
+      });
         
     .tab-content
       #giving{:class => skip ? '' : 'active'}

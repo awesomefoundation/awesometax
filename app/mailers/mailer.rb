@@ -2,11 +2,6 @@ class Mailer < ActionMailer::Base
   default :from => "team@lovetax.us"
   @@admins = [ 'larry@makeloveland.com', 'jerry@makeloveland.com', 'mary@makeloveland.com' ]
   
-  #LL_NEWS       = 1
-  #LL_NOTIFY     = 2
-  #TAX_NOTIFY    = 3
-  #TAX_COMMENTS  = 4
-
   
   def welcome(user)
     @user = user

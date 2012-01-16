@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
       return
     end
     if @message.save
-      redirect_to account_path, :notice => @message.published? ? "Successfully published and sent your message!" : "Saved your message as a draft."
+      redirect_to account_path(:anchor => 'messages'), :notice => @message.published? ? "Successfully published and sent your message!" : "Saved your message as a draft."
     else
       render :action => 'new', :notice => "There was a problem and your mail wasn't saved."
     end
@@ -22,20 +22,20 @@ class MessagesController < ApplicationController
   
   def edit
     @message = Message.find params[:id]
-    redirect_to account_path, :notice => "You don't have permission for that." unless @message.tax.managers.include? current_user
+    redirect_to account_path(:anchor => 'messages'), :notice => "You don't have permission for that." unless @message.tax.managers.include? current_user
   end  
 
   def update
     @message = Message.find params[:id]
-    redirect_to account_path, :notice => "You don't have permission for that." unless @message.tax.managers.include? current_user
+    redirect_to account_path(:anchor => 'messages'), :notice => "You don't have permission for that." unless @message.tax.managers.include? current_user
     @message.attributes = params[:message]
     unless @message.tax.andand.managers.include? current_user
-      redirect_to account_path, :notice => "You don't have permission for that." and return
+      redirect_to account_path(:anchor => 'messages'), :notice => "You don't have permission for that." and return
     end
     if @message.save
-      redirect_to account_path, :notice => "Saved your changes to the message."
+      redirect_to account_path(:anchor => 'messages'), :notice => "Saved your changes to the message."
     else
-      redirect_to account_path, :notice => "There was a problem saving those changes, oops."
+      redirect_to account_path(:anchor => 'messages'), :notice => "There was a problem saving those changes, oops."
     end
   end
   

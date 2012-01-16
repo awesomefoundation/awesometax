@@ -11,6 +11,7 @@ gem 'devise', '1.4.5'
 gem 'devise_invitable'
 gem 'oa-oauth', :require => 'omniauth/oauth'
 gem 'exception_notification'
+gem 'ledermann-rails-settings', :require => 'rails-settings'
 
 gem 'activemerchant', '1.9.4'
 #gem 'paypal_adaptive'
