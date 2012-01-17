@@ -33,7 +33,6 @@
           .h3.float_left AwesomeTax
           %ul.nav
             %li{:class => current_page?(root_path)  ? 'active' : ''}= link_to 'Home',     root_path
-            %li{:class => current_page?(taxes_path) ? 'active' : ''}= link_to 'Chapters', taxes_path
             %li{:class => current_page?(guide_path) ? 'active' : ''}= link_to 'Guide',    guide_path
             %li{:class => current_page?(mock_path)  ? 'active' : ''}= link_to 'Widget',   mock_path
             %li.dropdown

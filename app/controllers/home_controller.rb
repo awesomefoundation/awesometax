@@ -4,8 +4,9 @@ class HomeController < ApplicationController
   include ActionView::Helpers::TextHelper
   
   def index
-    @featured_left  = Tax.find 1
-    @featured_right = Tax.find 2
+    @taxes = Tax.active.order('id asc')
+    @left = @taxes[0, @taxes.size/2]
+    @right = @taxes[@taxes.size/2...@taxes.size]
   end
   
   def mock
