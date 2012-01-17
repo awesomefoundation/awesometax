@@ -171,9 +171,9 @@ input[type=email] { padding: 2px; }
 .stats h3, .stats h4 { line-height: 25px; }
 .user { margin-bottom: 1em; }
 
-.icon { margin-right: 8px; vertical-align: top; }
+.icon { margin-right: 8px; vertical-align: top; border: 1px solid #ccc }
 .user_tile { background-color: white; border: 1px solid #eee; padding: 1em; height: 80px; margin-bottom: 1em; }
-.user_tile .icon { float: left; width: 80px; height: 80px; border: 1px solid #bbb; margin-right: 12px; }
+.user_tile .icon { float: left; width: 80px; height: 80px; margin-right: 12px; }
 .comment .icon { float: left; width: 32px; height: 32px; }
 .profile .icon { margin-right: 1em; }
 .profile h2 { padding-bottom: 0.25em; }
