@@ -5,7 +5,7 @@
     
   %body
     %p
-      Hi #{h(@owner.name)},
+      Hi,
       = link_to @comment.user.name, user_url(:id => @comment.user.id, :only_path => false)
       left a comment on your tax, #{link_to @comment.tax.name, tax_url(:id => @comment.tax.id, :only_path => false)}:
     

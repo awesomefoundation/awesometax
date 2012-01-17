@@ -9,7 +9,7 @@ class Message < ActiveRecord::Base
   TRASH     = 2
   
   def recipients
-    tax.pledgers
+    tax.pledgers.select { |u| u.settings['email.tax_message'] }
   end
 
   scope :draft, where(:status => DRAFT)

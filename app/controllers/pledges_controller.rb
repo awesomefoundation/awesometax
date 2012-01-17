@@ -78,7 +78,7 @@ class PledgesController < ApplicationController
     pledge.tax.funders << current_user
     
     begin
-      Mailer.new_pledge(pledge.tax.owner, pledge).deliver
+      Mailer.new_pledge(pledge.tax.managers.select { |u| u.settings['email.new_pledge'] }, pledge).deliver
     rescue => e
       logger.info e.inspect
       logger.info e.backtrace

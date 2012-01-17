@@ -4,7 +4,7 @@ class Tax < ActiveRecord::Base
   ACTIVE   = 1
   ENDED    = 2
   
-  belongs_to :owner, :class_name => 'User'
+  belongs_to :owner, :class_name => 'User' # Deprecated mostly, just marks who started it (ie entered the paypal recipient info)
   has_many :pledges
   has_many :pledgers, :through => :pledges, :source => :user, :conditions => { :status => Pledge::ACTIVE }, :uniq => true
   has_many :comments

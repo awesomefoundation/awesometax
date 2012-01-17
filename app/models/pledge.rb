@@ -157,7 +157,7 @@ class Pledge < ActiveRecord::Base
     pledges = Pledge.active.includes(:transactions, :tax).select { |p| p.tax.meets_goal }
     
     # Send emails
-    users = pledges.collect { |p| p.user }.uniq
+    users = pledges.collect { |p| p.user }.uniq.select { |u| u.settings['email.payment'] }
     users.each do |u|
       begin
         Mailer.payment(u, u.pledges.active.select { |p| p.tax.meets_goal }).deliver

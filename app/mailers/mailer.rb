@@ -16,18 +16,16 @@ class Mailer < ActionMailer::Base
     mail(:to => user.email, :subject => tag("It's that time of the month"))
   end
 
-  def new_pledge(owner, pledge)
-    @owner = owner
+  def new_pledge(managers, pledge)
     @pledge = pledge
     category 'new_pledge'
-    mail(:to => owner.email, :subject => tag("You have a new taxpayer on #{pledge.tax.name}"))
+    mail(:to => managers.collect { |u| u.email }, :subject => tag("You have a new taxpayer on #{pledge.tax.name}"))
   end
   
-  def comment(owner, comment)
-    @owner = owner
+  def comment(recipients, comment)
     @comment = comment
     category 'comment'
-    mail(:to => owner.email, :subject => tag("#{comment.user.name} commented on your tax, #{comment.tax.name}"))
+    mail(:to => recipients.collect { |u| u.email }, :subject => tag("#{comment.user.name} commented on your tax, #{comment.tax.name}"))
   end
   
   def admin_notification(subj, message)

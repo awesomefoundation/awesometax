@@ -10,12 +10,12 @@ class Comment < ActiveRecord::Base
   
   def editable_by(u)
     return false if u.nil?   # not logged in
-    user == u or u.admin? or u == tax.owner
+    self.user == u or u.admin? or tax.managers.include?(u)
   end
 
   def notify_managers
     begin
-      Mailer.comment(self.tax.owner, self).deliver
+      Mailer.comment(self.tax.managers.select { |u| u.settings['email.comment'] }, self).deliver
     rescue => e
       logger.info e.inspect
       logger.info e.backtrace

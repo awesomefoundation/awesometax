@@ -1,6 +1,6 @@
 class TaxesController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :require_admin_or_trustee, :except => [:index, :show]
 
   def index
     @taxes = Tax.active(:order => 'id asc').reverse
@@ -34,7 +34,7 @@ class TaxesController < ApplicationController
     
     @tax = Tax.new(params[:tax])
     @tax.status = Tax::ACTIVE
-    @tax.owner = current_user # Deprecated, just holds the creator
+    @tax.owner = current_user # Deprecated, just holds the creator (ie person who entered paypal recipient info)
     
     if @tax.save
       @tax.managers << current_user
@@ -47,13 +47,13 @@ class TaxesController < ApplicationController
   
   def edit
     @tax = Tax.find params[:id]
-    redirect_to account_path and return unless @tax.owner_id == current_user.id and @tax.active?
+    redirect_to account_path and return unless admin? or (@tax.managers.include?(current_user.id) and @tax.active?)
   end
   
   def update
     @tax = Tax.find params[:id]
     redirect_to :controller => 'taxes', :action => 'show', :id => @tax.id
-    return unless @tax.owner_id == current_user.id and @tax.active?
+    return unless admin? or (@tax.managers.include?(current_user) and @tax.active?)
     @tax.update_attributes(params[:tax])
     #if video_details = get_media(params[:video_url])
     #  @tax.update_attributes({:video_type => video_details[:type].to_s, :video_id => video_details[:id]})
