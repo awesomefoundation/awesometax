@@ -48,6 +48,10 @@
               %br/
               %br/
               = text_field_tag :name, nil, :placeholder => "Their name"
+              - unless @tax_invite_options.empty?
+                %br/
+                %br/
+                = select_tag :tax_id, options_for_select(@tax_invite_options)
               .help-block{:style => 'padding-top: 1em;'}
                 They'll receive an invitation to create an account as a trustee. That means
                 they'll be able to create taxes, receive funding, and invite other trustees.
