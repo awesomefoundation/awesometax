@@ -123,6 +123,7 @@ input.huge_input {
 .topbar-inner { padding-top: 6px; }
 .topbar .h3 { text-transform: uppercase; margin-right: 2em; color: #fff; text-shadow: 2px 2px 1px #aaa; }
 .topbar a { border-bottom: none; }
+.dropdown-menu.foundation { min-width: 230px; }
 
 .tax {
   background-color: #eeccdd;

@@ -22,24 +22,6 @@ class RegistrationsController < Devise::RegistrationsController
       respond_with resource
     end
     
-    
-=begin    
-    @user = resource
-
-    attrs = params[resource_name]
-    settings = attrs['settings']
-    attrs.delete('settings')
-    
-    if resource.update_attributes(attrs)
-      resource.settings = settings
-      flash[:notice] = "Saved your account settings."
-      redirect_to account_path
-    else
-      flash[:notice] = "Couldn't save your account settings."
-      redirect_to edit_user_registration_path
-    end
-=end
-    
   end  
 
 end
