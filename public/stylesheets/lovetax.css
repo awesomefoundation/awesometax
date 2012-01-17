@@ -172,7 +172,7 @@ input[type=email] { padding: 2px; }
 .user { margin-bottom: 1em; }
 
 .icon { margin-right: 8px; vertical-align: top; }
-.user_tile { background-color: white; border: 1px solid #eee; padding: 1em; height: 80px; }
+.user_tile { background-color: white; border: 1px solid #eee; padding: 1em; height: 80px; margin-bottom: 1em; }
 .user_tile .icon { float: left; width: 80px; height: 80px; border: 1px solid #bbb; margin-right: 12px; }
 .comment .icon { float: left; width: 32px; height: 32px; }
 .profile .icon { margin-right: 1em; }

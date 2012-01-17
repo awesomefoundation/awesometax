@@ -33,6 +33,8 @@
       - @pledgers.each do |p|
         = link_to image_tag(p.gravatar_url, :class => 'icon', :title => p.name), p, :style => 'border: none;'
 
+    .clear
+    %br/
     = render :partial => 'shared/comments', :locals => { :comments => @tax.comments, :tax => @tax }
   
   .grid_4
