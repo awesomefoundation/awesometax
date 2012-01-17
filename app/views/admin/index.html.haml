@@ -11,6 +11,12 @@
       %li= link_to "Users (#{@users.length})", '#users'
       %li= link_to "Transactions (#{@transactions.length})", '#transactions'
       %li= link_to "Comments (#{@comments.length})", '#comments'
+    :javascript     
+      $(document).ready(function() {
+        if(window.location.hash != '') {
+          $('a[href="' + window.location.hash + '"]').click();
+        }
+      });
       
       
     .tab-content
