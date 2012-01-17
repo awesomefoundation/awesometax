@@ -1,3 +1,8 @@
 .bar_container
   .bar_mortice
-    .progress.pink{:style => "width: #{progress}%;"}
+    - factor = (progress > 100) ? (100.0 / progress) : 1.0
+    - base  = factor * [progress, 100].min
+    - extra = factor * [0, progress - 100].max
+    .progress.pink{:style => "width: #{base}%;", :title => "#{progress}% of the monthly goal pledged"}
+    - if extra > 0
+      .progress.orange{:style => "width: #{extra}%;", :title => "#{progress}% of the monthly goal pledged"}

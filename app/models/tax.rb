@@ -37,7 +37,7 @@ class Tax < ActiveRecord::Base
   
   def percent_funded
     return 100 if goal.to_i == 0
-    return (100 * [1, monthly_income / goal].min).to_i
+    return (100.0 * monthly_income / goal).to_i
   end
   
   def total_income

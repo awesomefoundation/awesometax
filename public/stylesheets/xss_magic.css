@@ -9,6 +9,8 @@
   overflow: hidden;
   font-size: 18px;
   display: none;
+  min-width: 280px;
+  max-width: 480px;
   }
 #lovetax_widget h4 {
   font-weight: bold;
