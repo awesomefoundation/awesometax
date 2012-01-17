@@ -10,6 +10,7 @@ class TaxesController < ApplicationController
     @tax = Tax.find params[:id]
     @pledge = Pledge.new(:amount => 10, :tax_id => @tax.id)
     @pledges = @tax.pledges.active.order('amount desc')
+    @pledgers = @tax.pledgers
     @my_pledges = user_signed_in? ? @tax.pledges.active.where(:user_id => current_user.id) : []
   end
   

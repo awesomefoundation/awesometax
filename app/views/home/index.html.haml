@@ -12,9 +12,9 @@
 %br/
 .container_12.container
   .grid_6
-    = render :partial => 'shared/tax', :collection => @left
+    = render :partial => 'shared/tax', :collection => @columns[0]
   .grid_6
-    = render :partial => 'shared/tax', :collection => @right
+    = render :partial => 'shared/tax', :collection => @columns[1]
         
 
   

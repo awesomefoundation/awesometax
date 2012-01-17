@@ -8,9 +8,6 @@
   .grid_8
     = auto_link(markdown(@tax.description))
     %p
-      By
-      = link_to h(@tax.owner.name), @tax.owner
-      &middot;
       Started
       = @tax.created_at.strftime('%b %d %Y')
       - if @tax.active?
@@ -24,6 +21,17 @@
 
          
     = render :partial => 'shared/share', :locals => {:url => request.url, :text => "#{h(@tax.name)} | LoveTax" }
+    
+    %br/
+    %h3 Trustees
+    = render :partial => 'users/tile', :collection => @tax.managers, :as => :user
+    .clear
+    
+    - unless @pledges.empty?
+      %br/
+      %h3.clear Supporters
+      - @pledgers.each do |p|
+        = link_to image_tag(p.gravatar_url, :class => 'icon', :title => p.name), p, :style => 'border: none;'
 
     = render :partial => 'shared/comments', :locals => { :comments => @tax.comments, :tax => @tax }
   
@@ -68,15 +76,7 @@
       .callout
         %h4 Admin tools
         = link_to 'Close this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to terminate this tax?" } unless @tax.status == Tax::ENDED
-    
-    - unless @pledges.empty?
-      %h3.clear Supporters
-      - @pledges.each do |p|
-        = link_to h(p.user.name), p.user
-        for
-        = p.fuzzy_amount
-        %br/
-        
+            
     - unless user_signed_in?
       .clear{:style=>'height: 1em;'}
       .callout

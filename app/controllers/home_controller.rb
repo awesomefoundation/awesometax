@@ -5,8 +5,8 @@ class HomeController < ApplicationController
   
   def index
     @taxes = Tax.active.order('id asc')
-    @left = @taxes[0, (@taxes.size/2.0).ceil]
-    @right = @taxes[(@taxes.size/2.0).ceil...@taxes.size]
+    @columns = [ [], [] ]
+    @taxes.each_with_index { |t,i| @columns[i & 1] << t }
   end
   
   def mock

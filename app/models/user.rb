@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   has_settings
   # Use mailer method names, eg user.settings['email.new_pledge'] is true/false. defaults in config/initializers/settings.rb
   # More at https://github.com/ledermann/rails-settings
-  #accepts_nested_attributes_for :settings, :allow_destroy => true
+  
+  include Gravtastic
+  has_gravatar :rating => 'PG', :default => 'identicon'
     
   # status
   NORMAL   = 0
@@ -44,6 +46,14 @@ class User < ActiveRecord::Base
       VERIFIED  => 'Verified',
       TRUSTEE   => 'Trustee',
       DISABLED  => 'Disabled' }[status]
+  end
+  
+  def labels
+    list = []
+    list << 'Administrator' if self.admin?
+    list << 'Trustee' if self.trustee?
+    list << 'Supporter' if self.pledges.active.exists?
+    return list
   end
   
   def messages

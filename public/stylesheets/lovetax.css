@@ -148,8 +148,8 @@ input.huge_input {
   background-color: #e8e8e8; }
 
 .comments {
-  margin: 1em 0 0 0;
-  background-color: #f8f4f2;
+  margin: 0;
+  background-color: white;
   padding: 0.5em 1em;
   font-size: 0.9em; }
 
@@ -162,7 +162,6 @@ input.huge_input {
 
 #folded_comments {
   display: none; }
-  
 
 input[type=email] { padding: 2px; }
 #user_edit input[type=text],
@@ -171,3 +170,12 @@ input[type=email] { padding: 2px; }
 
 .stats h3, .stats h4 { line-height: 25px; }
 .user { margin-bottom: 1em; }
+
+.icon { margin-right: 8px; vertical-align: top; }
+.user_tile { background-color: white; border: 1px solid #eee; padding: 1em; height: 80px; }
+.user_tile .icon { float: left; width: 80px; height: 80px; border: 1px solid #bbb; margin-right: 12px; }
+.comment .icon { float: left; width: 32px; height: 32px; }
+.profile .icon { margin-right: 1em; }
+.profile h2 { padding-bottom: 0.25em; }
+a img { border-width: 0px; }
+

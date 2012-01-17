@@ -3,13 +3,14 @@
 
 = javascript_include_tag 'bootstrap-tabs'
 
-.container_12.container
+.container_12.container.profile
   .grid_12
-    %span.h2= @user.name
-    - if @user.admin?
-      %span.label{:style => 'margin-left: 2em;'} Administrator
-    - if @user.trustee?
-      %span.label{:style => 'margin-left: 2em;'} Trustee
+    = image_tag @user.gravatar_url, :class => 'icon float_left'
+    %h2= @user.name
+    - @user.labels.each do |label|
+      %span.label= label
+    .clear
+    
     %br/
     %br/
 

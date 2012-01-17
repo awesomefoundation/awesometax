@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
     def markdown(str)
       BlueCloth::new(str).to_html
     end
-    
+        
     def num_taxpayers
       Pledge.count(:select => 'distinct user_id', :conditions => { :status => Pledge::ACTIVE })
     end

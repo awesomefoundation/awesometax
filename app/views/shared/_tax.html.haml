@@ -18,8 +18,7 @@
           = tax.updated_at.strftime('%b %d %Y')
     - else
       = link_to 'Support', tax_path(tax), :class => 'float_right btn' unless tax.owner_id == current_user.andand.id or !tax.active?
-      By #{link_to tax.owner.andand.name, tax.owner}
     - unless !tax.active? or tax.pledges.active.empty?
-      \&middot; #{number_to_currency(tax.monthly_income, :precision => 0)} / mo. from #{pluralize(tax.unique_supporters.count, 'person')}
+      #{number_to_currency(tax.monthly_income, :precision => 0)} / mo. from #{pluralize(tax.unique_supporters.count, 'person')}
     - unless tax.goal.nil?
       (#{number_to_currency(tax.goal, :precision => 0)} needed)
