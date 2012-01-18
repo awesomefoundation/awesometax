@@ -52,6 +52,13 @@
         .input= f.text_field :url, :placeholder => 'http://'
         %br/
       %div
+        = f.label 'Twitter'
+        .input
+          .input-prepend
+            %span.add-on @
+            = f.text_field :twitter, :style => 'width: 273px;'
+        %br/
+      %div
         = f.label "A short bio"
         .input
           = f.text_area :bio, :style => 'height: 4em; width: 300px;'

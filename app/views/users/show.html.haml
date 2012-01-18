@@ -7,14 +7,22 @@
   .grid_12
     = image_tag @user.gravatar_url, :class => 'icon float_left'
     %h2= @user.name
+    .links
+      - if @user.url
+        = link_to @user.url, @user.url
+      - if @user.url and @user.twitter
+        &middot;
+      - if @user.twitter
+        @#{link_to @user.twitter, "http://twitter.com/#{@user.twitter}"}
     - @user.labels.each do |label|
       %span.label= label
-    .clear
-    
-    %br/
-    %br/
 
-    %ul.tabs{'data-tabs' => 'tabs'}
+    .clear
+    - if @user.bio
+      %p= @user.bio
+    
+
+    %ul.tabs{'data-tabs' => 'tabs', :style => 'margin-top: 2em;'}
       - skip = (@pledges.empty? and !@managed.empty?)
       %li{:class => skip ? '' : 'active'}= link_to "My Giving", '#giving'
       %li{:class => skip ? 'active' : ''}= link_to "My Taxes", '#taxes'
@@ -122,3 +130,4 @@
               = link_to 'execute these pending transactions now', :controller => 'pledges', :action => 'collect'
               simulating tax-collection day. (This message won't appear in the public release of the site.)
       
+    

@@ -160,13 +160,13 @@ input.huge_input {
   .comment:hover .close {
     display: block; }
 
-#folded_comments {
-  display: none; }
+#folded_comments { display: none; }
 
 input[type=email] { padding: 2px; }
 #user_edit input[type=text],
 #user_edit input[type=email],
 #user_edit input[type=password] { width: 300px; }
+.input-prepend .add-on { padding: 2px; }
 
 .stats h3, .stats h4 { line-height: 25px; }
 .user { margin-bottom: 1em; }
@@ -178,5 +178,5 @@ input[type=email] { padding: 2px; }
 .comment .icon { float: left; width: 32px; height: 32px; }
 .profile .icon { margin-right: 1em; }
 .profile h2 { padding-bottom: 0.25em; }
+.profile .links { font-weight: bold; }
 a img { border-width: 0px; }
-
