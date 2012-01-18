@@ -6,7 +6,7 @@
     
 .container_12
   .grid_8
-    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f|
       = devise_error_messages!
       %div
         = f.label :email
@@ -29,14 +29,20 @@
         
       .input
         %h3 Profile Picture
-      = image_tag resource.gravatar_url, :class => 'icon float_left', :style => 'margin-left: 50px;'
+      = image_tag resource.picture_url, :class => 'icon float_left', :style => 'margin-left: 50px;'
       .input
         %p{:style => 'margin-top: 0px;'}
-          This is your picture as it currently appears on this site. We use
-          = link_to 'Gravatars', 'http://gravatar.com'
-          for profile images, which are associated with your email address.
-          To add or change yours, please #{link_to 'sign up at their site', 'https://en.gravatar.com'}.
-    
+          This is your picture as it currently appears on this site.
+          You may upload a new photo using by choosing one below, then making sure to Save Changes at the bottom of this page.
+          If you don't upload one we'll show your #{link_to 'Gravatar', 'http://gravatar.com'} or "identicon."
+        = f.file_field :picture
+        %br/
+        .inputs-list
+          %label
+            = check_box_tag :remove_picture, '1', false
+            %span Or would you like to remove your saved picture?
+        
+      .clear
       %br/
       %br/
       

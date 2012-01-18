@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   
   include Gravtastic
   has_gravatar :rating => 'PG', :default => 'identicon'
+  has_attached_file :picture, :styles => { :thumb => ["80x80#", :jpg], :mini => ["32x32#", :jpg] }
     
   # status
   NORMAL   = 0
@@ -16,7 +17,8 @@ class User < ActiveRecord::Base
   TRUSTEE  = 3
   DISABLED = 4
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :status, :settings, :url, :bio, :twitter
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :status
+  attr_accessible :settings, :url, :bio, :twitter, :picture
   validates_length_of :bio, :maximum => 140
   
   has_many :pledges
@@ -56,6 +58,11 @@ class User < ActiveRecord::Base
     list << 'Supporter' if self.pledges.active.exists?
     return list
   end
+  
+  def picture_url(opts = {})
+    self.picture.exists? ? picture.url(opts[:size] == 32 ? :mini : :thumb) : gravatar_url(opts)
+  end
+  
   
   def messages
     tax_ids = pledges.approved.collect { |p| p.tax_id }.uniq

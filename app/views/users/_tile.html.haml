@@ -1,6 +1,6 @@
 .grid_4{:class => (user_counter % 2 == 0) ? 'alpha' : 'omega'}
   .user_tile
-    = image_tag user.gravatar_url, :class => 'icon'
+    = image_tag user.picture_url, :class => 'icon'
     %h4= link_to user.name, user
     - if false and user.url
       .small= link_to user.url, user.url

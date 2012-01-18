@@ -27,7 +27,8 @@ LoveTax3::Application.configure do
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
   end
-
+  
+  Paperclip.options[:command_path] = "/usr/local/bin"  
 end
 
 

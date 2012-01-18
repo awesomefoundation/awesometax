@@ -13,6 +13,7 @@ gem 'oa-oauth', :require => 'omniauth/oauth'
 gem 'exception_notification'
 gem 'ledermann-rails-settings', :require => 'rails-settings'
 gem 'gravtastic'
+gem 'paperclip'
 
 gem 'activemerchant', '1.9.4'
 #gem 'paypal_adaptive'
@@ -25,6 +26,7 @@ gem 'haml'
 gem 'sass'
 gem 'nokogiri'
 gem 'andand'
+
 gem 'factory_girl'
 gem 'mocha'
 

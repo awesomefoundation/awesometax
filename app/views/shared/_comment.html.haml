@@ -4,7 +4,7 @@
       :confirm => "Delete #{comment.user == current_user ? 'your' : (h(comment.user.name) + '\'s')} comment, really?", |
       :method => :delete, :class => 'float_right close', :style => 'font-size: 0.8em;'                                 |
   %div
-    = image_tag comment.user.gravatar_url(:size => 32), :class => 'icon'
+    = image_tag comment.user.picture_url(:size => 32), :class => 'icon'
     = link_to h(comment.user.name), comment.user
     = auto_link h(comment.body)
   .small

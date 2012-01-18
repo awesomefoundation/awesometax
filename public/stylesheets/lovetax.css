@@ -70,7 +70,10 @@ input[type="submit"] {
   font-size: 9pt; }
 input[type="file"] {
   font-size: 9pt;
-  color: #a0a0a0; }
+  color: #a0a0a0;
+  background-color: #efeaea;
+  margin-bottom: 0.5em;
+  }
 input.big_input {
   font-size: 16pt;
   margin: 8px 0px; }

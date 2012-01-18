@@ -5,7 +5,7 @@
 
 .container_12.container.profile
   .grid_12
-    = image_tag @user.gravatar_url, :class => 'icon float_left'
+    = image_tag @user.picture_url, :class => 'icon float_left'
     %h2= @user.name
     .links
       - if @user.url

@@ -6,6 +6,8 @@ class RegistrationsController < Devise::RegistrationsController
     attrs = params[resource_name]
     settings = attrs['settings']
     attrs.delete('settings')
+    attrs[:picture] = nil if params[:remove_picture]
+    attrs[:user][:url] = "http://#{attrs[:user][:url]}" if !attrs[:user][:url].blank? and !attrs[:user][:url].include?('http://')
 
     if resource.update_with_password(attrs)
       resource.update_settings(settings)
