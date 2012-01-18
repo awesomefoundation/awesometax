@@ -9,10 +9,6 @@
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
       = devise_error_messages!
       %div
-        = f.label :name
-        .input= f.text_field :name
-        %br/
-      %div
         = f.label :email
         .input= f.email_field :email
         %br/
@@ -29,6 +25,7 @@
           %span.help-block Same goes for this one
         
         %br/
+        %br/
         
       .input
         %h3 Profile Picture
@@ -40,6 +37,27 @@
           for profile images, which are associated with your email address.
           To add or change yours, please #{link_to 'sign up at their site', 'https://en.gravatar.com'}.
     
+      %br/
+      %br/
+      
+      .input
+        %h3 Personal Details
+        
+      %div
+        = f.label :name
+        .input= f.text_field :name
+        %br/
+      %div
+        = f.label 'Your website URL'
+        .input= f.text_field :url, :placeholder => 'http://'
+        %br/
+      %div
+        = f.label "A short bio"
+        .input
+          = f.text_area :bio, :style => 'height: 4em; width: 300px;'
+          .help-block Up to 140 characters
+        %br/
+      
       %br/
               
       %h3.input Email Preferences

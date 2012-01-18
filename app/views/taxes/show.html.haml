@@ -27,11 +27,14 @@
     = render :partial => 'users/tile', :collection => @tax.managers, :as => :user
     .clear
     
-    - unless @pledges.empty?
+    - unless @pledgers.empty?
       %br/
       %h3.clear Supporters
-      - @pledgers.each do |p|
-        = link_to image_tag(p.gravatar_url, :class => 'icon', :title => p.name), p, :style => 'border: none;'
+      .grid_6
+        = render :partial => 'users/minitile', :collection => @pledgers[0,(@pledgers.size/2.0).ceil], :as => :user
+      .grid_6
+        = render :partial => 'users/minitile', :collection => @pledgers[(@pledgers.size/2.0).ceil...@pledgers.size], :as => :user
+          
 
     .clear
     %br/

@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
   TRUSTEE  = 3
   DISABLED = 4
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :status, :settings
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :status, :settings, :url, :bio, :twitter
+  validates_length_of :bio, :maximum => 140
   
   has_many :pledges
   has_many :transactions

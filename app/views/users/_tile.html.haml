@@ -2,3 +2,7 @@
   .user_tile
     = image_tag user.gravatar_url, :class => 'icon'
     %h4= link_to user.name, user
+    - if false and user.url
+      .small= link_to user.url, user.url
+    - if user.bio
+      .small= user.bio

@@ -1,0 +1,3 @@
+.minitile
+  = link_to image_tag(user.gravatar_url(:size => 32), :class => 'icon float_left', :title => user.name), user, :style => 'border: none;'
+  %h4= link_to user.name, user
