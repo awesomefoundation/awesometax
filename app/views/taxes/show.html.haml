@@ -77,9 +77,15 @@
                   and password
                   %b frequency
       
-    - if admin?
+    - if admin? or @tax.managers.include?(current_user)
       .callout
         %h4 Admin tools
+        = link_to 'Edit this tax', edit_tax_path(@tax)
+        %br/
+        = link_to 'Compose a message to funders', new_message_path
+        %br/
+        = link_to 'Invite a trustee', admin_path(:anchor => 'users')
+        %br/
         = link_to 'Close this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to terminate this tax?" } unless @tax.status == Tax::ENDED
             
     - unless user_signed_in?
