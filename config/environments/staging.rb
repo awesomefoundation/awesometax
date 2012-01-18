@@ -58,6 +58,7 @@ LoveTax3::Application.configure do
     :sender_address => %{"Exception Notifier" <info@makeloveland.com>},
     :exception_recipients => %w{larry@makeloveland.com}
 
+  Paperclip.options[:command_path] = "/usr/bin"
 end
 
 # Omniauth / loveland app ids
