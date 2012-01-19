@@ -6,7 +6,6 @@
   %body
     %p #{@message.user.name} sent a message to all funders of #{@message.tax.name}:
     
-    %p
-      = markdown(@message.body)
+    = BlueCloth::new(@message.body).to_html
 
     = render :partial => 'shared/email_sig'
