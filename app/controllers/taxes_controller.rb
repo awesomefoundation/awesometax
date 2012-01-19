@@ -15,7 +15,7 @@ class TaxesController < ApplicationController
   end
   
   def new
-    @tax = Tax.new(:goal => 1000)
+    @tax = Tax.new(:goal => 1500)
     if Rails.env == 'production'
       @tax.paypal_email = current_user.email
       @paypal_first = @paypal_last = nil
