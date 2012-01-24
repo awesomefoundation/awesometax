@@ -171,6 +171,8 @@ input[type=email] { padding: 2px; }
 #user_edit input[type=password] { width: 300px; }
 .input-prepend .add-on { padding: 2px; }
 
+#markdown_sidebar { white-space: pre-line; font-family: monospace; font-size: 11px; }
+
 .stats h3, .stats h4 { line-height: 25px; }
 .user { margin-bottom: 1em; }
 

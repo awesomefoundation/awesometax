@@ -1,37 +1,67 @@
-%h2 Edit tax: #{@tax.name}
-%br/
+- @no12 = true
 
-- form_for @tax, :url => tax_path, :method => :put do |f|
-  = f.label :name
-  .input
-    = f.text_field :name, :style => 'width: 480px;'
-  %br/
-  = f.label "Summary"
-  .input
-    = f.text_area :description, :style => 'height: 14em; width: 480px;'
-    .help-block
-      You can use
-      = link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', :target => '_blank'
-      formatting to prettify your summary.
-      
-  %br/
-  = f.label "Monthly Minimum"
-  .input
-    $
-    = f.text_field :goal, :class => 'span2'
-    .help-block
-      The "tipping point" for this chapter. The monthly funding and payout will only happen if
-      your funders have pledged at least this much. Otherwise, nobody pays and nobody receives, and you'll
-      have to wait until next month's cycle.
-      %em Leave it blank for no minimum.
-
-  %br/
-  %p.input
-    Funds will go to the PayPal account
-    %b= "#{h(@tax.paypal_email)}."
+.container_12
+  .grid_8
+    %h2 Edit tax: #{@tax.name}
     %br/
-    You can't change this, but you can always
-    = link_to 'discontinue this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to stop collecting this tax? You cannot undo this!" }
-    and start a new one.
+    
+    - form_for @tax, :url => tax_path, :method => :put do |f|
+      = f.label :name
+      .input
+        = f.text_field :name, :style => 'width: 460px;'
+      %br/
+      = f.label "Summary"
+      .input
+        = f.text_area :description, :style => 'height: 14em; width: 460px;'
+        .help-block
+          You can use
+          = link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', :target => '_blank'
+          formatting to prettify your summary (see sidebar).
+          
+      %br/
+      = f.label "Monthly Minimum"
+      .input
+        $
+        = f.text_field :goal, :class => 'span2'
+        .help-block
+          The "tipping point" for this chapter. The monthly funding and payout will only happen if
+          your funders have pledged at least this much. Otherwise, nobody pays and nobody receives, and you'll
+          have to wait until next month's cycle.
+          %em Leave it blank for no minimum.
+    
+      %br/
+      %p.input
+        Funds will go to the PayPal account
+        %b= "#{h(@tax.paypal_email)}."
+        %br/
+        You can't change this, but you can always
+        = link_to 'discontinue this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to stop collecting this tax? You cannot undo this!" }
+        and start a new one.
+      
+      .input= f.submit 'Save'
+
+
+  .grid_4
+    %br/
+    %br/
+    %br/
+    %h3 Markdown Guide
+    #markdown_sidebar
+      :plain
+        # First Level Header
+        ## Second Level Header
+        ### Third Level Header
+        
+        *Emphasis*
+        **Strong emphasis**
   
-  .input= f.submit 'Save'
+        An [example link](http://example.com/).
+        
+        Lists:
+        * Item one
+        * Item two
+        
+        Images:
+        ![alt text](http://example.com/path/to/img.jpg)
+    
+      %p= link_to 'Full syntax guide', 'http://daringfireball.net/projects/markdown/syntax'
