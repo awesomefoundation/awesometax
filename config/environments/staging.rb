@@ -38,7 +38,8 @@ LoveTax3::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { :host => 'stage.lovetax.us' }
   Rails.application.routes.default_url_options[:host] = 'stage.lovetax.us'
-
+  ActionMailer::Base.default_url_options = { :host => 'stage.lovetax.us' }
+  
   # Enable threaded mode
   # config.threadsafe!
 
