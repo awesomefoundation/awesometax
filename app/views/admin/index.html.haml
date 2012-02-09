@@ -48,23 +48,7 @@
               
         .grid_4.omega
           .callout
-            %h4 Invite a Trustee
-            = form_tag(invite_path, :method => :post) do
-              = email_field_tag :email, nil, :placeholder => "Email address"
-              %br/
-              %br/
-              = text_field_tag :name, nil, :placeholder => "Their name"
-              - unless @tax_invite_options.empty?
-                %br/
-                %br/
-                = select_tag :tax_id, options_for_select(@tax_invite_options)
-              .help-block{:style => 'padding-top: 1em;'}
-                They'll receive an invitation to create an account as a trustee. That means
-                they'll be able to create taxes, receive funding, and invite other trustees.
-              %br/
-              %br/
-              = submit_tag 'Send invitation'
-        
+            = render :partial => 'shared/invite'        
 
       #transactions
         %h3 Transactions
@@ -94,6 +78,7 @@
               %th Tax
               %th Comment
               %th Posted
+              %th Actions
           %tbody
             - @comments.each do |c|
               %tr
@@ -101,4 +86,5 @@
                 %td= link_to c.tax.name, c.tax
                 %td= c.body
                 %td= c.created_at
+                %td= link_to 'Delete', comment_path(c), { :method => :delete, :confirm => "Are you sure? It'll be gone forever." }
 

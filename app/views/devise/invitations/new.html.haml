@@ -5,6 +5,6 @@
     = f.label :email
     .input= f.text_field :email
     %br/
-  .input= f.submit "Send an invitation"
+  .input= f.submit "Send an invitation", :class => 'btn'
 = link_to "Home", after_sign_in_path_for(resource_name)
 %br/

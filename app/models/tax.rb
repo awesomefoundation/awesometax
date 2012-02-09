@@ -23,6 +23,7 @@ class Tax < ActiveRecord::Base
   validates_length_of :name, :minimum => 5
   validates_length_of :name, :maximum => 40
   validates_length_of :description, :minimum => 20
+  validates :goal, :numericality => { :greater_than_or_equal_to => AppConfig.minimum_goal }
   #validates_presence_of :owner_id
   
   after_create :notify_admins

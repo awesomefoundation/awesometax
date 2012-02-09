@@ -1,0 +1,22 @@
+%h4 Invite a Trustee
+
+= form_tag(invite_path, :method => :post) do
+  = email_field_tag :email, nil, :placeholder => "Email address"
+  %br/
+  %br/
+  = text_field_tag :name, nil, :placeholder => "Their name"
+  - invitable = invitable_tax_options
+  - unless invitable.empty?
+    %br/
+    %br/
+    = select_tag :tax_id, options_for_select(invitable, defined?(tax) ? tax.id : nil)
+  %br/
+  %br/
+  = text_area_tag :bio, nil, :placeholder => "Optional bio (140 chars or less)", :style => 'height: 4em;'
+  %br/
+  .help-block{:style => 'padding-top: 1em;'}
+    They'll receive an invitation to create an account as a trustee. That means
+    they'll be able to create taxes, receive funding, and invite other trustees.
+  %br/
+  %br/
+  = submit_tag 'Send invitation', :class => 'btn'

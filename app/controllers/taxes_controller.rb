@@ -13,17 +13,10 @@ class TaxesController < ApplicationController
     @pledgers = @tax.pledgers
     @my_pledges = user_signed_in? ? @tax.pledges.active.where(:user_id => current_user.id) : []
   end
-  
+
   def new
-    @tax = Tax.new(:goal => 1500)
-    if Rails.env == 'production'
-      @tax.paypal_email = current_user.email
-      @paypal_first = @paypal_last = nil
-    else
-      @tax.paypal_email = 'sherad_1274768045_per@gmail.com'
-      @paypal_first = 'Test'
-      @paypal_last = 'User'
-    end
+    @tax = Tax.new(:goal => AppConfig.minimum_goal)
+    fill_paypal_details(@tax)
   end
   
   def create
@@ -31,8 +24,15 @@ class TaxesController < ApplicationController
       redirect_to new_tax_path, :notice => "Sorry, we couldn't verify that PayPal account."
       return
     end 
-    
+ 
     @tax = Tax.new(params[:tax])
+    fill_paypal_details(@tax)
+    if @tax.goal < AppConfig.minimum_goal
+      flash[:notice] = "Your monthly minimum needs to be at least $#{AppConfig.minimum_goal}."
+      render :action => 'new'
+      return
+    end
+    
     @tax.status = Tax::ACTIVE
     @tax.owner = current_user # Deprecated, just holds the creator (ie person who entered paypal recipient info)
     
@@ -40,7 +40,7 @@ class TaxesController < ApplicationController
       @tax.managers << current_user
       redirect_to tax_path(@tax)
     else
-      flash[:now] = "You need to fill out all the boxes. Don't forget to cross your i's and dot your t's!"
+      flash[:notice] = "You need to fill out all the boxes. Don't forget to cross your i's and dot your t's!"
       render :action => 'new'
     end
   end
@@ -75,7 +75,17 @@ class TaxesController < ApplicationController
   
   private
 
- 
+  def fill_paypal_details(tax)
+    if Rails.env == 'production'
+      tax.paypal_email = current_user.email
+      @paypal_first = @paypal_last = nil
+    else
+      tax.paypal_email = 'sherad_1274768045_per@gmail.com'
+      @paypal_first = 'Test'
+      @paypal_last = 'User'
+    end
+  end
+   
   # Return true if it's valid, false if we can't tell
   def verify_paypal(email, first, last)
    data = {

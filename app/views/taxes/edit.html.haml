@@ -38,7 +38,7 @@
         = link_to 'discontinue this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to stop collecting this tax? You cannot undo this!" }
         and start a new one.
       
-      .input= f.submit 'Save'
+      .input= f.submit 'Save', :class => 'btn'
 
   .grid_4
     %br/

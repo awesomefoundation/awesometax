@@ -5,10 +5,7 @@ class AdminController < ApplicationController
     @users = User.all(:limit => 25, :order => 'id desc')
     @taxes = Tax.all
     @transactions = Transaction.all(:order => 'id desc')
-    @comments = Comment.all(:order => 'id desc')
-    
-    invitable = admin? ? Tax.all : current_user.managed_taxes
-    @tax_invite_options = invitable.collect { |t| [ t.name, t.id ] }
+    @comments = Comment.all(:order => 'id desc')    
   end
   
   def invite
@@ -22,17 +19,18 @@ class AdminController < ApplicationController
     end
     
     if exists = User.find_by_email(params[:email])
-      if tax 
+      exists.update_attribute(:status, User::TRUSTEE) unless exists.status == User::ADMIN
+      if tax
         tax.managers << exists
-        redirect_to admin_path, :notice => "Added #{params[:email]}."
+        redirect_to root_path, :notice => "Added #{params[:email]} to the tax."
       else
-        redirect_to admin_path, :notice => "That email is already registered!"
+        redirect_to root_path, :notice => "That email is already registered. Making sure they have trustee status now!"
       end
     else
       User.invite!({:email => params[:email], :name => params[:name]}, current_user)
       invited = User.last
-      invited.update_attribute(:status, User::TRUSTEE)
-      redirect_to admin_path, :notice => "Sent invitation to #{params[:email]}."
+      invited.update_attributes({:status => User::TRUSTEE, :bio => params[:bio]})
+      redirect_to root_path, :notice => "Sent invitation to #{params[:email]}."
       tax.managers << invited
     end
     

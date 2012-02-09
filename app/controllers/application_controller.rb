@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   filter_parameter_logging :password, :password_confirmation
-  helper_method :current_user_session, :current_user, :admin?, :trustee?
+  helper_method :current_user_session, :current_user, :admin?, :trustee?, :invitable_tax_options
   helper_method :store_location, :redirect_back_or_default
   helper_method :markdown, :num_taxpayers, :total_monthly, :next_collection_time, :time_until_collection
 
@@ -53,6 +53,10 @@ class ApplicationController < ActionController::Base
       BlueCloth::new(str).to_html
     end
         
+    def invitable_tax_options
+      (admin? ? Tax.all : current_user.managed_taxes).collect { |t| [ t.name, t.id ] }
+    end
+
     def num_taxpayers
       Pledge.count(:select => 'distinct user_id', :conditions => { :status => Pledge::ACTIVE })
     end

@@ -1,6 +1,4 @@
 LoveTax3::Application.configure do
-  puts "I'm the production config"
-  
   # Settings specified here will take precedence over those in config/application.rb
 
   # The production environment is meant for finished, "live" apps.

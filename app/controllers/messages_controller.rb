@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   helper_method :tax_options
   
   def new
-    @message = Message.new
+    @message = Message.new(:tax_id => params[:tax_id])
   end
   
   def create

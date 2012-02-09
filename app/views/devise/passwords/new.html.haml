@@ -6,5 +6,5 @@
     = f.label :email
     .input= f.email_field :email
   %br/
-  .input= f.submit "Send me reset password instructions"
+  .input= f.submit "Send me reset password instructions", :class => 'btn'
 = render :partial => "devise/shared/links"

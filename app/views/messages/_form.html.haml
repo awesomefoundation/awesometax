@@ -1,9 +1,9 @@
 = form_for message do |f|
   = f.label 'To funders of'
   .input
-    = f.select :tax_id, options_for_select(tax_options)
+    = f.select :tax_id, options_for_select(tax_options, message.tax_id)
   %br/ 
-  = f.label :title
+  = f.label "Subject"
   .input
     = f.text_field :title, :class => 'span8'
     .help-block If you leave this blank we'll make one up for you with the tax name and date.
@@ -18,7 +18,7 @@
 
   %br/    
   .input
-    = f.submit 'Save as Draft'
+    = f.submit 'Save as Draft', :class => 'btn'
     
 :javascript
   var labels = {

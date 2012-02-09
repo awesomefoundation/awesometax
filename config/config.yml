@@ -2,6 +2,7 @@ common:
  paypal_email: shoppy_1274735670_biz@gmail.com
  loveland_fee: 0
  invite_only: true
+ minimum_goal: 1500
 
 development:
  analytics_key: UA

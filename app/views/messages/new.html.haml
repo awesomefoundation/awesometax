@@ -2,6 +2,12 @@
 
 .container_12
   %h2 Compose a Message
+  %p
+    Here you can write updates to all supporters of your tax. If you choose to publish it now, they will all
+    receive an email immediately (so be sure to proofread)! Supporters will also be able to read past messages
+    by logging into the site. You'll also have the option to save as a draft, which nobody will see until
+    you come back and publish the message later.
+    
   .grid_8
     = render :partial => 'messages/form', :locals => { :message => @message }
     
