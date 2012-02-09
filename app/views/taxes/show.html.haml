@@ -103,6 +103,7 @@
                   %b frequency
       
     - if manager
+      = javascript_include_tag 'bootstrap-modal.js'
       .callout
         %h4 Admin tools
         = link_to 'Edit this tax', edit_tax_path(@tax)
@@ -111,7 +112,26 @@
         %br/
         = link_to 'Invite a trustee', admin_path(:anchor => 'users')
         %br/
+        = link_to 'Get embed code', '#', { 'data-controls-modal' => "embed", 'data-keyboard' => 'true' }
+        %br/
         = link_to 'Close this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to terminate this tax?" } unless @tax.status == Tax::ENDED
+        .modal.hide.fade{:id => "embed"}
+          .modal-header
+            %a.close{:href => '#'} x
+            %h3 Embed code for #{@tax.name}
+          .modal-body
+            %pre.prettyprint
+              = "<div id='lovetax_widget' data-id='#{@tax.id}' data-host='http://#{request.host}'></div>"
+              %br/
+              = "<script src='http://#{request.host}/javascripts/xss_magic.js'></script>"
+          .modal-footer
+            = link_to 'Close', '#', :class => 'btn close'
+        :javascript
+          $('a.close', this).click(function(e) {
+            $(container).modal('hide');
+            return false;
+          });
+
             
     - unless user_signed_in?
       .clear{:style=>'height: 1em;'}
