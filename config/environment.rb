@@ -1,8 +1,6 @@
 # Load the rails application
 require File.expand_path('../application', __FILE__)
 
-#Rails.env = 'staging'
-
 ActionMailer::Base.smtp_settings = {
   :user_name            => "lsheradon",
   :password             => "gem17years",
