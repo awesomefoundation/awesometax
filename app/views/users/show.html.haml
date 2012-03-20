@@ -121,7 +121,7 @@
                 %tbody
                   - @transactions.each do |t|
                     %tr{:style => 'border-top: 1px dotted #aaa;'}
-                      %td= link_to t.pledge.tax.name, tax_path(t.pledge.tax)
+                      %td= link_to t.pledge.tax.name, tax_path(t.pledge.tax.slug)
                       %td= number_to_currency(t.amount)
                       %td= t.kind == Transaction::SENT ? 'Sent' : 'Received'
                       %td= t.created_at.to_date

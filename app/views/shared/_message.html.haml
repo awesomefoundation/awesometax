@@ -2,7 +2,7 @@
   %h4= message.effective_title
   .help-block
     Sent on #{message.created_at.strftime('%B %d, %Y')}
-    from #{link_to message.user.name, message.user} to all funders of #{link_to message.tax.name, message.tax}
+    from #{link_to message.user.name, message.user} to all funders of #{link_to message.tax.name, tax_path(message.tax.slug)}
   
   
   %p= message.body

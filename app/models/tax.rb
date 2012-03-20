@@ -26,6 +26,7 @@ class Tax < ActiveRecord::Base
   validates :goal, :numericality => { :greater_than_or_equal_to => AppConfig.minimum_goal }
   #validates_presence_of :owner_id
   
+  before_save :update_slug
   after_create :notify_admins
   
   def meets_goal
@@ -70,6 +71,10 @@ class Tax < ActiveRecord::Base
     @@status_strings[status]
   end
   
+  def update_slug
+    self.slug = Tax.make_slug(self.name)
+  end
+  
   def notify_admins
     begin
       Mailer.admin_notification("#{self.managers.first.name} created a tax: #{self.name}",
@@ -78,6 +83,16 @@ class Tax < ActiveRecord::Base
       logger.info e.inspect
       logger.info e.backtrace
     end
+  end
+  
+  def self.make_slug(str)
+    s = str
+    s.downcase!
+    s.gsub!(/'/, '')
+    s.gsub!(/[^A-Za-z0-9]+/, ' ')
+    s.strip!
+    s.gsub!(/\ +/, '-')
+    return s
   end
     
 end

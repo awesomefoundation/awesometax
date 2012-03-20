@@ -106,7 +106,7 @@
       = javascript_include_tag 'bootstrap-modal.js'
       .callout
         %h4 Admin tools
-        = link_to 'Edit this tax', edit_tax_path(@tax)
+        = link_to 'Edit this tax', edit_tax_path(@tax.slug)
         %br/
         = link_to 'Message all supporters', new_message_path(:tax_id => @tax.id)
         %br/

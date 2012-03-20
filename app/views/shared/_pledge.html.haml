@@ -1,6 +1,6 @@
 .callout{:class => "#{pledge.active? ? "active" : "inactive"}"}
   %h4
-    = link_to h(pledge.tax.name), tax_path(pledge.tax)
+    = link_to h(pledge.tax.name), tax_path(pledge.tax.slug)
     = "(#{pledge.status_string})" unless pledge.active?
   - if defined?(mine) and mine
     %b Your pledge: #{number_to_currency(pledge.amount)} / month

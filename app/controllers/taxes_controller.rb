@@ -7,7 +7,7 @@ class TaxesController < ApplicationController
   end
   
   def show
-    @tax = Tax.find params[:id]
+    @tax = Tax.find_by_slug(params[:id]) || Tax.find(params[:id])
     @pledge = Pledge.new(:amount => 10, :tax_id => @tax.id)
     @pledges = @tax.pledges.active.order('amount desc')
     @pledgers = @tax.pledgers
@@ -38,7 +38,7 @@ class TaxesController < ApplicationController
     
     if @tax.save
       @tax.managers << current_user
-      redirect_to tax_path(@tax)
+      redirect_to tax_path(@tax.slug)
     else
       flash[:notice] = "You need to fill out all the boxes. Don't forget to cross your i's and dot your t's!"
       render :action => 'new'
@@ -46,13 +46,13 @@ class TaxesController < ApplicationController
   end
   
   def edit
-    @tax = Tax.find params[:id]
+    @tax = Tax.find_by_slug(params[:id]) || Tax.find(params[:id])
     redirect_to account_path and return unless admin? or (@tax.managers.include?(current_user.id) and @tax.active?)
   end
   
   def update
     @tax = Tax.find params[:id]
-    redirect_to :controller => 'taxes', :action => 'show', :id => @tax.id
+    redirect_to :controller => 'taxes', :action => 'show', :id => @tax.slug
     return unless admin? or (@tax.managers.include?(current_user) and @tax.active?)
     @tax.update_attributes(params[:tax])
     #if video_details = get_media(params[:video_url])
