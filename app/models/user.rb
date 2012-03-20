@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  require 'mogrify'
+  
   devise :invitable, :database_authenticatable, :token_authenticatable, :omniauthable, :confirmable, :recoverable,
     :registerable, :rememberable, :trackable, :validatable, :encryptable
     
@@ -35,6 +37,7 @@ class User < ActiveRecord::Base
   scope :trustees, where(:status => TRUSTEE)
   
   after_create :notify_created
+  before_picture_post_process :modify
 
   def admin?
     status == ADMIN
@@ -84,6 +87,13 @@ class User < ActiveRecord::Base
       logger.info e.inspect
       logger.info e.backtrace
     end
+  end
+  
+
+  def modify
+    logger.info "Modify gets: #{picture_file_name}"
+    self.picture.instance_write(:file_name, transliterate_file_name(self.picture_file_name))
+    logger.info "and ends with: #{picture_file_name}"
   end
 
 end

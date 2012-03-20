@@ -1,4 +1,6 @@
 class Tax < ActiveRecord::Base
+  require 'mogrify'
+  
   # Status
   INACTIVE = 0
   ACTIVE   = 1
@@ -72,7 +74,7 @@ class Tax < ActiveRecord::Base
   end
   
   def update_slug
-    self.slug = Tax.make_slug(self.name)
+    self.slug = transliterate(self.name)
   end
   
   def notify_admins
@@ -84,15 +86,5 @@ class Tax < ActiveRecord::Base
       logger.info e.backtrace
     end
   end
-  
-  def self.make_slug(str)
-    s = str
-    s.downcase!
-    s.gsub!(/'/, '')
-    s.gsub!(/[^A-Za-z0-9]+/, ' ')
-    s.strip!
-    s.gsub!(/\ +/, '-')
-    return s
-  end
-    
+      
 end

@@ -1,8 +1,10 @@
 class AddSlugs < ActiveRecord::Migration
+
   def self.up
+    require 'mogrify'
     add_column :taxes, :slug, :string, :unique => true
     Tax.find_each do |t|
-      t.update_attribute(:slug, Tax.make_slug(t.name))
+      t.update_attribute(:slug, transliterate(t.name))
     end
   end
 
