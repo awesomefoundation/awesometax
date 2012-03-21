@@ -32,4 +32,4 @@ staging:
 
 production:
   <<: *dreamhost
-  database: lovetax_prod
+  database: awesometax_prod
