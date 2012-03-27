@@ -136,7 +136,7 @@ input.huge_input {
   font-weight: normal;
   font-size: 18px; border: none; }
 .tax h4 a:hover { border-bottom: 1px dotted white; }
-    
+a.btn, a.btn:visited { color: #222; }
 
 .inactive {
   background-color: #e8e8e8; }
