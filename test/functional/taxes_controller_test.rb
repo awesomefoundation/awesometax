@@ -2,31 +2,41 @@ require 'test_helper'
 
 class TaxesControllerTest < ActionController::TestCase
 
+  @@tax_params= {
+    :name => "Awesome PDX",
+    :description => "Quick brown foxes jumping over lazy dogs.",
+    :goal => 1500,
+    :paypal_first => 'Test',
+    :paypal_last => 'User',
+    :paypal_email => 'sherad_1274768045_per@gmail.com' 
+  }
+  
   def setup
   end
   
   def teardown
     Tax.delete_all
     User.delete_all
-    UserSession.find.destroy unless UserSession.find.nil?
   end
 
-  test "anyone can start a tax" do
-    t = Factory.build :tax
-    u = t.owner
-    UserSession.create u
-    assert_difference('Tax.count') do
-      post :create, { :tax => { :name => t.name, :description => t.description, :paypal_email => t.paypal_email } }
+  test "regular users can not start taxes" do
+    u = Factory.create :user
+    sign_in u
+
+    assert_difference('Tax.count', 0) do
+      post :create, { :tax => @@tax_params }
     end
-    assert_redirected_to tax_path(Tax.last.id)
+    assert_redirected_to root_path
   end
   
-  test "but they must be logged in" do
-    return
-    t = Factory.build :tax
-    assert_difference('Tax.count', 0) do
-      post :create, { :tax => { :name => t.name, :description => t.description, :paypal_email => t.paypal_email } }
+  test "trustees can make taxes" do
+    u = Factory.create :trustee
+    sign_in u
+
+    assert_difference('Tax.count') do
+      post :create, { :tax => @@tax_params }
     end
-    assert_template 'new'
+    assert_
+    assert_redirected_to tax_path(Tax.last.id)
   end
 end

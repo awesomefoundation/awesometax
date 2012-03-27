@@ -1,8 +1,7 @@
 html { margin: 0px; padding-top: 80px; }
 
 body {
-  background-color: #eaf0ea;
-  background-image: url('/images/bg.png');
+  background-color: #ffffff;
   color: #606060;
   margin: 0px;
   padding: 0px;
@@ -24,29 +23,27 @@ a {
 
 p {
   margin: 1em 0; }
+  
+ul, ol, li { font-size: 13px; }
 
 h1, .h1 {
   font-weight: bold;
   font-size: 40pt;
-  text-shadow: 3px 3px 1px #CCC;
   text-transform: uppercase;
   }
 
-.tk-league-gothic { visibility: hidden; }
-.wf-active h1, .wf-active .tk-league-gothic { visibility: visible; }
+.wf-active h1, .wf-active { visibility: visible; }
 
 h2, .h2 {
   text-transform: uppercase;
-  text-shadow: 3px 3px 1px #CCC;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 26pt;
   /*text-shadow: 0px 1px 0px white;*/
   padding-bottom: 0.5em; }
 
 h3, .h3 {
   text-transform: uppercase;
-  text-shadow: 2px 2px 1px #CCC;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 18pt;
   padding-bottom: 0.5em; }
 
@@ -112,40 +109,34 @@ input.huge_input {
 
 .rounded {
   padding: 15px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px; }
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px; }
   
 .callout { 
-  background-color: rgba(255, 245, 250, 0.8);
-  border: 6px solid #ddd; 
+  background-color: rgba(255, 250, 252, 0.9);
+  border: 1px solid #ccc; 
   padding: 1em;
   margin-bottom: 1em;
   }
 
-.topbar-inner { padding-top: 6px; }
-.topbar .h3 { text-transform: uppercase; margin-right: 2em; color: #fff; text-shadow: 2px 2px 1px #aaa; }
-.topbar a { border-bottom: none; }
+.topbar-inner { padding-top: 10px; background-image: none; }
+.topbar .h3 { text-transform: uppercase; margin-right: 2em; color: #fff; font-weight: bold; }
+.topbar a { border-bottom: none; font-size: 15px; }
+.topbar .nav .active > a { border-bottom: 3px solid #FF4B7E; background-color: #222; padding-bottom: 6px; }
 .dropdown-menu.foundation { min-width: 230px; }
 
-.tax {
-  background-color: #eeccdd;
-  margin-bottom: 10px;
-  padding: 4px 8px; }
-  .tax p {
-    margin: 0.5em 0; }
-  .tax .button {
-    float: right;
-    margin: 10px; }
-  .tax .number {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    background-color: #eeffee;
-    font-size: 1.8em;
-    color: #668866;
-    padding: 2px 4px;
-    margin-left: 5px; }
+.tax { border: 1px solid #333; }
+.tax .headline { background-color: #333; }
+.tax .headline { padding: 0px 1em; }
+.tax .body { padding: 1em; }
+.tax h4 a {
+  color: white;    
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 18px; border: none; }
+.tax h4 a:hover { border-bottom: 1px dotted white; }
+    
 
 .inactive {
   background-color: #e8e8e8; }

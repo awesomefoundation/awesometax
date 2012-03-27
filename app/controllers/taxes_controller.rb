@@ -95,7 +95,7 @@ class TaxesController < ApplicationController
      "lastName"       => last,
     }
     request = PaypalAdaptive::Request.new
-    logger.info data
+    logger.info data.inspect
     response = request.get_verified_status(data)
     logger.info response.inspect
     return (response.success? and response['accountStatus'] == 'VERIFIED')

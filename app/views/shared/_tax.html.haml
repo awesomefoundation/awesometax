@@ -1,25 +1,27 @@
-.callout.rounded{:class => tax.active? ? "active" : "inactive"}
-  %h4= link_to h(tax.name), tax_path(tax.slug)
-  %p= auto_link(h(truncate(tax.description.gsub(/<\/?[^>]*>/, ""), :length => 240)))
-  
-  = render :partial => 'shared/progress', :object => tax.percent_funded
-  
-  %p
-    - if defined?(mine) and mine
-      = number_to_currency(tax.total_income)
-      raised
-      - if tax.active?
-        \&middot; #{link_to 'Edit', edit_tax_path(tax.slug)}
-        \&middot; #{link_to 'Terminate', { :controller => 'taxes', :action => 'destroy', :id => tax.id }, { :method => :delete, :confirm => "Are you sure you want to stop collecting this tax? You cannot undo this!" }}
+.tax.callout{:class => tax.active? ? "active" : "inactive", :style => 'padding: 0px;'}
+  .headline
+    %h4= link_to h(tax.name), tax_path(tax.slug)
+  .body
+    %p= auto_link(h(truncate(tax.description.gsub(/<\/?[^>]*>/, ""), :length => 240)))
+    
+    = render :partial => 'shared/progress', :object => tax.percent_funded
+    
+    %p
+      - if defined?(mine) and mine
+        = number_to_currency(tax.total_income)
+        raised
+        - if tax.active?
+          \&middot; #{link_to 'Edit', edit_tax_path(tax.slug)}
+          \&middot; #{link_to 'Terminate', { :controller => 'taxes', :action => 'destroy', :id => tax.id }, { :method => :delete, :confirm => "Are you sure you want to stop collecting this tax? You cannot undo this!" }}
+        - else
+          \&middot;
+          %b
+            = tax.status_string
+            = tax.updated_at.strftime('%b %d %Y')
       - else
-        \&middot;
-        %b
-          = tax.status_string
-          = tax.updated_at.strftime('%b %d %Y')
-    - else
-      = link_to 'Support', tax_path(tax.slug), :class => 'float_right btn' unless !tax.active?
-    - unless !tax.active? or tax.pledges.active.empty?
-      #{number_to_currency(tax.monthly_income, :precision => 0)} / mo. from #{pluralize(tax.unique_supporters.count, 'person')}
-    - unless tax.goal.nil?
-      (#{number_to_currency(tax.goal, :precision => 0)} needed)
-    .clear
+        = link_to 'Support', tax_path(tax.slug), :class => 'float_right btn' unless !tax.active?
+      - unless !tax.active? or tax.pledges.active.empty?
+        #{number_to_currency(tax.monthly_income, :precision => 0)} / mo. from #{pluralize(tax.unique_supporters.count, 'person')}
+      - unless tax.goal.nil?
+        (#{number_to_currency(tax.goal, :precision => 0)} needed)
+      .clear

@@ -6,15 +6,26 @@ Factory.define :user do |i|
   i.name 'John'
   i.email "john@johnson.com"
   i.password 'lettuce'
-  i.admin 0
+  i.status User::NORMAL
+  i.confirmed_at (DateTime.now - 6.hours)
 end
 
 Factory.define :admin, :class => User, :parent => :user do |i|
   i.id 2
   i.name 'Admin'
   i.email 'admin@example.com'
-  i.admin 1
+  i.status User::ADMIN
+  i.confirmed_at (DateTime.now - 6.hours)
 end
+
+Factory.define :trustee, :class => User, :parent => :user do |i|
+  i.id 3
+  i.name 'Christina'
+  i.email 'trustee@lovetax.us'
+  i.status User::TRUSTEE
+  i.confirmed_at (DateTime.now - 6.hours)
+end
+
 
 Factory.define :fb_user, :class => User do |i|
   i.id 3
@@ -33,16 +44,12 @@ end
 
 Factory.define :tax do |t|
   t.id 1
-  t.name 'Gardening on Plymouth'
-  t.description 'We have this microhood, and are just very busy people. Someone has to mow the lawn and plant flowers!'
+  t.name 'Portland'
+  t.description 'Awesome PDX.'
   t.paypal_email 'nobody@lemonary.com'  
-  t.association :owner, :factory => :user
+  #t.association :manager_roles, :factory => :trustee
 end
 
-#Factory.define :verified_tax, :parent => :tax do |t|
-#  t.id 2
-#  t.association :owner, :factory => :verified
-#end
 
 
 

@@ -3,7 +3,7 @@ require 'test_helper'
 class HomeControllerTest < ActionController::TestCase
 
   def teardown
-    User.delete_all
+    #User.delete_all
   end
   
   test "homepage" do
@@ -12,8 +12,9 @@ class HomeControllerTest < ActionController::TestCase
   end
   
   test "homepage logged in" do
+    @request.env["devise.mapping"] = Devise.mappings[:admin]
     u = Factory.create :user
-    UserSession.create u
+    sign_in u
 
     get :index
     assert_response :success

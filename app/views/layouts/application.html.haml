@@ -72,10 +72,10 @@
         = yield
 
   .clear{:style => "height: 3em;"}
-  / Javascript at the bottom for fast page loading
+
   %script{:src => "http://use.typekit.com/szj4uep.js", :type => "text/javascript"}
   :javascript
-    //try{Typekit.load();}catch(e){}
+    try{Typekit.load();}catch(e){}
   :javascript
     var _gaq = [['_setAccount', '#{AppConfig.analytics_key}'], ['_trackPageview']];
     (function(d, t) {
