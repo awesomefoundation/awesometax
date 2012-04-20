@@ -74,6 +74,7 @@ class User < ActiveRecord::Base
   
   # s is a (potentially incomplete) hash of the email preferences from a form (so => "1"). For missing ones, set them to false
   def update_settings(s)
+    s = {} if s.nil?
     s.each { |k,v| self.settings[k] = (v.to_i == 1) }
     Settings.defaults.each { |k,v| self.settings[k] = false if s[k].to_i == 0 }
   end
