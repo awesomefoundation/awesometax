@@ -148,7 +148,7 @@ class Pledge < ActiveRecord::Base
 
   # This runs as a rake task
   def self.collect_all
-    unless (Date.today - Transaction.last.created_at.to_date).to_i > 5
+    unless (Transaction.count == 0) or (Date.today - Transaction.last.created_at.to_date).to_i > 5
       puts "There has already been a collection recently. No can do. This is a safeguard that's very easy to override if you mean it."
       return
     end
