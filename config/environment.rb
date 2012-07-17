@@ -15,5 +15,11 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'tax', 'taxes'
 end
 
+Miley.setup do |s|
+  s.host = '127.0.0.1'
+  s.appname = 'awesometax'
+end
+
+
 # Initialize the rails application
 LoveTax3::Application.initialize!

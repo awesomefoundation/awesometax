@@ -5,7 +5,6 @@ gem 'rack', '1.2.1'
 gem 'rails', '3.0.3'
 gem 'mysql2', '< 0.3'
 
-#gem 'smiley',  :path => '../smiley-client'
 gem 'omniauth'
 gem 'devise', '1.4.5'
 gem 'devise_invitable'
@@ -16,8 +15,7 @@ gem 'gravtastic'
 gem 'paperclip'
 
 gem 'activemerchant', '1.9.4'
-#gem 'paypal_adaptive'
-gem 'paypal_adaptive',  :path => '../paypal_adaptive'
+gem 'paypal_adaptive',  :path => 'vendor/gems/paypal_adaptive'
 
 gem 'bluecloth'
 gem 'jquery-rails'
@@ -31,9 +29,6 @@ gem 'andand'
 gem "factory_girl_rails"
 gem 'mocha'
 
-
-
-
-
-
+gem 'statsd-ruby', '~> 0.4.0', :git => 'git://github.com/jeremy/statsd-ruby', :require => 'statsd'
+gem 'miley', :path => 'vendor/gems/miley'
 
