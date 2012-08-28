@@ -16,6 +16,14 @@ dreamhost: &dreamhost
   host: db.lemonary.com
   encoding: utf8
 
+lime: &lime
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  username: rails
+  password: huju5Azafu
+  host: lime_private
+
 
 
 development:
@@ -27,9 +35,9 @@ test:
   database: lovetax_test
 
 staging:
-  <<: *dreamhost
+  <<: *lime
   database: lovetax_stage
 
 production:
-  <<: *dreamhost
+  <<: *lime
   database: awesometax_prod

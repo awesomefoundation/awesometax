@@ -26,8 +26,8 @@ gem 'nokogiri'
 gem 'andand'
 
 #gem "factory_girl_rails", "~> 2.0"
-gem "factory_girl_rails"
-gem 'mocha'
+#gem "factory_girl_rails"
+#gem 'mocha'
 
 gem 'statsd-ruby', '~> 0.4.0', :git => 'git://github.com/jeremy/statsd-ruby', :require => 'statsd'
 gem 'miley', :path => 'vendor/gems/miley'

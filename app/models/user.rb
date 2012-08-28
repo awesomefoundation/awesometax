@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   
   include Gravtastic
   has_gravatar :rating => 'PG', :default => 'identicon'
-  has_attached_file :picture, :styles => { :thumb => ["80x80#", :jpg], :mini => ["32x32#", :jpg] }
+  has_attached_file :picture, :styles => { :thumb => ["80x80#", :jpg], :mini => ["32x32#", :jpg] },
+    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+    :url => "/system/:attachment/:id/:style/:filename"
     
   # status
   NORMAL   = 0
