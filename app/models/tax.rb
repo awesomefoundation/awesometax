@@ -1,5 +1,6 @@
 class Tax < ActiveRecord::Base
   require 'mogrify'
+  include Mogrify
   
   # Status
   INACTIVE = 0
