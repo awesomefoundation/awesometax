@@ -53,8 +53,11 @@ class TaxesController < ApplicationController
   def update
     @tax = Tax.find_by_slug(params[:id]) || Tax.find(params[:id])
     redirect_to :controller => 'taxes', :action => 'show', :id => @tax.slug
+    logger.info "one"
     return unless admin? or (@tax.managers.include?(current_user) and @tax.active?)
+    logger.info "two"
     @tax.update_attributes(params[:tax])
+    logger.info "three.. #{params[:tax].inspect}"
     #if video_details = get_media(params[:video_url])
     #  @tax.update_attributes({:video_type => video_details[:type].to_s, :video_id => video_details[:id]})
     #else
