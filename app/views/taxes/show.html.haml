@@ -84,7 +84,7 @@
           %br/
           %p.small You're signing up to make one payment per month for 12 months, but can change this or cancel at any time.
           = image_submit_tag 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif', :style => 'margin-left: 32px; border-width: 0px; width: 145px; height: 42px;'
-          - unless Rails.env == 'production' or Rails.env == 'staging'
+          - unless Rails.env == 'production'
             .help-block
               %br/
               %b Test PayPal like so:

@@ -51,7 +51,7 @@ class TaxesController < ApplicationController
   end
   
   def update
-    @tax = Tax.find params[:id]
+    @tax = Tax.find_by_slug(params[:id]) || Tax.find(params[:id])
     redirect_to :controller => 'taxes', :action => 'show', :id => @tax.slug
     return unless admin? or (@tax.managers.include?(current_user) and @tax.active?)
     @tax.update_attributes(params[:tax])
@@ -63,7 +63,7 @@ class TaxesController < ApplicationController
   end
   
   def destroy
-    @tax = Tax.find params[:id]
+    @tax = Tax.find_by_slug(params[:id]) || Tax.find(params[:id])
     if @tax.managers.include?(current_user) or admin?
       @tax.stop
       redirect_to @tax, :notice => "You have discontinued this tax."
