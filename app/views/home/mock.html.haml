@@ -2,11 +2,11 @@
 
 %h3 The Example
 
-- if Tax.count == 0
+- if @tax.nil?
   %p There aren't any taxes yet so we can't show you a widget. Oops.
   
 - else
-  #lovetax_widget{'data-id' => Tax.first.id, 'data-host' => "http://#{request.host}"}
+  #lovetax_widget{'data-id' => @tax.id, 'data-host' => "http://#{request.host}"}
   = javascript_include_tag("http://#{request.host}/javascripts/xss_magic.js")
   
 - unless params[:unstyled].to_i == 1

@@ -10,6 +10,7 @@ class HomeController < ApplicationController
   end
   
   def mock
+    @tax = Tax.find_by_slug 'new-orleans'
     render :layout => false if params[:unstyled] == '1'
   end
   
