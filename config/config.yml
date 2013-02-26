@@ -11,11 +11,10 @@ development:
 staging:
  analytics_key: UA
  fb_app_id: 53634552952
- paypal_nvp_host: api-3t.paypal.com
  paypal_email: jerry@makeloveland.com
  
 production:
  analytics_key: UA-15180627-6
  fb_app_id: 375385414659
  paypal_nvp_host: api-3t.paypal.com
- paypal_email: jerry@makeloveland.com
+ paypal_email: christina@awesomestudies.org
