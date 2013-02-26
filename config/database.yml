@@ -7,14 +7,6 @@ local: &local
   host: localhost
   encoding: utf8
 
-dreamhost: &dreamhost
-  adapter: mysql2
-  pool: 5
-  timeout: 5000
-  username: loveland_rails
-  password: huju5Azafu
-  host: db.lemonary.com
-  encoding: utf8
 
 lime: &lime
   adapter: mysql2
@@ -40,4 +32,4 @@ staging:
 
 production:
   <<: *lime
-  database: awesometax_prod
+  database: lovetax_prod
