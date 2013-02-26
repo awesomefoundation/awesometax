@@ -11,6 +11,7 @@ development:
 staging:
  analytics_key: UA
  fb_app_id: 53634552952
+ paypal_nvp_host: api-3t.paypal.com
  paypal_email: jerry@makeloveland.com
  
 production:
