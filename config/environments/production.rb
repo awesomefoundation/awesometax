@@ -36,8 +36,8 @@ LoveTax3::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'lovetax.us' }
-  Rails.application.routes.default_url_options[:host] = 'lovetax.us'
+  config.action_mailer.default_url_options = { :host => 'awesometax.awesomestudies.org' }
+  Rails.application.routes.default_url_options[:host] = 'awesometax.awesomestudies.org'
 
   # Enable threaded mode
   # config.threadsafe!
