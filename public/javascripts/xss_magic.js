@@ -11,7 +11,8 @@ MyXssMagic = new function() {
     stylesheet.type = "text/css";
     stylesheet.href = stylesheet_url;
     stylesheet.media = "all";
-    document.lastChild.firstChild.appendChild(stylesheet);
+    //document.lastChild.firstChild.appendChild(stylesheet);
+    document.getElementsByTagName("head")[0].appendChild(stylesheet);
   }
 
   function requestContent(local) {
