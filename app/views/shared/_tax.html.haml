@@ -1,8 +1,8 @@
 .tax.callout{:class => tax.active? ? "active" : "inactive", :style => 'padding: 0px;'}
   .headline
-    %h4= link_to h(tax.name), tax_path(tax.slug)
+    %h4= link_to tax.name, tax_path(tax.slug)
   .body
-    %p= auto_link(h(truncate(tax.description.gsub(/<\/?[^>]*>/, ""), :length => 240)))
+    %p= auto_link(truncate(tax.description.gsub(/<\/?[^>]*>/, ""), :length => 240))
     
     = render :partial => 'shared/progress', :object => tax.percent_funded
     
