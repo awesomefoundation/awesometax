@@ -15,10 +15,6 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'tax', 'taxes'
 end
 
-Miley.setup do |s|
-  s.appname = 'awesometax'
-end
-
 
 # Initialize the rails application
 LoveTax3::Application.initialize!

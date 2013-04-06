@@ -12,9 +12,9 @@ Gem::Specification.new do |s|
   s.summary     = "Lightweight wrapper for Paypal's Adaptive Payments API"
   s.description = "Lightweight wrapper for Paypal's Adaptive Payments API"
 
-  s.add_dependency("json", "~>1.6.0")
-  s.add_dependency("jsonschema", "~>2.0.0")
-  s.add_dependency("rake", "~>0.8")
+  s.add_dependency("json")
+  s.add_dependency("jsonschema")
+  s.add_dependency("rake")
 
   s.rubyforge_project = "paypal_adaptive"
 
