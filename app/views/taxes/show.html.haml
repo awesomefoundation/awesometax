@@ -7,7 +7,7 @@
     %h2=h @tax.name
   
   .grid_8
-    = auto_link(markdown(@tax.description))
+    = raw auto_link(markdown(@tax.description))
     = render :partial => 'shared/progress', :object => @tax.percent_funded
 
     %p
