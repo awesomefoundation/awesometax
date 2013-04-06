@@ -1,7 +1,5 @@
 require File.expand_path('../boot', __FILE__)
 
-ENV['RAILS_ENV'] = 'staging'
-
 require 'rails/all'
 
 # If you have a Gemfile, require the gems listed there, including any gems
