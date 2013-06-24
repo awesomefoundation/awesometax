@@ -23,7 +23,7 @@
           (#{number_to_currency(@tax.goal, :precision => 0)} needed)
 
          
-    = render :partial => 'shared/share', :locals => {:url => request.url, :text => "#{h(@tax.name)} | LoveTax" }
+    = render :partial => 'shared/share', :locals => {:url => request.url, :text => "#{h(@tax.name)} | AwesomeTax" }
     
     %br/
     %h3
@@ -138,7 +138,7 @@
       .callout
         %h4 New here?
         %p
-          With LoveTax you can easily support people and things you care about in a simple, sustainable, social way.
+          With AwesomeTax you can easily support people and things you care about in a simple, sustainable, social way.
           Or invite the world to help with your own projects.
           = link_to 'Read our guide', guide_path
           for more!

@@ -3,5 +3,5 @@
   %a{:name => "fb_share", :share_url => defined?(url) ? url : root_url(:only_path => false), :type => "button"} Share
   = javascript_include_tag "http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
 .float_left{:style => "padding: 2px 10px;"}
-  %a.twitter-share-button{:href => "http://twitter.com/share?url=#{defined?(url) ? url : 'http://lovetax.us'}&text=#{defined?(text) ? text : ''}", :style => "padding-top: 20px;"} Tweet
+  %a.twitter-share-button{:href => "http://twitter.com/share?url=#{defined?(url) ? url : ('http://' + AppConfig.host)}&text=#{defined?(text) ? text : ''}", :style => "padding-top: 20px;"} Tweet
 .clear
