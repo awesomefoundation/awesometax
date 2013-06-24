@@ -22,6 +22,6 @@
         = link_to 'Support', tax_path(tax.slug), :class => 'float_right btn' unless !tax.active?
       - unless !tax.active? or tax.pledges.active.empty?
         #{number_to_currency(tax.monthly_income, :precision => 0)} / mo. from #{pluralize(tax.unique_supporters.count, 'person')}
-      - unless tax.goal.nil?
+      - unless tax.goal.nil? or tax.goal == 0
         (#{number_to_currency(tax.goal, :precision => 0)} needed)
       .clear

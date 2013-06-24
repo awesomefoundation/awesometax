@@ -76,7 +76,8 @@ class Tax < ActiveRecord::Base
   end
   
   def update_slug
-    self.slug = transliterate(self.name)
+    s = self.name.clone
+    self.slug = transliterate(s)
   end
   
   def notify_admins

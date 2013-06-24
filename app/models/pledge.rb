@@ -146,7 +146,7 @@ class Pledge < ActiveRecord::Base
   end
 
 
-  # This runs as a rake task
+  # This generally runs as a rake task, "rake taxes:collect"
   def self.collect_all
     unless (Transaction.count == 0) or (Date.today - Transaction.last.created_at.to_date).to_i > 5
       puts "There has already been a collection recently. No can do. This is a safeguard that's very easy to override if you mean it."
@@ -154,13 +154,15 @@ class Pledge < ActiveRecord::Base
     end
     
     done = 0
-    pledges = Pledge.active.includes(:transactions, :tax).select { |p| p.tax.meets_goal }
+    pledges = Pledge.active.includes(:transactions, :tax) #.select { |p| p.tax.meets_goal }
+    puts "Found #{pledges.size} active pledges"
     
     # Send emails
     users = pledges.collect { |p| p.user }.uniq.select { |u| u.settings['email.payment'] }
+    puts "Going to email #{users.size} users: #{users.collect { |u| u.email }.join(', ')}"
     users.each do |u|
       begin
-        Mailer.payment(u, u.pledges.active.select { |p| p.tax.meets_goal }).deliver
+        Mailer.payment(u, u.pledges.active).deliver
       rescue => e
         logger.info "Error sending mail to #{u.email}"
         logger.info e.inspect
@@ -169,11 +171,18 @@ class Pledge < ActiveRecord::Base
     end
 
     # Do the transactions
+    puts "Running transactions:"
     pledges.each do |p|
-      next if Time.zone.now - p.transactions.last.created_at < 1.day  # Safety net to not run twice in the same day
-      done += 1 if p.collect
+      puts "  Considering pledge #{p.id}..."
+      next if !p.transactions.empty? and Time.zone.now - p.transactions.last.created_at < 1.day  # Safety net to not run twice in the same day
+      if p.collect
+        puts "  Successfully collected pledge #{p.id} for $#{p.amount}"
+        done += 1
+      else
+        puts "  Problem collecting pledge #{p.id}"
+      end
     end
-    puts "Collected #{done} taxes successfully."
+    puts "Collected #{done} pledges successfully."
   end
 
 end

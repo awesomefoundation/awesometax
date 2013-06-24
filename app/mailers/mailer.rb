@@ -1,5 +1,5 @@
 class Mailer < ActionMailer::Base
-  default :from => "team@lovetax.us"
+  default :from => "contact@awesomefoundation.org"
   @@admins = [ 'larry@makeloveland.com', 'jerry@makeloveland.com', 'mary@makeloveland.com' ]
   
   

@@ -15,8 +15,8 @@ LoveTax3::Application.configure do
   config.action_controller.perform_caching = false
 
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'tax.local' }
-  Rails.application.routes.default_url_options[:host] = 'tax.local'
+  config.action_mailer.default_url_options = { :host => 'tax.dev' }
+  Rails.application.routes.default_url_options[:host] = 'tax.dev'
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -32,12 +32,4 @@ LoveTax3::Application.configure do
 end
 
 
-# Omniauth / loveland app ids
-APP_ID = 'lovetax'
-APP_SECRET = 'vie402jv00v,53n2xxyBZ'
-CUSTOM_PROVIDER_URL = 'http://home.local'
-
-#Rails.application.config.middleware.use OmniAuth::Builder do
-#  provider :josh_id, APP_ID, APP_SECRET
-#end
 

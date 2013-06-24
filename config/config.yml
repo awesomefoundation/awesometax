@@ -2,18 +2,21 @@ common:
  paypal_email: shoppy_1274735670_biz@gmail.com
  loveland_fee: 0
  invite_only: true
- minimum_goal: 1000
+ minimum_goal: 0
 
 development:
- analytics_key: UA
+ host: tax.dev
+ analytics_key:
  fb_app_id: 53634552952
  
 staging:
- analytics_key: UA
+ host: awesometax.awesomefoundation.org
+ analytics_key:
  fb_app_id: 53634552952
  paypal_email: jerry@makeloveland.com
  
 production:
+ host: awesometax.awesomefoundation.org
  analytics_key: UA-15180627-6
  fb_app_id: 375385414659
  paypal_nvp_host: api-3t.paypal.com
