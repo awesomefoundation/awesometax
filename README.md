@@ -23,9 +23,9 @@ To automate this, I have a script called collect_taxes.sh. It emails the output 
     #!/bin/bash
     RAILS_ENV=production
     PATH=$PATH:$HOME/.rvm/bin
-    cd /var/www/lovetax_prod
-    rvm 1.9.3@rails30 do rake taxes:collect | mail -s "[LoveTax] Monthly collection" larry@makeloveland.com
+    cd /var/www/awesometax_prod
+    rvm 1.9.3@rails30 do rake taxes:collect | mail -s "[AwesomeTax] Monthly collection" your@emailaddress.com
 
 I set up a cron job to do this at noon on the 8th of every month. Run "crontab -e" and add this line:
 
-    0 12 8 * *   /home/fir/collect_taxes.sh
+    0 12 8 * *   /home/youruser/collect_taxes.sh
