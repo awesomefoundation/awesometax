@@ -1,24 +1,33 @@
-%h2 Sign Up
+.container_12
+  .grid_6
 
-= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  %div
-    = f.label :email
-    .input= f.email_field :email
-    %br/
-  %div
-    = f.label :name
-    .input= f.text_field :name
-    %br/
-  %div
-    = f.label :password
-    .input= f.password_field :password
-    %br/
-  %div
-    = f.label 'Password (again)'
-    .input= f.password_field :password_confirmation
-    %br/
-  %div
-    .input= f.submit "Sign up", :class => 'btn'
+    %h2 Sign Up
 
-= render :partial => "devise/shared/links"
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = devise_error_messages!
+      %div
+        = f.label :email
+        .input= f.email_field :email
+        %br/
+      %div
+        = f.label :name
+        .input= f.text_field :name
+        %br/
+      %div
+        = f.label :password
+        .input= f.password_field :password
+        %br/
+      %div
+        = f.label 'Password (again)'
+        .input= f.password_field :password_confirmation
+        %br/
+      %div
+        .input= f.submit "Sign up", :class => 'btn'
+
+    = render :partial => "devise/shared/links"
+
+  .grid_6{:style => 'padding-top: 3em;'}
+    .callout
+      %p
+        You need to make an AwesomeTax account before continuing.
+        Your account will let you manage your taxes, view your giving over time, and stay updated on projects.
