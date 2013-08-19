@@ -1,10 +1,10 @@
 class Pledge < ActiveRecord::Base
-  include ActionController::UrlWriter
-  
+  include Rails.application.routes.url_helpers
+
   belongs_to :user
   belongs_to :tax
   has_many   :transactions
-  
+
   INACTIVE  = 0 # has not been confirmed yet
   ACTIVE    = 1
   PAUSED    = 3 # you can do this thru paypal site ("suspended") or ours
@@ -14,10 +14,10 @@ class Pledge < ActiveRecord::Base
   scope :active,   where(:status => ACTIVE)
   scope :approved, where('status > 0')
   scope :inactive, where(:stauts => INACTIVE)
-  
+
   validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than => 10000
   validates_presence_of :tax
-  
+
   @@fuzzies = [
     [1,     'a little bit'],
     [2,     'a couple of bucks'],
@@ -36,7 +36,7 @@ class Pledge < ActiveRecord::Base
       return s if amount <= a
     end
   end
-  
+
   @@status_strings = {
     INACTIVE => 'inactive',
     ACTIVE   => 'active',
@@ -56,7 +56,7 @@ class Pledge < ActiveRecord::Base
   def stopped?
     [Pledge::FINISHED, Pledge::FAILED].include? status
   end
-  
+
   # Fees and where the money goes
   def loveland_cut
     AppConfig.loveland_fee * amount
@@ -67,7 +67,7 @@ class Pledge < ActiveRecord::Base
   def paypal_cut
     0 # TODO: calculate it
   end
-  
+
   def start
     update_attribute(:status, Pledge::ACTIVE)
   end
@@ -83,11 +83,11 @@ class Pledge < ActiveRecord::Base
     }
     pay_response = pay_request.cancel_preapproval(data)
     logger.info "pay_response: #{pay_response.inspect}"
-    
+
     update_attribute(:status, Pledge::FINISHED)
   end
-  
-  
+
+
   def create_transactions
     Transaction.create({
       :user_id => user_id,
@@ -108,10 +108,10 @@ class Pledge < ActiveRecord::Base
       :kind => Transaction::RECEIVED
     }) if AppConfig.loveland_fee > 0
   end
-  
-  
+
+
   #------------
-  
+
   def collect
     logger.info "collect_pledge: #{self.inspect}"
     pay_request = PaypalAdaptive::Request.new
@@ -128,7 +128,7 @@ class Pledge < ActiveRecord::Base
       'preapprovalKey' => preapproval_key,
       'receiverList' => { 'receiver' => receiverList },
     }
-    
+
     pay_response = pay_request.pay(data)
     logger.info "pay_response: #{pay_response.inspect}"
     if pay_response.success?
@@ -152,11 +152,11 @@ class Pledge < ActiveRecord::Base
       puts "There has already been a collection recently. No can do. This is a safeguard that's very easy to override if you mean it."
       return
     end
-    
+
     done = 0
     pledges = Pledge.active.includes(:transactions, :tax) #.select { |p| p.tax.meets_goal }
     puts "Found #{pledges.size} active pledges"
-    
+
     # Send emails
     users = pledges.collect { |p| p.user }.uniq.select { |u| u.settings['email.payment'] }
     puts "Going to email #{users.size} users: #{users.collect { |u| u.email }.join(', ')}"

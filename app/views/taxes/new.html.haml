@@ -3,10 +3,10 @@
 .container_12
   .grid_8
     %h2 Start a Chapter
-    
+
     %br/
-    
-    - form_for @tax do |f|
+
+    = form_for @tax do |f|
       = f.label "Name Your Chapter"
       .input
         = f.text_field :name, :style => 'width: 100%;'
@@ -32,12 +32,12 @@
           have to wait until next month's cycle.
           %em Leave it blank or "0" for no minimum.
       %br/
-  
+
       %h3 PayPal Details
       - unless Rails.env == 'production'
         %p
           %b TESTING NOTE: Don't enter real PayPal info here, just use the info we've pre-filled for you. :)
-          
+
       = f.label "Email Address"
       .input
         = f.text_field :paypal_email, :style => 'width: 100%;'
@@ -53,11 +53,11 @@
       .input
         = text_field_tag :paypal_last, @paypal_last, :style => 'width: 100%;'
       %br/
-      %br/ 
+      %br/
       = f.submit 'Create It', :class => 'btn'
-      
+
   .grid_4
     %br/
     %br/
     %br/
-    = render :partial => 'shared/markdown_guide'      
+    = render :partial => 'shared/markdown_guide'

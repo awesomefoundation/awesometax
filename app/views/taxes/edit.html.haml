@@ -4,8 +4,8 @@
   .grid_8
     %h2 Edit tax: #{@tax.name}
     %br/
-    
-    - form_for @tax, :url => tax_path, :method => :put do |f|
+
+    = form_for @tax, :url => tax_path, :method => :put do |f|
       = f.label :name
       .input
         = f.text_field :name, :style => 'width: 460px;'
@@ -17,7 +17,7 @@
           You can use
           = link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', :target => '_blank'
           formatting to prettify your summary (see sidebar).
-          
+
       %br/
       = f.label "Monthly Minimum"
       .input
@@ -28,7 +28,7 @@
           your funders have pledged at least this much. Otherwise, nobody pays and nobody receives, and you'll
           have to wait until next month's cycle.
           %em Leave it blank for no minimum.
-    
+
       %br/
       %p.input
         Funds will go to the PayPal account
@@ -37,7 +37,7 @@
         You can't change this, but you can always
         = link_to 'discontinue this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to stop collecting this tax? You cannot undo this!" }
         and start a new one.
-      
+
       .input= f.submit 'Save', :class => 'btn'
 
   .grid_4

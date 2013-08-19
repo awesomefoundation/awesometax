@@ -5,7 +5,7 @@
 .container_12.container
   .grid_12
     %h2=h @tax.name
-  
+
   .grid_8
     = raw auto_link(markdown(@tax.description))
     = render :partial => 'shared/progress', :object => @tax.percent_funded
@@ -22,9 +22,9 @@
         - unless @tax.goal.nil? or @tax.goal == 0
           (#{number_to_currency(@tax.goal, :precision => 0)} needed)
 
-         
+
     = render :partial => 'shared/share', :locals => {:url => request.url, :text => "#{h(@tax.name)} | AwesomeTax" }
-    
+
     %br/
     %h3
       Trustees
@@ -46,10 +46,10 @@
               return false;
             });
           });
-      
+
     = render :partial => 'users/tile', :collection => @tax.managers, :as => :user
     .clear
-    
+
     - unless @pledgers.empty?
       %br/
       %h3.clear Supporters
@@ -57,12 +57,12 @@
         = render :partial => 'users/minitile', :collection => @pledgers[0,(@pledgers.size/2.0).ceil], :as => :user
       .grid_6
         = render :partial => 'users/minitile', :collection => @pledgers[(@pledgers.size/2.0).ceil...@pledgers.size], :as => :user
-          
+
 
     .clear
     %br/
     = render :partial => 'shared/comments', :locals => { :comments => @tax.comments, :tax => @tax }
-  
+
   .grid_4
     - unless @my_pledges.empty?
       .callout.stats
@@ -71,12 +71,12 @@
         %h4 Total given to date:
         %h3= number_to_currency(@tax.transactions.sent.where(:user_id => current_user.id).sum(:amount), :precision => 0)
         = link_to 'Manage your payments', account_path
-        
+
     .callout
       - if !@tax.active?
         %h4 This tax is no longer active.
       - else
-        - form_for @pledge do |f|
+        = form_for @pledge do |f|
           = f.hidden_field :tax_id
           %h4{:style=>'margin-left: 32px; line-height: 25px; margin-bottom: 10px;'} How much would you like to contribute per month?
           %span{:style=>'font-size: 36px; width: 20px; display: inline-block;'} $
@@ -101,7 +101,7 @@
                   %b sherad_1274768045_per@gmail.com
                   and password
                   %b frequency
-      
+
     - if manager
       = javascript_include_tag 'bootstrap-modal.js'
       .callout
@@ -132,7 +132,7 @@
             return false;
           });
 
-            
+
     - unless user_signed_in?
       .clear{:style=>'height: 1em;'}
       .callout

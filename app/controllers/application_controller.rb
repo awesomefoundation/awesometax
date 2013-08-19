@@ -3,30 +3,29 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user, :admin?, :trustee?, :invitable_tax_options
   helper_method :store_location, :redirect_back_or_default
   helper_method :markdown, :num_taxpayers, :total_monthly, :next_collection_time, :time_until_collection
 
   private
-  
+
     def admin?
       current_user.andand.admin?
     end
     def trustee?
       current_user.andand.trustee?
     end
-    
+
     def require_admin
       unless admin?
         redirect_to root_url, :notice => "Administrators only beyond this point, sorry."
-        return false 
+        return false
       end
     end
     def require_trustee
       unless trustee?
         redirect_to root_url, :notice => "Board members only beyond this point, sorry."
-        return false 
+        return false
       end
     end
     def require_admin_or_trustee
@@ -35,24 +34,24 @@ class ApplicationController < ActionController::Base
         return false
       end
     end
-    
+
     def authenticate_inviter!
       admin? or trustee?
     end
-      
+
     def store_location
       session[:return_to] = request.request_uri
     end
-    
+
     def redirect_back_or_default(default)
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
     end
-        
+
     def markdown(str)
       BlueCloth::new(str).to_html
     end
-        
+
     def invitable_tax_options
       (admin? ? Tax.all : current_user.managed_taxes).collect { |t| [ t.name, t.id ] }
     end
@@ -72,5 +71,5 @@ class ApplicationController < ActionController::Base
     def time_until_collection
       next_collection_time - Time.zone.now
     end
-    
+
 end
