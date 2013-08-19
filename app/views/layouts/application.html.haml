@@ -19,13 +19,13 @@
   %meta{:property => "og:url", :content => request.url}
   %meta{:property => "fb:admins", :content => "2901636,620415163"}
 
-  
+
   %link{:href => "/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon"}/
   = stylesheet_link_tag 'bootstrap', '960', 'lovetax', 'css3-progress-bar.css'
   = javascript_include_tag 'jquery.min.js', 'jquery_ujs.js', 'bootstrap-dropdown.js'
   = csrf_meta_tag
 
-%body
+%body{:class => "#{controller_name} #{action_name}"}
   .topbar-wrapper{:style => "z-index: 5;"}
     .topbar{'data-dropdown' => 'dropdown'}
       .topbar-inner
@@ -35,7 +35,7 @@
             - if false
               %li{:class => current_page?(mock_path)  ? 'active' : ''}= link_to 'Widget',   mock_path
             %li= link_to 'Foundation', 'http://awesomefoundation.org', :target => '_blank'
-            
+
           - if user_signed_in?
             %ul.nav.secondary-nav
               %li.dropdown
@@ -58,7 +58,9 @@
   - if flash[:alert]
     .container_12.container
       .grid_12.centered.alert-message.warning= flash[:alert]
-      
+  - if session[:pledge_amount] && params[:controller] == 'devise/sessions' || params[:controller] == 'registrations'
+    = render :partial => "shared/pledge_notification"
+
   - if defined?(@no12) and @no12
     = yield
   - else
@@ -80,4 +82,3 @@
      g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
      s.parentNode.insertBefore(g, s);
     })(document, 'script');
-  

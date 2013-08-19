@@ -23,7 +23,7 @@ a {
 
 p {
   margin: 1em 0; }
-  
+
 ul, ol, li { font-size: 13px; }
 
 h1, .h1 {
@@ -60,7 +60,7 @@ textarea {
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
   font-size: 10pt;
   padding: 2px; }
-  
+
 .help-block { color: #999; }
 
 input[type="submit"] {
@@ -112,10 +112,10 @@ input.huge_input {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px; }
-  
-.callout { 
+
+.callout {
   background-color: rgba(255, 250, 252, 0.9);
-  border: 1px solid #ccc; 
+  border: 1px solid #ccc;
   padding: 1em;
   margin-bottom: 1em;
   }
@@ -132,12 +132,20 @@ input.huge_input {
 .tax .headline { padding: 0px 1em; }
 .tax .body { padding: 1em; }
 .tax h4 a {
-  color: white;    
+  color: white;
   text-transform: uppercase;
   font-weight: normal;
   font-size: 18px; border: none; }
 .tax h4 a:hover { border-bottom: 1px dotted white; }
 a.btn, a.btn:visited { color: #222; }
+
+.notification h4 {
+  color: #F33486;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: yellow;
+}
 
 .inactive {
   background-color: #e8e8e8; }
