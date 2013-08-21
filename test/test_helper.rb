@@ -3,7 +3,10 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
-  require 'mocha'
   Bundler.require(:test)
-  include Devise::TestHelpers 
+  require 'mocha/setup'
  end
+
+class ActionController::TestCase
+  include Devise::TestHelpers
+end
