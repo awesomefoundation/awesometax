@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :user do
-    id 1
     name 'John'
     email 'john@johnson.com'
     password 'lettuce'
@@ -11,7 +10,6 @@ FactoryGirl.define do
   end
 
   factory :admin, :class => User do
-    id 2
     name 'Admin'
     email 'admin@example.com'
     status User::ADMIN
@@ -19,24 +17,24 @@ FactoryGirl.define do
   end
 
   factory :trustee, :class => User do
-    id 3
     name 'Christina'
     email 'trustee@lovetax.us'
+    password 'lettuce'
     status User::TRUSTEE
     confirmed_at (DateTime.now - 6.hours)
   end
 
   factory :tax do
-    id 1
     name 'Portland'
-    description 'Awesome PDX.'
+    association :owner, :factory => :trustee
+    description 'Awesome PDX. We intend to make it even awesomer.'
+    goal 200
     paypal_email 'nobody@lemonary.com'
   end
 
   factory :pledge do
-    id 1
     amount 5
-    association :user, :factory => :verified
+    association :user
     association :tax, :factory => :tax
     status Pledge::ACTIVE
     preapproval_key 'toucan'
@@ -45,17 +43,14 @@ FactoryGirl.define do
   end
 
   factory :started, :parent => :pledge do
-    id 2
     status Pledge::INACTIVE
   end
 
   factory :paused, :parent => :pledge do
-    id 3
     status Pledge::PAUSED
   end
 
   factory :finished, :parent => :pledge do
-    id 4
     status Pledge::FINISHED
   end
 

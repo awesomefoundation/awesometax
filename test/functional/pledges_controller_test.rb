@@ -16,9 +16,9 @@ class PledgesControllerTest < ActionController::TestCase
         'maxAmountPerPayment' => '5',
         'responseEnvelope' => {'ack' => 'Success'}
       }))
-    PaypalAdaptive::Response.any_instance.stubs(:preapproval_paypal_payment_url).returns(@@fake_url)    
+    PaypalAdaptive::Response.any_instance.stubs(:preapproval_paypal_payment_url).returns(@@fake_url)
   end
-  
+
   def teardown
     User.delete_all
     Tax.delete_all
@@ -26,26 +26,31 @@ class PledgesControllerTest < ActionController::TestCase
   end
 
   test "should create pledge" do
-    pledge = Factory.build :pledge
+    pledge = FactoryGirl.build :pledge
     pledge.user.save
     pledge.tax.save
-    
-    UserSession.create pledge.user
-    
+
+    sign_in pledge.user
+
     assert_difference('Pledge.count') do
       post :create, { :pledge => { :amount => pledge.amount, :tax_id => pledge.tax.id } }
     end
     assert_response :redirect
     assert_redirected_to @@fake_url
   end
-  
+
   test "should complete the pledge" do
     # Coming back from paypal it's a get with just the id
-    p = Factory.create :started
+
+    p = FactoryGirl.create :started
+
+    sign_in p.user
+
+
     assert_equal Pledge::INACTIVE, Pledge.last.status
     get :completed, { :id =>  p.id }
     assert_equal Pledge::ACTIVE, Pledge.last.status
-    assert_redirected_to "/pledges/thanks/#{p.id}"
+    assert_redirected_to Pledge.last.tax
   end
-    
+
 end
