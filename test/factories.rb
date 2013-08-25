@@ -56,13 +56,6 @@ FactoryGirl.define do
 
 end
 
-
-# FactoryGirl.define :fb_user, :class => User do |i|
-#   i.id 3
-#   i.name 'Larry S'
-#   i.facebook_uid 2901636
-# end
-
 # FactoryGirl.define :no_login, :class => User do |i|
 #   i.email nil
 #   i.password nil
