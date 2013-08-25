@@ -5,27 +5,27 @@
   .grid_12
     %h2 Management
     %br/
-    
+
     %ul.tabs{'data-tabs' => 'tabs'}
       %li.active= link_to "Taxes (#{@taxes.length})", '#taxes'
       %li= link_to "Users (#{@users.length})", '#users'
       %li= link_to "Transactions (#{@transactions.length})", '#transactions'
       %li= link_to "Comments (#{@comments.length})", '#comments'
-    :javascript     
+    :javascript
       $(document).ready(function() {
         if(window.location.hash != '') {
           $('a[href="' + window.location.hash + '"]').click();
         }
       });
-      
-      
+
+
     .tab-content
       #taxes.active
         %h3 Taxes
         .grid_6.alpha
           = render :partial => 'shared/tax', :collection => @taxes
         .grid_6.omega
-            
+
       #users
         %h3 Users
         .grid_8.alpha
@@ -36,7 +36,6 @@
                 %th Email
                 %th Status
                 %th Joined
-                %th Inviter
             %tbody
               - @users.each do |u|
                 %tr
@@ -44,11 +43,6 @@
                   %td= u.email
                   %td= u.status_s
                   %td= u.created_at.to_date
-                  %td= u.invited_by.nil? ? '-' : link_to(u.invited_by.name, u.invited_by)
-              
-        .grid_4.omega
-          .callout
-            = render :partial => 'shared/invite'        
 
       #transactions
         %h3 Transactions

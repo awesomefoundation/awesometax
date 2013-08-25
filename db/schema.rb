@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120320232404) do
+ActiveRecord::Schema.define(:version => 20130825193605) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(:version => 20120320232404) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "settings", :force => true do |t|
-    t.string   "var",                       :null => false
+    t.string   "var",                       :default => "", :null => false
     t.text     "value"
     t.integer  "target_id"
     t.string   "target_type", :limit => 30
@@ -96,9 +96,9 @@ ActiveRecord::Schema.define(:version => 20120320232404) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",                                                  :null => false
-    t.string   "email",                                 :default => "", :null => false
+    t.string   "name"
     t.integer  "status"
+    t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -115,12 +115,6 @@ ActiveRecord::Schema.define(:version => 20120320232404) do
     t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "invitation_token",       :limit => 60
-    t.datetime "invitation_sent_at"
-    t.datetime "invitation_accepted_at"
-    t.integer  "invitation_limit"
-    t.integer  "invited_by_id"
-    t.string   "invited_by_type"
     t.string   "url"
     t.string   "bio"
     t.string   "twitter"
@@ -132,8 +126,6 @@ ActiveRecord::Schema.define(:version => 20120320232404) do
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token"
-  add_index "users", ["invited_by_id"], :name => "index_users_on_invited_by_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

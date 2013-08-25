@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  helper_method :current_user_session, :current_user, :admin?, :trustee?, :invitable_tax_options
+  helper_method :current_user_session, :current_user, :admin?, :trustee?
   helper_method :store_location, :redirect_back_or_default
   helper_method :markdown, :num_taxpayers, :total_monthly, :next_collection_time, :time_until_collection
 
@@ -35,10 +35,6 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def authenticate_inviter!
-      admin? or trustee?
-    end
-
     def store_location
       session[:return_to] = request.request_uri
     end
@@ -50,10 +46,6 @@ class ApplicationController < ActionController::Base
 
     def markdown(str)
       BlueCloth::new(str).to_html
-    end
-
-    def invitable_tax_options
-      (admin? ? Tax.all : current_user.managed_taxes).collect { |t| [ t.name, t.id ] }
     end
 
     def num_taxpayers

@@ -30,22 +30,6 @@
       Trustees
       - if manager
         = link_to '+', '#', :id => 'add_trustee_link'
-    - if manager
-      %div{:style => 'position: relative;'}
-        #invite.hide{:style => 'position: absolute; width: 240px; height: auto; left: 160px; top: -50px; background-color: white; padding: 1em; border: 1px solid #888;'}
-          = link_to 'x', '#', :id => 'close_invite', :style => 'display: block; position: absolute; right: 10px; top: 10px;'
-          = render :partial => 'shared/invite', :locals => { :tax => @tax }
-        :javascript
-          $(document).ready(function(e) {
-            $('#add_trustee_link, #close_link').click(function(e) {
-              $('#invite').toggleClass('hide');
-              return false;
-            });
-            $('#close_invite').click(function(e) {
-              $('#invite').addClass('hide');
-              return false;
-            });
-          });
 
     = render :partial => 'users/tile', :collection => @tax.managers, :as => :user
     .clear
@@ -109,8 +93,6 @@
         = link_to 'Edit this tax', edit_tax_path(@tax.slug)
         %br/
         = link_to 'Message all supporters', new_message_path(:tax_id => @tax.id)
-        %br/
-        = link_to 'Invite a trustee', admin_path(:anchor => 'users')
         %br/
         = link_to 'Get embed code', '#', { 'data-controls-modal' => "embed", 'data-keyboard' => 'true' }
         %br/

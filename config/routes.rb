@@ -12,19 +12,18 @@ LoveTax3::Application.routes.draw do
   resources :pledges, :only => [ :show, :create ]
   resources :comments, :only => [ :create, :destroy ]
   resources :messages, :only => [ :new, :create, :edit, :update, :destroy ]
-  
+
   match 'pledges/:id/start' => 'pledges#start', :as => :start
   match 'pledges/:id/pause' => 'pledges#pause', :as => :pause
   match 'pledges/:id/stop'  => 'pledges#stop', :as =>  :stop
   match 'pledges/:id/:action', :controller => 'pledges'
   match 'pledges/:action',     :controller => 'pledges'
-  
+
   match 'admin' => 'admin#index',         :as => :admin
-  match 'admin/invite' => 'admin#invite', :as => :invite, :method => :post
-  match 'guide' => 'home#guide',          :as => :guide 
+  match 'guide' => 'home#guide',          :as => :guide
   match 'widget/mock' => 'home#mock',     :as => :mock
-  match 'widget/:id.js' => 'home#widget', :format => :js  
+  match 'widget/:id.js' => 'home#widget', :format => :js
   match 'rounds/notify' => 'pledges#notify', :as => :notify  # IPNs have stale erroneous url
-  
+
   root :to => "home#index"
 end

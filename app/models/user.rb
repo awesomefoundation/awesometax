@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   require 'mogrify'
 
-  devise :invitable, :database_authenticatable, :token_authenticatable, :omniauthable, :confirmable, :recoverable,
+  devise :database_authenticatable, :token_authenticatable, :omniauthable, :confirmable, :recoverable,
     :registerable, :rememberable, :trackable, :validatable, :encryptable
 
   has_settings do |s|
