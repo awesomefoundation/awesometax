@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  helper_method :current_user_session, :current_user, :admin?, :trustee?
+  helper_method :current_user_session, :current_user, :admin?, :trustee?, :can_edit?
   helper_method :store_location, :redirect_back_or_default
   helper_method :markdown, :num_taxpayers, :total_monthly, :next_collection_time, :time_until_collection
 
@@ -33,6 +33,11 @@ class ApplicationController < ActionController::Base
         redirect_to root_url, :notice => "Trustees and admins only beyond this point, sorry."
         return false
       end
+    end
+
+    def can_edit?(tax_id)
+      tax = Tax.find_by_slug(tax_id) || Tax.find(tax_id)
+      admin? || tax.managers.include?(current_user)
     end
 
     def store_location

@@ -1,17 +1,20 @@
 class RolesController < ApplicationController
 
   def index
-    @tax = Tax.find_by_slug(params[:tax_id]) || Tax.find(params[:tax_id])
-
-    unless admin? || (@tax.active? && @tax.managers.include?(current_user))
+    unless can_edit?(params[:tax_id])
       redirect_to account_path and return
     end
 
+    @tax = Tax.find_by_slug(params[:tax_id]) || Tax.find(params[:tax_id])
     @supporters = @tax.pledgers - @tax.managers
 
   end
 
   def create
+    unless can_edit?(params[:tax_id])
+      redirect_to account_path and return
+    end
+
     @role = Role.new(params[:role])
 
     if @role.save
@@ -24,6 +27,10 @@ class RolesController < ApplicationController
   end
 
   def destroy
+    unless can_edit?(params[:tax_id])
+      redirect_to account_path and return
+    end
+
     @role = Role.find(params[:id])
     @role.destroy
 
