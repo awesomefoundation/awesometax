@@ -1,6 +1,6 @@
 - @no12 = true
 - @subtitle = @tax.name
-- manager = admin? or @tax.managers.include?(current_user)
+- manager = admin? || @tax.managers.include?(current_user)
 
 .container_12.container
   .grid_12
@@ -91,6 +91,8 @@
       .callout
         %h4 Admin tools
         = link_to 'Edit this tax', edit_tax_path(@tax.slug)
+        %br/
+        = link_to 'Promote supporters to managers', tax_roles_path(@tax.slug)
         %br/
         = link_to 'Message all supporters', new_message_path(:tax_id => @tax.id)
         %br/

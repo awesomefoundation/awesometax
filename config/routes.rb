@@ -8,7 +8,9 @@ LoveTax3::Application.routes.draw do
   resources :users, :only => [ :show ]
   resource  :account, :controller => 'users'
   match     'account' => 'users#show', :as => :my_account, :method => :get
-  resources :taxes
+  resources :taxes do
+    resources :roles
+  end
   resources :pledges, :only => [ :show, :create ]
   resources :comments, :only => [ :create, :destroy ]
   resources :messages, :only => [ :new, :create, :edit, :update, :destroy ]
