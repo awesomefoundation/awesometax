@@ -27,13 +27,13 @@ class TaxesControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test "trustees can make taxes" do
+  test "trustees cannot make taxes" do
     u = FactoryGirl.create :trustee
     sign_in u
 
-    assert_difference('Tax.count') do
+    assert_difference('Tax.count', 0) do
       post :create, { :tax => @@tax_params, :paypal_first => 'Test', :paypal_last => 'User' }
     end
-    assert_redirected_to tax_path(Tax.last.slug)
+    assert_redirected_to root_path
   end
 end

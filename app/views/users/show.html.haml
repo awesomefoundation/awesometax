@@ -20,7 +20,7 @@
     .clear
     - if @user.bio
       %p= @user.bio
-    
+
 
     %ul.tabs{'data-tabs' => 'tabs', :style => 'margin-top: 2em;'}
       - skip = (@pledges.empty? and !@managed.empty?)
@@ -29,13 +29,13 @@
       - if @myself
         %li= link_to 'Messages', '#messages'
         %li= link_to "History", '#history'
-    :javascript     
+    :javascript
       $(document).ready(function() {
         if(window.location.hash != '') {
           $('a[href="' + window.location.hash + '"]').click();
         }
       });
-        
+
     .tab-content
       #giving{:class => skip ? '' : 'active'}
         %h3 My Giving
@@ -54,10 +54,10 @@
                 %h4 Given to Date:
                 %h3= number_to_currency(@total_given)
 
-        
+
       #taxes{:class => skip ? 'active' : ''}
         %h3 My Taxes
-        - if @managed.blank?
+        - if admin? && @managed.blank?
           %p
             I haven't started any yet, but it's free and easy to #{link_to "create a tax", new_tax_path}.
         - else
@@ -74,8 +74,8 @@
                 %h3= number_to_currency(@managed_sum)
                 %h4 Income to Date:
                 %h3= number_to_currency(@total_received)
-                
-              - if trustee? or admin?
+
+              - if admin?
                 .callout
                   %h4= link_to 'Create a tax', new_tax_path
 
@@ -85,7 +85,7 @@
           .grid_8.alpha
             %p You'll receive periodic communications here from the taxes you pledge or subscribe to.
             = render :partial => 'shared/message', :collection => @messages
-            
+
           .grid_4.omega
             - if @managed.blank?
               %p If you had started any taxes, you would be able to broadcast messages to their funders.
@@ -102,13 +102,13 @@
                   = link_to m.effective_title, edit_message_path(m)
                   = raw icons[m.status]
                   %br/
-          
+
         #history
           .grid_8.alpha
             %h3 Transaction History
             - if @transactions.blank?
               %p You don't have any transactions yet.
-            
+
             - unless @transactions.blank?
               %br/
               %table{:width => '100%'}
@@ -125,7 +125,7 @@
                       %td= number_to_currency(t.amount)
                       %td= t.kind == Transaction::SENT ? 'Sent' : 'Received'
                       %td= t.created_at.to_date
-      
+
         .grid_4.omega
           - if Rails.env != 'production'
             .callout
@@ -133,5 +133,4 @@
               you may also
               = link_to 'execute these pending transactions now', :controller => 'pledges', :action => 'collect'
               simulating tax-collection day. (This message won't appear in the public release of the site.)
-      
-    
+

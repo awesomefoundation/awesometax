@@ -1,11 +1,11 @@
 class TaxesController < ApplicationController
 
-  before_filter :require_admin_or_trustee, :except => [:index, :show]
+  before_filter :require_admin, :only => [:new, :create]
 
   def index
     @taxes = Tax.active(:order => 'id asc').reverse
   end
-  
+
   def show
     @tax = Tax.find_by_slug(params[:id]) || Tax.find(params[:id])
     @pledge = Pledge.new(:amount => 10, :tax_id => @tax.id)
@@ -18,13 +18,13 @@ class TaxesController < ApplicationController
     @tax = Tax.new(:goal => AppConfig.minimum_goal)
     fill_paypal_details(@tax)
   end
-  
+
   def create
     unless verify_paypal(params[:tax][:paypal_email], params[:paypal_first], params[:paypal_last])
       redirect_to new_tax_path, :notice => "Sorry, we couldn't verify that PayPal account."
       return
-    end 
- 
+    end
+
     @tax = Tax.new(params[:tax])
     fill_paypal_details(@tax)
     if @tax.goal < AppConfig.minimum_goal
@@ -32,10 +32,10 @@ class TaxesController < ApplicationController
       render :action => 'new'
       return
     end
-    
+
     @tax.status = Tax::ACTIVE
     @tax.owner = current_user # Deprecated, just holds the creator (ie person who entered paypal recipient info)
-    
+
     if @tax.save
       @tax.managers << current_user
       redirect_to tax_path(@tax.slug)
@@ -44,13 +44,21 @@ class TaxesController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
+    unless can_edit?(params[:id])
+      redirect_to account_path and return
+    end
+
     @tax = Tax.find_by_slug(params[:id]) || Tax.find(params[:id])
     redirect_to account_path and return unless admin? or (@tax.managers.include?(current_user.id) and @tax.active?)
   end
-  
+
   def update
+    unless can_edit?(params[:id])
+      redirect_to account_path and return
+    end
+
     @tax = Tax.find_by_slug(params[:id]) || Tax.find(params[:id])
     redirect_to :controller => 'taxes', :action => 'show', :id => @tax.slug
     logger.info "one"
@@ -62,10 +70,14 @@ class TaxesController < ApplicationController
     #  @tax.update_attributes({:video_type => video_details[:type].to_s, :video_id => video_details[:id]})
     #else
     #  @tax.update_attributes({:video_type => nil, :video_id => nil})
-    #end 
+    #end
   end
-  
+
   def destroy
+    unless can_edit?(params[:id])
+      redirect_to account_path and return
+    end
+
     @tax = Tax.find_by_slug(params[:id]) || Tax.find(params[:id])
     if @tax.managers.include?(current_user) or admin?
       @tax.stop
@@ -74,8 +86,8 @@ class TaxesController < ApplicationController
       redirect_to @tax, :notice => "You don't own that tax so you can't end it."
     end
   end
-  
-  
+
+
   private
 
   def fill_paypal_details(tax)
@@ -88,7 +100,7 @@ class TaxesController < ApplicationController
       @paypal_last = 'User'
     end
   end
-   
+
   # Return true if it's valid, false if we can't tell
   def verify_paypal(email, first, last)
    data = {
@@ -103,6 +115,6 @@ class TaxesController < ApplicationController
     logger.info response.inspect
     return (response.success? and response['accountStatus'] == 'VERIFIED')
   end
-  
-  
+
+
 end
