@@ -4,6 +4,11 @@
     %br/
     %h3
       Managers
+    #user_search_form
+      = form_for [@tax, @role] do |f|
+        = f.hidden_field :tax_id, value: @tax.id
+        = f.hidden_field :kind, value: 1
+        = f.autocomplete_field :user_name, home_autocomplete_user_name_path
 
     = render partial: 'users/minitile', collection: @tax.managers, as: :user
     .clear

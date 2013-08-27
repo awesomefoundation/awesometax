@@ -6,6 +6,8 @@ LoveTax3::Application.routes.draw do
   end
 
   resources :users, :only => [ :show ]
+  get 'home/autocomplete_user_name'
+
   resource  :account, :controller => 'users'
   match     'account' => 'users#show', :as => :my_account, :method => :get
   resources :taxes do

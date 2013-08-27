@@ -1,19 +1,20 @@
 class HomeController < ApplicationController
-  
+  autocomplete :user, :name
+
   include ActionView::Helpers::NumberHelper
   include ActionView::Helpers::TextHelper
-  
+
   def index
     @taxes = Tax.active.order('id asc')
     @columns = [ [], [] ]
     @taxes.each_with_index { |t,i| @columns[i & 1] << t }
   end
-  
+
   def mock
     @tax = Tax.find_by_slug 'new-orleans'
     render :layout => false if params[:unstyled] == '1'
   end
-  
+
   def widget
     @tax = Tax.find(params[:id])
     @json = {
@@ -27,5 +28,5 @@ class HomeController < ApplicationController
       :percent      => @tax.percent_funded,
     }.to_json
   end
-  
+
 end

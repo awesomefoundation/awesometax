@@ -8,6 +8,7 @@ class RolesController < ApplicationController
     @tax = Tax.find_by_slug(params[:tax_id]) || Tax.find(params[:tax_id])
     @supporters = @tax.pledgers - @tax.managers
 
+    @role = Role.new
   end
 
   def create
