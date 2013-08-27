@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  before_filter :require_admin_or_trustee
+  before_filter :require_admin
 
   def index
     @users = User.all(:limit => 25, :order => 'id desc')

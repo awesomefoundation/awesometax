@@ -11,12 +11,12 @@ class AdminControllerTest < ActionController::TestCase
 
   end
 
-  test "trustees can view dashboard" do
+  test "trustees cannot view dashboard" do
     u = FactoryGirl.create :trustee
     sign_in u
 
     get :index
-    assert_response :success
+    assert_redirected_to root_path
 
   end
 
