@@ -185,3 +185,11 @@ input[type=email] { padding: 2px; }
 .profile h2 { padding-bottom: 0.25em; }
 .profile .links { font-weight: bold; }
 a img { border-width: 0px; }
+
+.role_action {
+  font-size: 12px;
+}
+
+.role_action a {
+  border-bottom: none;
+}

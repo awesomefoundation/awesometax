@@ -2,7 +2,7 @@ MyXssMagic = new function() {
   var ROOT = 'lovetax_widget';
   var BASE_URL = document.getElementById(ROOT).getAttribute('data-host');
   //var BASE_URL = 'http://tax.local';
-  var STYLESHEET = BASE_URL + "/stylesheets/xss_magic.css"
+  var STYLESHEET = BASE_URL + "/assets/xss_magic.css"
   var CONTENT_URL = BASE_URL + '/widget/';
 
   function requestStylesheet(stylesheet_url) {
@@ -35,7 +35,7 @@ MyXssMagic = new function() {
       if (txt.length > 0) { txt += ", "; }
       txt += data[i];
     }
-    div.innerHTML = "<h4><a class='lovetax_title' href='" + BASE_URL + "/taxes/" + data.id + "'>" + data.name + "</a></h4>" + 
+    div.innerHTML = "<h4><a class='lovetax_title' href='" + BASE_URL + "/taxes/" + data.id + "'>" + data.name + "</a></h4>" +
       "<p>" + data.description + "</p>" +
       "<div class='bar_container'><div class='bar_mortice'><div class='progress pink' style='width: " + data.percent + "%;'></div></div></div>" +
       "<p>Raising " + data.monthly + " monthly from " + data.supporters +

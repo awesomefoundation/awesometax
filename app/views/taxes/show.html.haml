@@ -107,7 +107,7 @@
             %pre.prettyprint
               = "<div id='lovetax_widget' data-id='#{@tax.id}' data-host='http://#{request.host}'></div>"
               %br/
-              = "<script src='http://#{request.host}/javascripts/xss_magic.js'></script>"
+              = "<script src='http://#{request.host}/assets/xss_magic.js'></script>"
           .modal-footer
             = link_to 'Close', '#', :class => 'btn close'
         :javascript

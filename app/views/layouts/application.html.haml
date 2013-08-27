@@ -21,8 +21,7 @@
 
 
   %link{:href => "/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon"}/
-  = stylesheet_link_tag 'bootstrap', '960', 'lovetax', 'css3-progress-bar.css'
-  = javascript_include_tag 'jquery.min.js', 'jquery_ujs.js', 'bootstrap-dropdown.js'
+  = stylesheet_link_tag 'application'
   = csrf_meta_tag
 
 %body{:class => "#{controller_name} #{action_name}"}
@@ -69,6 +68,8 @@
         = yield
 
   .clear{:style => "height: 3em;"}
+
+  = javascript_include_tag 'application'
 
   %script{:src => "http://use.typekit.com/szj4uep.js", :type => "text/javascript"}
   :javascript
