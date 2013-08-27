@@ -1,3 +1,11 @@
 .minitile
   = link_to image_tag(user.picture_url(:size => 32), :class => 'icon float_left', :title => user.name), user, :style => 'border: none;'
-  %h4= link_to user.name, user
+  %h4
+    = link_to user.name, user
+    - if params[:controller] == 'roles'
+      %span.role_action
+        - if @tax.managers.include?(user)
+          - role = @tax.manager_roles.where(user_id: user.id).first
+          = link_to "Remove Manager", tax_role_path(@tax.id, role.id), method: :delete
+        - else
+          = link_to "Make Manager", tax_roles_path(role: {tax_id: @tax.id, user_id: user.id, kind: 1}), method: :post

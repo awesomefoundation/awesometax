@@ -1,0 +1,15 @@
+.container_12
+  .grid_12
+    %h2 Manage Supporters: #{@tax.name}
+    %br/
+    %h3
+      Managers
+
+    = render partial: 'users/minitile', collection: @tax.managers, as: :user
+    .clear
+
+    - unless @supporters.empty?
+      %br/
+      %h3.clear Supporters
+      .grid_6
+        = render partial: 'users/minitile', collection: @supporters, as: :user
