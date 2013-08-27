@@ -23,6 +23,7 @@ gem 'paypal_adaptive',  :path => 'vendor/gems/paypal_adaptive'
 gem 'psych'
 gem 'sass'
 gem 'rails_autolink'
+gem 'rails3-jquery-autocomplete', '0.6.0'
 
 group :assets do
   gem 'sass-rails', " ~> 3.2.3"
