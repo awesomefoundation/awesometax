@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   helper_method :tax_options
 
   def new
-    unless can_edit?(params[:tax_id])
+    unless has_partial_tax_powers?(params[:tax_id])
       redirect_to account_path and return
     end
 
@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(params[:message])
 
-    unless can_edit?(@message.tax_id)
+    unless has_partial_tax_powers?(@message.tax_id)
       redirect_to account_path and return
     end
 
@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
   def edit
     @message = Message.find params[:id]
 
-    unless can_edit?(@message.tax_id)
+    unless has_partial_tax_powers?(@message.tax_id)
       redirect_to account_path and return
     end
 
@@ -37,7 +37,7 @@ class MessagesController < ApplicationController
 
   def update
     @message = Message.find params[:id]
-    unless can_edit?(@message.tax_id)
+    unless has_partial_tax_powers?(@message.tax_id)
       redirect_to account_path and return
     end
 
