@@ -23,7 +23,7 @@
 
 
     %ul.tabs{'data-tabs' => 'tabs', :style => 'margin-top: 2em;'}
-      - skip = (@pledges.empty? and !@managed.empty?)
+      - skip = (@pledges.empty? and !@supervised.empty?)
       %li{:class => skip ? '' : 'active'}= link_to "My Giving", '#giving'
       %li{:class => skip ? 'active' : ''}= link_to "My Taxes", '#taxes'
       - if @myself
@@ -57,21 +57,21 @@
 
       #taxes{:class => skip ? 'active' : ''}
         %h3 My Taxes
-        - if admin? && @managed.blank?
+        - if admin? && @supervised.blank?
           %p
             I haven't started any yet, but it's free and easy to #{link_to "create a tax", new_tax_path}.
         - else
           .grid_6.alpha
-            = render :partial => 'shared/tax', :collection => @managed, :locals => { :mine => @myself }
+            = render :partial => 'shared/tax', :collection => @supervised, :locals => { :mine => @myself }
           .grid_3.omega.suffix_3
             - if @myself
               .stats
                 %h4 Receiving From:
-                %h3= pluralize(@managed_count, 'person')
+                %h3= pluralize(@supervised_count, 'person')
                 %h4 On:
-                %h3= pluralize(@managed.count, 'tax')
+                %h3= pluralize(@supervised.count, 'tax')
                 %h4 Monthly Total:
-                %h3= number_to_currency(@managed_sum)
+                %h3= number_to_currency(@supervised_sum)
                 %h4 Income to Date:
                 %h3= number_to_currency(@total_received)
 
@@ -87,7 +87,7 @@
             = render :partial => 'shared/message', :collection => @messages
 
           .grid_4.omega
-            - if @managed.blank?
+            - if @supervised.blank?
               %p If you had started any taxes, you would be able to broadcast messages to their funders.
             - else
               %h4 Send a Message
