@@ -27,5 +27,25 @@ class TaxesControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
+  test "managers can edit tax" do
+    u = FactoryGirl.create :manager
+    t = u.managed_taxes.first
+    sign_in u
+
+    get :edit, :id => t.id
+    assert_response :success
+
+  end
+
+  test "trustees can edit tax" do
+    u = FactoryGirl.create :trustee
+    t = u.trusted_taxes.first
+    sign_in u
+
+    get :edit, :id => t.id
+    assert_response :success
+
+  end
+
 
 end

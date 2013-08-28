@@ -46,16 +46,15 @@ class TaxesController < ApplicationController
   end
 
   def edit
-    unless can_edit?(params[:id])
+    unless has_partial_tax_powers?(params[:id])
       redirect_to account_path and return
     end
 
     @tax = Tax.find_by_slug(params[:id]) || Tax.find(params[:id])
-    redirect_to account_path and return unless admin? or (@tax.managers.include?(current_user.id) and @tax.active?)
   end
 
   def update
-    unless can_edit?(params[:id])
+    unless has_partial_tax_powers?(params[:id])
       redirect_to account_path and return
     end
 
@@ -74,7 +73,7 @@ class TaxesController < ApplicationController
   end
 
   def destroy
-    unless can_edit?(params[:id])
+    unless has_full_tax_powers?(params[:id])
       redirect_to account_path and return
     end
 

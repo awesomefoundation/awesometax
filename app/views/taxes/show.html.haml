@@ -29,7 +29,7 @@
     %h3
       Trustees
 
-    = render :partial => 'users/tile', :collection => @tax.managers, :as => :user
+    = render :partial => 'users/tile', :collection => @tax.supervisors, :as => :user
     .clear
 
     - unless @pledgers.empty?
@@ -84,28 +84,30 @@
                   and password
                   %b frequency
 
-    - if manager
+    - if has_partial_tax_powers?(@tax.id)
       = javascript_include_tag 'bootstrap-modal.js'
       .callout
         %h4 Admin tools
         = link_to 'Edit this tax', edit_tax_path(@tax.slug)
         %br/
-        = link_to 'Promote supporters to managers', tax_roles_path(@tax.slug)
-        %br/
+        - if has_full_tax_powers?(@tax.id)
+          = link_to 'Manage trustees', tax_roles_path(@tax.slug)
+          %br/
         = link_to 'Message all supporters', new_message_path(:tax_id => @tax.id)
         %br/
         = link_to 'Get embed code', '#', { 'data-controls-modal' => "embed", 'data-keyboard' => 'true' }
         %br/
-        = link_to 'Close this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to terminate this tax?" } unless @tax.status == Tax::ENDED
-        .modal.hide.fade{:id => "embed"}
-          .modal-header
-            %a.close{:href => '#'} x
-            %h3 Embed code for #{@tax.name}
-          .modal-body
-            %pre.prettyprint
-              = "<div id='lovetax_widget' data-id='#{@tax.id}' data-host='http://#{request.host}'></div>"
-              %br/
-              = "<script src='http://#{request.host}/assets/xss_magic.js'></script>"
+        - if has_full_tax_powers?(@tax.id)
+          = link_to 'Close this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to terminate this tax?" } unless @tax.status == Tax::ENDED
+          .modal.hide.fade{:id => "embed"}
+            .modal-header
+              %a.close{:href => '#'} x
+              %h3 Embed code for #{@tax.name}
+            .modal-body
+              %pre.prettyprint
+                = "<div id='lovetax_widget' data-id='#{@tax.id}' data-host='http://#{request.host}'></div>"
+                %br/
+                = "<script src='http://#{request.host}/assets/xss_magic.js'></script>"
           .modal-footer
             = link_to 'Close', '#', :class => 'btn close'
         :javascript
