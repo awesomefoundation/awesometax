@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  helper_method :current_user_session, :current_user, :admin?, :can_edit?
+  helper_method :current_user_session, :current_user, :admin?, :has_full_tax_powers?, :has_partial_tax_powers?
   helper_method :store_location, :redirect_back_or_default
   helper_method :markdown, :num_taxpayers, :total_monthly, :next_collection_time, :time_until_collection
 
@@ -20,9 +20,14 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def can_edit?(tax_id)
+    def has_full_tax_powers?(tax_id)
       tax = Tax.find_by_slug(tax_id) || Tax.find(tax_id)
       admin? || tax.managers.include?(current_user)
+    end
+
+    def has_partial_tax_powers?(tax_id)
+      tax = Tax.find_by_slug(tax_id) || Tax.find(tax_id)
+      admin? || tax.managers.include?(current_user) || tax.trustees.include?(current_user)
     end
 
     def store_location
