@@ -17,6 +17,33 @@ FactoryGirl.define do
     confirmed_at (DateTime.now - 6.hours)
   end
 
+  factory :trustee, :parent => :user do
+    after(:create) do |user|
+      create(:trustee_role, user: user)
+    end
+  end
+
+  factory :manager, :parent => :user do
+    after(:create) do |user|
+      create(:manager_role, user: user)
+    end
+  end
+
+  factory :role do
+    kind 2
+    association :user
+    association :tax
+  end
+
+  factory :manager_role, :parent => :role do
+    kind 1
+  end
+
+  factory :trustee_role, :parent => :role do
+    kind 3
+  end
+
+
   factory :tax do
     name 'Portland'
     association :owner, :factory => :admin
