@@ -7,6 +7,14 @@
   .grid_6
     = render partial: 'users/minitile', collection: @tax.managers, as: :user
 
+  .clear
+
+  .grid_12
+    %h3
+      Trustees
+  .grid_6
+    = render partial: 'users/minitile', collection: @tax.trustees, as: :user
+
   .grid_6
     .callout
       %h4 Find People
