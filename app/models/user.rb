@@ -38,8 +38,12 @@ class User < ActiveRecord::Base
   has_many :roles, :dependent => :destroy
   has_many :funder_roles,  :class_name => 'Role', :conditions => { :kind => Role::FUNDER }, :uniq => true
   has_many :manager_roles, :class_name => 'Role', :conditions => { :kind => Role::MANAGER }, :uniq => true
+  has_many :trustee_roles, :class_name => 'Role', :conditions => { :kind => Role::TRUSTEE }, :uniq => true
+
   has_many :funded_taxes,  :class_name => 'Tax',  :through => :funder_roles,  :source => :tax, :uniq => true
   has_many :managed_taxes, :class_name => 'Tax',  :through => :manager_roles, :source => :tax, :uniq => true
+  has_many :trusted_taxes, :class_name => 'Tax',  :through => :trustee_roles, :source => :tax, :uniq => true
+
 
   scope :admins,   where(:status => ADMIN)
 
