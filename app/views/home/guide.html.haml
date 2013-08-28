@@ -8,12 +8,12 @@
 .container.container_12
   .grid_6
     %p The #{link_to 'Awesome Foundation', 'http://awesomefoundation.org'} distributes a series of monthly $1,000 grants to projects in different cities. The money is pooled together from the coffers of self-organizing "micro-trustees" and given upfront in cash. City chapters are autonomous and organized by the trustees around geographic areas or topics of interest.
-    %p You can become a trustee by signing up to pay however much you'd like per month into a city's fund. All your money will go directly to making awesome things happen in the city or cities of your choice. 
+    %p You can become a trustee by signing up to pay however much you'd like per month into a city's fund. All your money will go directly to making awesome things happen in the city or cities of your choice.
 
     = render :partial => 'shared/share'
 
     .clear{:style => 'height: 1em;'}
-    
+
     %h3 What kinds of things will your AwesomeTax fund?
     Some examples that have already been funded:
     %ul
@@ -23,7 +23,7 @@
       %li Massively multi-player laser tag with your phone
       %li A flashmob system for crowdbuying from local businesses
 
-    
+
     %h3 Terms of Use
     %ul
       %li
@@ -36,7 +36,7 @@
         While it's free to start a tax, when you receive your monthly funding, the standard
         = link_to 'PayPal fees', 'https://www.paypal.com/cgi-bin/webscr?cmd=_display-receiving-fees-outside&countries='
         will be subtracted from your "paycheck."
-    
+
     %h3 Contact info
     %p
       LOVELAND Technologies makes maps and social payment systems. Check out #{link_to 'makeloveland.com', 'http://makeloveland.com'} and #{link_to "Why Don't We Own This?", 'http://whydontweownthis.com'}.
@@ -52,7 +52,7 @@
         %li Follow the directions at the PayPal site to start payments.
         %li Invite your friends to do it too.
         %li Bask in joy.
-    
+
     .callout
       %h3 How to stop paying a tax
       %ol
@@ -60,7 +60,7 @@
         %li Click the "Pause" or "Stop" button. "Pause" stops payments from happening until you unpause &mdash; you can leave it paused for as long as you want &mdash; while "Stop" completely removes the tax from your record.
         %li Eat a sandwich.
 
-    - if admin? or trustee?
+    - if admin?
       .callout
         %h3 How to start your own
         %ol

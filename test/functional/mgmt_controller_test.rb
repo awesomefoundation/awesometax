@@ -11,13 +11,5 @@ class AdminControllerTest < ActionController::TestCase
 
   end
 
-  test "trustees cannot view dashboard" do
-    u = FactoryGirl.create :trustee
-    sign_in u
-
-    get :index
-    assert_redirected_to root_path
-
-  end
 
 end

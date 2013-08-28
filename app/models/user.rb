@@ -25,8 +25,7 @@ class User < ActiveRecord::Base
   NORMAL   = 0
   ADMIN    = 1
   VERIFIED = 2
-  TRUSTEE  = 3
-  DISABLED = 4
+  DISABLED = 3
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :status
   attr_accessible :settings, :url, :bio, :twitter, :picture
@@ -43,7 +42,6 @@ class User < ActiveRecord::Base
   has_many :managed_taxes, :class_name => 'Tax',  :through => :manager_roles, :source => :tax, :uniq => true
 
   scope :admins,   where(:status => ADMIN)
-  scope :trustees, where(:status => TRUSTEE)
 
   after_create :notify_created
   before_picture_post_process :modify
@@ -51,22 +49,17 @@ class User < ActiveRecord::Base
   def admin?
     status == ADMIN
   end
-  def trustee?
-    status == TRUSTEE
-  end
 
   def status_s
     { NORMAL    => 'Normal',
       ADMIN     => 'Admin',
       VERIFIED  => 'Verified',
-      TRUSTEE   => 'Trustee',
       DISABLED  => 'Disabled' }[status]
   end
 
   def labels
     list = []
     list << 'Administrator' if self.admin?
-    list << 'Trustee' if self.trustee?
     list << 'Supporter' if self.pledges.active.exists?
     return list
   end

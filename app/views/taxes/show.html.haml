@@ -28,8 +28,6 @@
     %br/
     %h3
       Trustees
-      - if manager
-        = link_to '+', '#', :id => 'add_trustee_link'
 
     = render :partial => 'users/tile', :collection => @tax.managers, :as => :user
     .clear

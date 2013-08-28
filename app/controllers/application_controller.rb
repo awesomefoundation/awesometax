@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  helper_method :current_user_session, :current_user, :admin?, :trustee?, :can_edit?
+  helper_method :current_user_session, :current_user, :admin?, :can_edit?
   helper_method :store_location, :redirect_back_or_default
   helper_method :markdown, :num_taxpayers, :total_monthly, :next_collection_time, :time_until_collection
 
@@ -12,25 +12,10 @@ class ApplicationController < ActionController::Base
     def admin?
       current_user.andand.admin?
     end
-    def trustee?
-      current_user.andand.trustee?
-    end
 
     def require_admin
       unless admin?
         redirect_to root_url, :notice => "Administrators only beyond this point, sorry."
-        return false
-      end
-    end
-    def require_trustee
-      unless trustee?
-        redirect_to root_url, :notice => "Board members only beyond this point, sorry."
-        return false
-      end
-    end
-    def require_admin_or_trustee
-      unless admin? or trustee?
-        redirect_to root_url, :notice => "Trustees and admins only beyond this point, sorry."
         return false
       end
     end

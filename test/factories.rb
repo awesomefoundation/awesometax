@@ -12,21 +12,14 @@ FactoryGirl.define do
   factory :admin, :class => User do
     name 'Admin'
     email 'admin@example.com'
-    status User::ADMIN
-    confirmed_at (DateTime.now - 6.hours)
-  end
-
-  factory :trustee, :class => User do
-    name 'Christina'
-    email 'trustee@lovetax.us'
     password 'lettuce'
-    status User::TRUSTEE
+    status User::ADMIN
     confirmed_at (DateTime.now - 6.hours)
   end
 
   factory :tax do
     name 'Portland'
-    association :owner, :factory => :trustee
+    association :owner, :factory => :admin
     description 'Awesome PDX. We intend to make it even awesomer.'
     goal 200
     paypal_email 'nobody@lemonary.com'
