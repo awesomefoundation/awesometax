@@ -3,16 +3,17 @@
     %h4= link_to tax.name, tax_path(tax.slug)
   .body
     %p= auto_link(truncate(tax.description.gsub(/<\/?[^>]*>/, ""), :length => 240))
-    
+
     = render :partial => 'shared/progress', :object => tax.percent_funded
-    
+
     %p
       - if defined?(mine) and mine
         = number_to_currency(tax.total_income)
         raised
         - if tax.active?
           \&middot; #{link_to 'Edit', edit_tax_path(tax.slug)}
-          \&middot; #{link_to 'Terminate', { :controller => 'taxes', :action => 'destroy', :id => tax.id }, { :method => :delete, :confirm => "Are you sure you want to stop collecting this tax? You cannot undo this!" }}
+          - if has_full_tax_powers?(tax.id)
+            \&middot; #{link_to 'Terminate', { :controller => 'taxes', :action => 'destroy', :id => tax.id }, { :method => :delete, :confirm => "Are you sure you want to stop collecting this tax? You cannot undo this!" }}
         - else
           \&middot;
           %b
