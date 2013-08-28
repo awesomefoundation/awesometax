@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  autocomplete :user, :name
+  autocomplete :user, :name, full: true
 
   include ActionView::Helpers::NumberHelper
   include ActionView::Helpers::TextHelper

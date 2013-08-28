@@ -1,0 +1,44 @@
+.role_action {
+  font-size: 12px;
+}
+
+.role_action a {
+  border-bottom: none;
+}
+
+#user_search_form {
+  margin: 20px;
+
+
+  input[data-autocomplete] {
+    outline: 0;
+    width: 170px;
+    font-size: 18px;
+    padding: 5px;
+
+    &:active {
+      outline: none;
+    }
+  }
+  .ui-helper-hidden-accessible {
+    float: right;
+    width: 200px
+  }
+
+
+}
+
+.ui-autocomplete {
+  .ui-menu-item {
+    width: 170px;
+    list-style-type: none;
+    border: 1px solid #000;
+    font-size: 18px;
+    padding: 5px;
+
+    &:hover {
+      background-color: blue;
+    }
+  }
+
+}

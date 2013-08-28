@@ -2,5 +2,6 @@
 *= require bootstrap
 *= require 960
 *= require lovetax
+*= require roles
 *= require css3-progress-bar
 */

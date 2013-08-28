@@ -4,17 +4,22 @@
     %br/
     %h3
       Managers
-    #user_search_form
-      = form_for [@tax, @role] do |f|
-        = f.hidden_field :tax_id, value: @tax.id
-        = f.hidden_field :kind, value: 1
-        = f.autocomplete_field :user_name, home_autocomplete_user_name_path
-
+  .grid_6
     = render partial: 'users/minitile', collection: @tax.managers, as: :user
-    .clear
 
-    - unless @supporters.empty?
-      %br/
-      %h3.clear Supporters
-      .grid_6
-        = render partial: 'users/minitile', collection: @supporters, as: :user
+  .grid_6
+    .callout
+      %h4 Find People
+      #user_search_form
+        = form_for [@tax, @role] do |f|
+          = f.hidden_field :tax_id, value: @tax.id
+          = f.hidden_field :kind, value: 1
+          = f.autocomplete_field :user_name, home_autocomplete_user_name_path
+
+  .clear
+
+  - unless @supporters.empty?
+    %br/
+    %h3.clear Supporters
+    .grid_6
+      = render partial: 'users/minitile', collection: @supporters, as: :user
