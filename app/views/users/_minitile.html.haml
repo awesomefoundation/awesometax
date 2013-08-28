@@ -4,8 +4,9 @@
     = link_to user.name, user
     - if params[:controller] == 'roles'
       %span.role_action
-        - if @tax.managers.include?(user)
-          - role = @tax.manager_roles.where(user_id: user.id).first
-          = link_to "Remove Manager", tax_role_path(@tax.id, role.id), method: :delete
-        - else
-          = link_to "Make Manager", tax_roles_path(role: {tax_id: @tax.id, user_id: user.id, kind: 1}), method: :post
+        - unless @tax.managers.include?(user)
+          - if @tax.trustees.include?(user)
+            - role = @tax.trustee_roles.where(user_id: user.id).first
+            = link_to "Remove Trustee", tax_role_path(@tax.id, role.id), method: :delete
+          - else
+            = link_to "Make Trustee", tax_roles_path(role: {tax_id: @tax.id, user_id: user.id, kind: 3}), method: :post
