@@ -5,13 +5,17 @@ LoveTax3::Application.routes.draw do
     get "/logout" => "devise/sessions#destroy"
   end
 
+
   resources :users, :only => [ :show ]
+
+
   get 'home/autocomplete_user_name'
 
   resource  :account, :controller => 'users'
   match     'account' => 'users#show', :as => :my_account, :method => :get
   resources :taxes do
     resources :roles
+    match "search/:id" => 'roles#user_search'
   end
   resources :pledges, :only => [ :show, :create ]
   resources :comments, :only => [ :create, :destroy ]

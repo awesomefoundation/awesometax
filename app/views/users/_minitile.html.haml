@@ -2,7 +2,7 @@
   = link_to image_tag(user.picture_url(:size => 32), :class => 'icon float_left', :title => user.name), user, :style => 'border: none;'
   %h4
     = link_to user.name, user
-    - if params[:controller] == 'roles'
+    - if promotion_links
       %span.role_action
         - unless @tax.managers.include?(user)
           - if @tax.trustees.include?(user)

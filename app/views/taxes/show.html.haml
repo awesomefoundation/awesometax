@@ -36,9 +36,9 @@
       %br/
       %h3.clear Supporters
       .grid_6
-        = render :partial => 'users/minitile', :collection => @pledgers[0,(@pledgers.size/2.0).ceil], :as => :user
+        = render :partial => 'users/minitile', :collection => @pledgers[0,(@pledgers.size/2.0).ceil], :as => :user, locals: {promotion_links: false}
       .grid_6
-        = render :partial => 'users/minitile', :collection => @pledgers[(@pledgers.size/2.0).ceil...@pledgers.size], :as => :user
+        = render :partial => 'users/minitile', :collection => @pledgers[(@pledgers.size/2.0).ceil...@pledgers.size], :as => :user, locals: {promotion_links: false}
 
 
     .clear

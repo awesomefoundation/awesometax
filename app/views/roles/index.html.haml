@@ -1,33 +1,24 @@
 .container_12
   .grid_12
     %h2 Manage Supporters: #{@tax.name}
-    %br/
-    %h3
-      Managers
-  .grid_6
-    = render partial: 'users/minitile', collection: @tax.managers, as: :user
 
-  .clear
-
-  .grid_12
-    %h3
-      Trustees
   .grid_6
-    = render partial: 'users/minitile', collection: @tax.trustees, as: :user
+    %h3 Managers
+    = render partial: 'users/minitile', collection: @tax.managers, as: :user, locals: {promotion_links: true}
+    %br
+
+    %h3 Trustees
+    = render partial: 'users/minitile', collection: @tax.trustees, as: :user, locals: {promotion_links: true}
+    %br
+
+    %h3 Supporters
+    = render partial: 'users/minitile', collection: @supporters, as: :user, locals: {promotion_links: true}
+    %br
 
   .grid_6
     .callout
       %h4 Find People
       #user_search_form
-        = form_for [@tax, @role] do |f|
-          = f.hidden_field :tax_id, value: @tax.id
-          = f.hidden_field :kind, value: 1
-          = f.autocomplete_field :user_name, home_autocomplete_user_name_path
-
-  .clear
-
-  - unless @supporters.empty?
-    %br/
-    %h3.clear Supporters
-    .grid_6
-      = render partial: 'users/minitile', collection: @supporters, as: :user
+        = form_tag 'home/autocomplete_user_name' do
+          = autocomplete_field_tag 'user_name', '', home_autocomplete_user_name_path, :size => 75, :placeholder => 'Type any name', :id => 'user_search_field'
+        #user_search_result

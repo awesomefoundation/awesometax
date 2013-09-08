@@ -6,7 +6,8 @@ class RolesController < ApplicationController
     end
 
     @tax = Tax.find_by_slug(params[:tax_id]) || Tax.find(params[:tax_id])
-    @supporters = @tax.pledgers - @tax.trustees
+
+    @supporters = @tax.pledgers - @tax.trustees - @tax.managers
 
     @role = Role.new
   end
@@ -36,6 +37,18 @@ class RolesController < ApplicationController
     @role.destroy
 
     redirect_to :back
+  end
+
+  def user_search
+    unless has_full_tax_powers?(params[:tax_id])
+      redirect_to account_path and return
+    end
+    @user = User.find(params[:id])
+    @tax = Tax.find_by_slug(params[:tax_id]) || Tax.find(params[:tax_id])
+
+    respond_to do |format|
+      format.js { render :partial => "users/minitile", locals: {user: @user, promotion_links: true} }
+    end
   end
 
 end
