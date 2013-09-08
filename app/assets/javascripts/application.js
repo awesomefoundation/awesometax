@@ -1,8 +1,9 @@
 //
-//= require lib/jquery
-//= require lib/jquery-ui
-//= require lib/jquery_ujs
+//= require jquery
+//= require jquery_ujs
+//= require jquery.ui.core
+//= require jquery.ui.autocomplete
 //= require_tree ./lib
-//= require "awesometax"
+//= require "user_search"
 //= require_self
 //

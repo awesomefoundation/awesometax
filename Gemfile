@@ -8,7 +8,7 @@ gem 'mysql2'
 gem 'activemerchant'
 gem 'andand'
 gem 'bluecloth'
-gem 'devise'
+gem 'devise', " ~> 3.0.3"
 gem 'devise-encryptable'
 gem 'exception_notification', '2.4.1'
 gem 'gravtastic'
@@ -23,15 +23,17 @@ gem 'paypal_adaptive',  :path => 'vendor/gems/paypal_adaptive'
 gem 'psych'
 gem 'sass'
 gem 'rails_autolink'
-gem 'rails3-jquery-autocomplete', '0.6.0'
+gem 'rails3-jquery-autocomplete'
 
 group :assets do
+  gem 'bootstrap-sass'
   gem 'sass-rails', " ~> 3.2.3"
   gem 'coffee-rails', " ~> 3.2.1"
   gem 'uglifier', " >= 1.0.3"
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 group :development do
   gem 'pry'
