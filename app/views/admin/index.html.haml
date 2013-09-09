@@ -1,16 +1,16 @@
 - @no12 = true
-= javascript_include_tag 'bootstrap-tabs'
+/ = javascript_include_tag 'bootstrap-tabs'
 
 .container_12.container
   .grid_12
     %h2 Management
     %br/
 
-    %ul.tabs{'data-tabs' => 'tabs'}
-      %li.active= link_to "Taxes (#{@taxes.length})", '#taxes'
-      %li= link_to "Users (#{@users.length})", '#users'
-      %li= link_to "Transactions (#{@transactions.length})", '#transactions'
-      %li= link_to "Comments (#{@comments.length})", '#comments'
+    %ul.tabs
+      %li.active= link_to "Taxes (#{@taxes.length})", '#taxes', 'data-toggle' => 'tab'
+      %li{'data-toggle' => 'tab'}= link_to "Users (#{@users.length})", '#users', 'data-toggle' => 'tab'
+      %li= link_to "Transactions (#{@transactions.length})", '#transactions', 'data-toggle' => 'tab'
+      %li= link_to "Comments (#{@comments.length})", '#comments', 'data-toggle' => 'tab'
     :javascript
       $(document).ready(function() {
         if(window.location.hash != '') {
@@ -45,23 +45,7 @@
                   %td= u.created_at.to_date
 
       #transactions
-        %h3 Transactions
-        %table{:width => '100%'}
-          %thead
-            %tr
-              %th User
-              %th Type
-              %th Amount
-              %th Tax
-              %th Date
-          %tbody
-            - @transactions.each do |t|
-              %tr{:style => 'border-top: 1px dotted #aaa;'}
-                %td= (t.user_id == 0) ? 'LOVELAND' : (link_to h(t.user.name), t.user)
-                %td= t.kind == Transaction::SENT ? 'Sent' : 'Received'
-                %td= number_to_currency(t.amount)
-                %td= link_to h(t.pledge.tax.name), tax_path(t.pledge.tax.slug)
-                %td= t.created_at.to_date
+        = render :partial => 'shared/transactions', :locals => {transactions: @transactions}
 
       #comments
         %h3 Comments

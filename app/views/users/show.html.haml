@@ -1,8 +1,6 @@
 - @no12 = true
 - @subtitle = @user.name
 
-= javascript_include_tag 'bootstrap-tabs'
-
 .container_12.container.profile
   .grid_12
     = image_tag @user.picture_url, :class => 'icon float_left'
@@ -22,13 +20,17 @@
       %p= @user.bio
 
 
-    %ul.tabs{'data-tabs' => 'tabs', :style => 'margin-top: 2em;'}
+    %ul.tabs{:style => 'margin-top: 2em;'}
       - skip = (@pledges.empty? and !@supervised.empty?)
-      %li{:class => skip ? '' : 'active'}= link_to "My Giving", '#giving'
-      %li{:class => skip ? 'active' : ''}= link_to "My Taxes", '#taxes'
+      %li{:class => skip ? '' : 'active'}
+        = link_to "My Giving", '#giving', 'data-toggle' => 'tab'
+      %li{:class => skip ? 'active' : ''}
+        = link_to "My Taxes", '#taxes', 'data-toggle' => 'tab'
       - if @myself
-        %li= link_to 'Messages', '#messages'
-        %li= link_to "History", '#history'
+        %li
+          = link_to 'Messages', '#messages', 'data-toggle' => 'tab'
+        %li
+          = link_to "History", '#history', 'data-toggle' => 'tab'
     :javascript
       $(document).ready(function() {
         if(window.location.hash != '') {
