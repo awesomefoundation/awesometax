@@ -1,6 +1,8 @@
 .container_12
   .grid_12
-    %h2 Manage Supporters: #{@tax.name}
+    %h2
+      Manage Supporters:
+      = link_to @tax.name, @tax
 
   .grid_6
     %h3 Managers
