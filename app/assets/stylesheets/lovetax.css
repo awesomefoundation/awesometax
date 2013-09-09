@@ -61,7 +61,10 @@ textarea {
   font-size: 10pt;
   padding: 2px; }
 
-.help-block { color: #999; }
+.help-block {
+  color: #999;
+  text-align: left;
+}
 
 input[type="submit"] {
   font-size: 9pt; }
@@ -126,6 +129,10 @@ input.huge_input {
 .topbar .h3 a { color: white; font-size: 18pt; }
 .topbar .nav .active > a { border-bottom: 3px solid #FF4B7E; background-color: #222; padding-bottom: 6px; }
 .dropdown-menu.foundation { min-width: 230px; }
+
+.dropdown.open a:focus{
+  outline: none;
+}
 
 .tax { border: 1px solid #333; }
 .tax .headline { background-color: #333; }
