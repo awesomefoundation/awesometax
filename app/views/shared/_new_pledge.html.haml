@@ -1,0 +1,28 @@
+= form_for pledge do |f|
+  = f.hidden_field :tax_id
+  - if session[:pledge_amount]
+    = f.hidden_field :amount, :value => session[:pledge_amount]
+  - else
+    %h4{:style=>'margin-left: 32px; line-height: 25px; margin-bottom: 10px;'} How much would you like to contribute per month?
+    %span{:style=>'font-size: 36px; width: 20px; display: inline-block;'} $
+    = f.text_field :amount, :class => 'huge_input', :size => 3, :style => 'margin: 0 8px 12px 0px;'
+    %br/
+  %p.small You're signing up to make one payment per month for 12 months, but can change this or cancel at any time.
+  = image_submit_tag 'https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif', :style => 'margin-left: 32px; border-width: 0px; width: 145px; height: 42px;'
+  - unless Rails.env == 'production'
+    .help-block
+      %br/
+      %b Test PayPal like so:
+      %ol
+        %li= link_to 'Log in at the sandbox', 'http://developer.paypal.com', :target => '_blank'
+        %li
+          With
+          %b awesometax@kateray.net
+          and password
+          %b lovetax1
+        %li Come back here and press the checkout button, then use...
+        %li
+          Email
+          %b awesome@kateray.net
+          and password
+          %b lovetax1

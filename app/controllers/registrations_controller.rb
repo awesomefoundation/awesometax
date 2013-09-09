@@ -23,7 +23,25 @@ class RegistrationsController < Devise::RegistrationsController
       clean_up_passwords resource
       respond_with resource
     end
-    
-  end  
+
+  end
+
+  def confirm_pledge
+    unless session[:pledge_tax]
+      redirect_to account_path and return
+    end
+
+    @tax = Tax.find(session[:pledge_tax])
+    @pledge = Pledge.new(:amount => 10, :tax_id => @tax.id)
+  end
+
+
+  protected
+
+  def after_sign_up_path_for(resource)
+    if session[:pledge_tax]
+      '/confirm_pledge'
+    end
+  end
 
 end

@@ -1,6 +1,6 @@
 class PledgesController < ApplicationController
 
-  before_filter :store_pledge_amount, :only => :create
+  before_filter :store_pending_pledge, :only => :create
   before_filter :authenticate_user!, :only => [:update, :destroy, :start, :pause, :stop, :collect]
   protect_from_forgery :except => :notify # IPN gets invalid auth token messages otherwise
 
@@ -10,6 +10,7 @@ class PledgesController < ApplicationController
 
   def create
     session[:pledge_amount] = nil
+    session[:pledge_tax] = nil
 
     @pledge = Pledge.new(params[:pledge])
     @pledge.attributes = {
@@ -81,7 +82,7 @@ class PledgesController < ApplicationController
     pledge.tax.funders << current_user
 
     begin
-      Mailer.new_pledge(pledge.tax.managers.select { |u| u.settings['email.new_pledge'] }, pledge).deliver
+      Mailer.new_pledge(pledge.tax.managers.select { |u| u.settings(:email).new_pledge }, pledge).deliver
     rescue => e
       logger.info e.inspect
       logger.info e.backtrace
@@ -149,8 +150,9 @@ class PledgesController < ApplicationController
 
   private
 
-  def store_pledge_amount
+  def store_pending_pledge
     unless user_signed_in?
+      session[:pledge_tax] = params[:pledge][:tax_id]
       session[:pledge_amount] = params[:pledge][:amount]
       redirect_to new_user_registration_path
     end

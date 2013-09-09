@@ -1,13 +1,14 @@
 LoveTax3::Application.routes.draw do
 
-  devise_for :users, :controllers => { :registrations => "registrations" } do
+  devise_for :users, :controllers => { :registrations => "registrations" }
+  devise_scope :user do
     get "/login" => "devise/sessions#new"
     get "/logout" => "devise/sessions#destroy"
+    match '/confirm_pledge' => 'registrations#confirm_pledge'
   end
 
 
   resources :users, :only => [ :show ]
-
 
   get 'home/autocomplete_user_name'
 
