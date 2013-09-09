@@ -22,6 +22,7 @@
 
   %link{:href => "/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon"}/
   = stylesheet_link_tag 'application'
+  = javascript_include_tag 'application'
   = csrf_meta_tag
 
 %body{:class => "#{controller_name} #{action_name}"}
@@ -38,7 +39,7 @@
           - if user_signed_in?
             %ul.nav.secondary-nav
               %li.dropdown
-                %a.dropdown-toggle{:href => '#'}= current_user.name
+                %a.dropdown-toggle{:href => '#', :data => {:toggle => "dropdown"}}= current_user.name
                 %ul.dropdown-menu
                   %li= link_to 'My Account',        account_path
                   %li= link_to 'Edit Account',      edit_user_registration_path
@@ -69,7 +70,7 @@
 
   .clear{:style => "height: 3em;"}
 
-  = javascript_include_tag 'application'
+
 
   %script{:src => "http://use.typekit.com/szj4uep.js", :type => "text/javascript"}
   :javascript
