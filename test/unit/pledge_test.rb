@@ -1,10 +1,17 @@
 require 'test_helper'
 
 class PledgeTest < ActiveSupport::TestCase
-  test "the truth" do
-    assert true
+
+  test "new pledge should validate" do
+    pledge = FactoryGirl.build :pledge
+    assert pledge.valid?
   end
-  
-  # state transitions.. started/stopped/whatever. some are valid n some not
-  
+
+  test "pledge collect function succeeds" do
+    pledge = FactoryGirl.build :pledge
+    pledge.collect
+
+    assert_equal Pledge::ACTIVE, pledge.status
+  end
+
 end

@@ -57,7 +57,7 @@ FactoryGirl.define do
     association :user
     association :tax, :factory => :tax
     status Pledge::ACTIVE
-    preapproval_key 'toucan'
+    preapproval_key 'PA-23059293TY1820902'
     starts Time.now
     ends Time.now + 1.year
   end
