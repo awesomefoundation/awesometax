@@ -1,7 +1,30 @@
 %script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}
 .float_left
-  %a{:name => "fb_share", :share_url => defined?(url) ? url : root_url(:only_path => false), :type => "button"} Share
-  = javascript_include_tag "http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
+  / %a{:name => "fb_share", :share_url => defined?(url) ? url : root_url(:only_path => false), :type => "button"} Share
+  / = javascript_include_tag "http://static.ak.fbcdn.net/connect.php/js/FB.Share"
+  #fb-root
+  :javascript
+    window.fbAsyncInit = function() {
+      // init the FB JS SDK
+      FB.init({
+        appId      : '309437425817038',                        // App ID from the app dashboard
+        channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel file for x-domain comms
+        status     : true,                                 // Check Facebook Login status
+        xfbml      : true                                  // Look for social plugins on the page
+      });
+
+      // Additional initialization code such as adding Event Listeners goes here
+    };
+
+    // Load the SDK asynchronously
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/all.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+
 .float_left{:style => "padding: 2px 10px;"}
   %a.twitter-share-button{:href => "http://twitter.com/share?url=#{defined?(url) ? url : ('http://' + AppConfig.host)}&text=#{defined?(text) ? text : ''}", :style => "padding-top: 20px;"} Tweet
 .clear
