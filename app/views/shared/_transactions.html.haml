@@ -1,0 +1,17 @@
+%h3 Transactions
+%table{:width => '100%'}
+  %thead
+    %tr
+      %th User
+      %th Type
+      %th Amount
+      %th Tax
+      %th Date
+  %tbody
+    - transactions.each do |t|
+      %tr{:style => 'border-top: 1px dotted #aaa;'}
+        %td= (t.user_id == 0) ? 'LOVELAND' : (link_to h(t.user.name), t.user)
+        %td= t.kind == Transaction::SENT ? 'Sent' : 'Received'
+        %td= number_to_currency(t.amount)
+        %td= link_to h(t.pledge.tax.name), tax_path(t.pledge.tax.slug)
+        %td= t.created_at.to_date
