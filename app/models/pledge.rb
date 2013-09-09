@@ -130,6 +130,7 @@ class Pledge < ActiveRecord::Base
     }
 
     pay_response = pay_request.pay(data)
+
     logger.info "pay_response: #{pay_response.inspect}"
     if pay_response.success?
       Pledge.transaction do
@@ -148,9 +149,11 @@ class Pledge < ActiveRecord::Base
 
   # This generally runs as a rake task, "rake taxes:collect"
   def self.collect_all
-    unless (Transaction.count == 0) or (Date.today - Transaction.last.created_at.to_date).to_i > 5
-      puts "There has already been a collection recently. No can do. This is a safeguard that's very easy to override if you mean it."
-      return
+    if Rails.env.production?
+      unless (Transaction.count == 0) or (Date.today - Transaction.last.created_at.to_date).to_i > 5
+        puts "There has already been a collection recently. No can do. This is a safeguard that's very easy to override if you mean it."
+        return
+      end
     end
 
     done = 0
@@ -158,7 +161,7 @@ class Pledge < ActiveRecord::Base
     puts "Found #{pledges.size} active pledges"
 
     # Send emails
-    users = pledges.collect { |p| p.user }.uniq.select { |u| u.settings['email.payment'] }
+    users = pledges.collect { |p| p.user }.uniq.select { |u| u.settings(:email).payment }
     puts "Going to email #{users.size} users: #{users.collect { |u| u.email }.join(', ')}"
     users.each do |u|
       begin
@@ -174,7 +177,7 @@ class Pledge < ActiveRecord::Base
     puts "Running transactions:"
     pledges.each do |p|
       puts "  Considering pledge #{p.id}..."
-      next if !p.transactions.empty? and Time.zone.now - p.transactions.last.created_at < 1.day  # Safety net to not run twice in the same day
+      next if Rails.env.production? && !p.transactions.empty? and Time.zone.now - p.transactions.last.created_at < 1.day  # Safety net to not run twice in the same day
       if p.collect
         puts "  Successfully collected pledge #{p.id} for $#{p.amount}"
         done += 1
