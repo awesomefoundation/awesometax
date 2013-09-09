@@ -36,6 +36,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 group :development do
+  gem 'thin'
   gem 'pry'
   gem 'pry-rails'
   gem 'pry-debugger'
