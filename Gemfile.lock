@@ -1,11 +1,3 @@
-PATH
-  remote: vendor/gems/paypal_adaptive
-  specs:
-    paypal_adaptive (0.2.6)
-      json
-      jsonschema
-      rake
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -150,6 +142,9 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.0)
       mime-types
+    paypal_adaptive (0.3.6)
+      json (~> 1.0)
+      jsonschema (~> 2.0.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -243,7 +238,7 @@ DEPENDENCIES
   oa-oauth
   omniauth
   paperclip
-  paypal_adaptive!
+  paypal_adaptive
   pry
   pry-debugger
   pry-rails
