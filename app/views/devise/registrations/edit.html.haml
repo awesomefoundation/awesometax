@@ -3,7 +3,7 @@
 .container_12
   .grid_12
     %h2 Edit Account
-    
+
 .container_12
   .grid_8
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f|
@@ -23,10 +23,10 @@
         .input
           = f.password_field :password_confirmation
           %span.help-block Same goes for this one
-        
+
         %br/
         %br/
-        
+
       .input
         %h3 Profile Picture
       = image_tag resource.picture_url, :class => 'icon float_left', :style => 'margin-left: 50px;'
@@ -41,14 +41,14 @@
           %label
             = check_box_tag :remove_picture, '1', false
             %span Or would you like to remove your saved picture?
-        
+
       .clear
       %br/
       %br/
-      
+
       .input
         %h3 Personal Details
-        
+
       %div
         = f.label :name
         .input= f.text_field :name
@@ -70,41 +70,40 @@
           = f.text_area :bio, :style => 'height: 4em; width: 300px;'
           .help-block Up to 140 characters
         %br/
-      
+
       %br/
-              
+
       %h3.input Email Preferences
       .input
         %ul.inputs-list
           %li
             %label
-              = check_box_tag 'user[settings[email.payment]]', '1', resource.settings['email.payment']
+              = check_box_tag 'user[settings[email.payment]]', '1', resource.settings(:email).payment
               %span Send me monthly notification and summary of my payments
           %li
             %label
-              = check_box_tag 'user[settings[email.new_pledge]]', '1', resource.settings['email.new_pledge']
+              = check_box_tag 'user[settings[email.new_pledge]]', '1', resource.settings(:email).new_pledge
               %span Notify me when someone pledges to fund my taxes
           %li
             %label
-              = check_box_tag 'user[settings[email.comment]]', '1', resource.settings['email.comment']
+              = check_box_tag 'user[settings[email.comment]]', '1', resource.settings(:email).comment
               %span Mail me when people comment on taxes I manage
           %li
             %label
-              = check_box_tag 'user[settings[email.tax_message]]', '1', resource.settings['email.tax_message']
+              = check_box_tag 'user[settings[email.tax_message]]', '1', resource.settings(:email).tax_message
               %span Mail me news and updates from tax managers
-              
+
         %br/
-        
+
       %div
         = f.label :current_password
         .input
           = f.password_field :current_password
           .help-block We need your current password to confirm your changes
-        
+
       %div
         %br/
         .input= f.submit "Save Changes", :class => 'btn'
-    
+
 
   .grid_4
-    
