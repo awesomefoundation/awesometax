@@ -2,10 +2,6 @@ class MessagesController < ApplicationController
   helper_method :tax_options
 
   def new
-    unless has_partial_tax_powers?(params[:tax_id])
-      redirect_to account_path and return
-    end
-
     @message = Message.new(:tax_id => params[:tax_id])
   end
 
