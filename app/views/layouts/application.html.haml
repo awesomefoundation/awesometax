@@ -58,7 +58,7 @@
   - if flash[:alert]
     .container_12.container
       .grid_12.centered.alert-message.warning= flash[:alert]
-  - if session[:pledge_tax] && params[:controller] == 'devise/sessions' || params[:controller] == 'registrations'
+  - if (session[:pledge_amount] != nil) && (params[:controller] == 'devise/sessions' || params[:controller] == 'registrations')
     = render :partial => "shared/pledge_notification"
 
   - if defined?(@no12) and @no12
