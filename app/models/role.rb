@@ -20,7 +20,7 @@ class Role < ActiveRecord::Base
 
   def user_is_not_manager_and_trustee
     if kind == Role::MANAGER || kind == Role::TRUSTEE
-      if user.roles.admin.where('tax_id = ? && id != ?', tax_id, id).any?
+      if user.roles.admin.where('tax_id = ? && id != ?', tax_id, id || 0).any?
         errors.add(:user_id, " cannot be both a trustee and manager")
       end
     end
