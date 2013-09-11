@@ -20,6 +20,9 @@
   .grid_6
     .callout
       %h4 Find People
+      = "Use this form to find any user and make her a trustee of #{@tax.name}. If you can't find someone, she'll have to register before you can make her a trustee."
+      %br
+      %br
       #user_search_form
         = form_tag 'home/autocomplete_user_name' do
           = autocomplete_field_tag 'user_name', '', home_autocomplete_user_name_path, :size => 75, :placeholder => 'Type any name', :id => 'user_search_field'
