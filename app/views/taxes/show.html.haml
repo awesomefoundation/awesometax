@@ -41,11 +41,6 @@
         = render :partial => 'users/minitile', :collection => @pledgers[(@pledgers.size/2.0).ceil...@pledgers.size], :as => :user, locals: {promotion_links: false}
 
     .clear
-    - if has_full_tax_powers?(@tax.id) && @tax.transactions.any?
-      %br/
-      = render :partial => 'shared/transactions', :locals => {transactions: @tax.transactions}
-
-    .clear
     %br/
     = render :partial => 'shared/comments', :locals => { :comments => @tax.comments, :tax => @tax }
 
@@ -65,36 +60,32 @@
         = render partial: "/shared/new_pledge", locals: {pledge: @pledge}
 
     - if has_partial_tax_powers?(@tax.id)
-      = javascript_include_tag 'bootstrap-modal.js'
       .callout
-        %h4 Admin tools
+        %h4 Trustee tools
         = link_to 'Edit this tax', edit_tax_path(@tax.slug)
         %br/
-        - if has_full_tax_powers?(@tax.id)
-          = link_to 'Manage trustees', tax_roles_path(@tax.slug)
-          %br/
         = link_to 'Message all supporters', new_message_path(:tax_id => @tax.id)
         %br/
         = link_to 'Get embed code', '#', { 'data-controls-modal' => "embed", 'data-keyboard' => 'true' }
         %br/
-        - if has_full_tax_powers?(@tax.id)
-          = link_to 'Close this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to terminate this tax?" } unless @tax.status == Tax::ENDED
-          .modal.hide.fade{:id => "embed"}
-            .modal-header
-              %a.close{:href => '#'} x
-              %h3 Embed code for #{@tax.name}
-            .modal-body
-              %pre.prettyprint
-                = "<div id='lovetax_widget' data-id='#{@tax.id}' data-host='http://#{request.host}'></div>"
-                %br/
-                = "<script src='http://#{request.host}/assets/xss_magic.js'></script>"
-          .modal-footer
-            = link_to 'Close', '#', :class => 'btn close'
-        :javascript
-          $('a.close', this).click(function(e) {
-            $(container).modal('hide');
-            return false;
-          });
+        .modal.hide.fade{:id => "embed"}
+          .modal-header
+            %a.close{:href => '#'} x
+            %h3 Embed code for #{@tax.name}
+          .modal-body
+            %pre.prettyprint
+              = "<div id='lovetax_widget' data-id='#{@tax.id}' data-host='http://#{request.host}'></div>"
+              %br/
+              = "<script src='http://#{request.host}/assets/xss_magic.js'></script>"
+
+    - if has_full_tax_powers?(@tax.id)
+      .callout
+        %h4 Manager Tools
+        = link_to 'Manage trustees', tax_roles_path(@tax.slug)
+        %br/
+        = link_to 'View Transactions', tax_transactions_path(@tax.slug)
+        %br/
+        = link_to 'Close this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to terminate this tax?" } unless @tax.status == Tax::ENDED
 
 
     - unless user_signed_in?

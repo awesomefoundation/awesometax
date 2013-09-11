@@ -17,6 +17,7 @@ LoveTax3::Application.routes.draw do
   match     'account' => 'users#show', :as => :my_account, :method => :get
   resources :taxes do
     resources :roles
+    resources :transactions, :only => :index
     match "search/:id" => 'roles#user_search'
   end
   resources :pledges, :only => [ :show, :create ]

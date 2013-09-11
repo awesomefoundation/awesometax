@@ -1,0 +1,4 @@
+.grid_12
+  %h2
+    = link_to @tax.name, @tax
+  = render :partial => 'shared/transactions', :locals => {transactions: @tax.transactions}
