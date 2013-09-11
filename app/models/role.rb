@@ -12,16 +12,16 @@ class Role < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => [:tax_id, :kind]
   validate :user_is_not_manager_and_trustee
 
-  scope :admin, where('kind != ?', Role::FUNDER)
+  scope :admin, where('kind IN (?)', [Role::MANAGER, Role::TRUSTEE])
 
   def user_name
     true
   end
 
   def user_is_not_manager_and_trustee
-    unless kind == Role::FUNDER
+    if kind == Role::MANAGER || kind == Role::TRUSTEE
       if user.roles.admin.where('tax_id = ? && id != ?', tax_id, id).any?
-        errors.add(:user_id, " is already a trustee or manager")
+        errors.add(:user_id, " cannot be both a trustee and manager")
       end
     end
   end
