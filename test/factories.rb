@@ -30,19 +30,18 @@ FactoryGirl.define do
   end
 
   factory :role do
-    kind 2
+    kind Role::FUNDER
     association :user
     association :tax
   end
 
   factory :manager_role, :parent => :role do
-    kind 1
+    kind Role::MANAGER
   end
 
   factory :trustee_role, :parent => :role do
-    kind 3
+    kind Role::TRUSTEE
   end
-
 
   factory :tax do
     name 'Portland'
