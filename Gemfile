@@ -4,6 +4,7 @@ ruby '1.9.3'
 
 gem 'rails', '3.2.14'
 
+gem 'thin'
 gem 'activemerchant'
 gem 'andand'
 gem 'bluecloth'
@@ -35,7 +36,6 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 group :development do
-  gem 'thin'
   gem 'pry'
   gem 'pry-rails'
   gem 'pry-debugger'
