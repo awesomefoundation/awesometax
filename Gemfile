@@ -1,9 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'rake'
-gem 'rack' #, '1.2.1'
+ruby '1.9.3'
+
 gem 'rails', '3.2.14'
-gem 'mysql2'
 
 gem 'activemerchant'
 gem 'andand'
@@ -46,4 +45,13 @@ end
 group :test do
   gem "factory_girl_rails"
   gem 'mocha', :require => false
+end
+
+group :development, :test do
+  gem 'mysql2'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end
