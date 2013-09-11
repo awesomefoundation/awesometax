@@ -1,3 +1,9 @@
+- if flash[:pending_pledge_tax]
+  - amount = flash[:pending_pledge_amount]
+  - tax_name = Tax.find(flash[:pending_pledge_tax]).name
+  .notification
+    %h4 Thanks for pledging $#{amount} to #{tax_name}! You're almost done.
+
 .container_12
   .grid_6
 
@@ -5,6 +11,9 @@
 
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = devise_error_messages!
+      - if flash[:pending_pledge_tax]
+        = hidden_field_tag :pending_pledge_tax, flash[:pending_pledge_tax]
+        = hidden_field_tag :pending_pledge_amount, flash[:pending_pledge_amount]
       %div
         = f.label :email
         .input= f.email_field :email

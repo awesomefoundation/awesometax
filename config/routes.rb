@@ -4,9 +4,10 @@ LoveTax3::Application.routes.draw do
   devise_scope :user do
     get "/login" => "devise/sessions#new"
     get "/logout" => "devise/sessions#destroy"
-    match '/confirm_pledge' => 'registrations#confirm_pledge'
+
   end
 
+  match '/confirm_pledge' => 'pledges#confirm_pledge'
 
   resources :users, :only => [ :show ]
 

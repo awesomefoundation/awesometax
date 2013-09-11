@@ -1,7 +1,7 @@
 class PledgesController < ApplicationController
 
-  before_filter :store_pending_pledge, :only => :create
-  before_filter :authenticate_user!, :only => [:update, :destroy, :start, :pause, :stop, :collect]
+  before_filter :redirect_if_logged_out_and_store_pending_pledge, :only => :create
+  before_filter :authenticate_user!, :only => [:update, :destroy, :start, :pause, :stop, :collect, :confirm_pledge]
   protect_from_forgery :except => :notify # IPN gets invalid auth token messages otherwise
 
   def show
@@ -9,8 +9,6 @@ class PledgesController < ApplicationController
   end
 
   def create
-    session[:pledge_amount] = nil
-    session[:pledge_tax] = nil
 
     @pledge = Pledge.new(params[:pledge])
     @pledge.attributes = {
@@ -148,12 +146,21 @@ class PledgesController < ApplicationController
     end
   end
 
+  def confirm_pledge
+    unless params[:tax_id] && params[:amount]
+      redirect_to account_path and return
+    end
+
+    @tax = Tax.find(params[:tax_id])
+    @pledge = Pledge.new(:amount => params[:amount], :tax_id => params[:tax_id])
+  end
+
   private
 
-  def store_pending_pledge
+  def redirect_if_logged_out_and_store_pending_pledge
     unless user_signed_in?
-      session[:pledge_tax] = params[:pledge][:tax_id]
-      session[:pledge_amount] = params[:pledge][:amount]
+      flash[:pending_pledge_tax] = params[:pledge][:tax_id]
+      flash[:pending_pledge_amount] = params[:pledge][:amount]
       redirect_to new_user_registration_path
     end
   end
