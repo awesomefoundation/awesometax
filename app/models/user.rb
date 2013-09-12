@@ -4,13 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :token_authenticatable, :omniauthable, :confirmable, :recoverable,
     :registerable, :rememberable, :trackable, :validatable, :encryptable
 
+  EMAIL_SETTINGS = {payment: true, new_pledge: true, comment: true, tax_message: true}
+
   has_settings do |s|
-    s.key :email, :defaults => {
-      :payment => true,
-      :new_pledge => true,
-      :comment => true,
-      :tax_message => true
-    }
+    s.key :email, :defaults => EMAIL_SETTINGS
   end
     # Use mailer method names, eg user.settings['email.new_pledge'] is true/false. defaults in config/initializers/settings.rb
   # More at https://github.com/ledermann/rails-settings
@@ -26,6 +23,7 @@ class User < ActiveRecord::Base
   ADMIN    = 1
   VERIFIED = 2
   DISABLED = 3
+
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :status
   attr_accessible :settings, :url, :bio, :twitter, :picture
@@ -81,8 +79,9 @@ class User < ActiveRecord::Base
   # s is a (potentially incomplete) hash of the email preferences from a form (so => "1"). For missing ones, set them to false
   def update_settings(s)
     s = {} if s.nil?
-    s.each { |k,v| self.settings[k] = (v.to_i == 1) }
-    Settings.defaults.each { |k,v| self.settings[k] = false if s[k].to_i == 0 }
+    User::EMAIL_SETTINGS.each do |k,v|
+      self.settings(:email).update_attributes! k => s.has_key?(k) && s[k].to_i == 1
+    end
   end
 
   protected
