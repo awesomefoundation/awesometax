@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :status
   attr_accessible :settings, :url, :bio, :twitter, :picture
   validates_length_of :bio, :maximum => 140
+  validates :email, :uniqueness => true
 
   has_many :pledges
   has_many :transactions
