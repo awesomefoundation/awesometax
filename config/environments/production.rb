@@ -67,7 +67,7 @@ LoveTax3::Application.configure do
   config.middleware.use ExceptionNotifier,
     :email_prefix => "[LoveTax production] ",
     :sender_address => %{"Exception Notifier" <errors@makeloveland.com>},
-    :exception_recipients => %w{larry@makeloveland.com}
+    :exception_recipients => %w{awesome@kateray.net}
 
   Paperclip.options[:command_path] = "/usr/bin"
 end
