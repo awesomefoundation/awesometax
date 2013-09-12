@@ -78,19 +78,19 @@
         %ul.inputs-list
           %li
             %label
-              = check_box_tag 'user[settings[email.payment]]', '1', resource.settings(:email).payment
+              = check_box_tag 'user[settings[payment]]', '1', resource.settings(:email).payment
               %span Send me monthly notification and summary of my payments
           %li
             %label
-              = check_box_tag 'user[settings[email.new_pledge]]', '1', resource.settings(:email).new_pledge
+              = check_box_tag 'user[settings[new_pledge]]', '1', resource.settings(:email).new_pledge
               %span Notify me when someone pledges to fund my taxes
           %li
             %label
-              = check_box_tag 'user[settings[email.comment]]', '1', resource.settings(:email).comment
+              = check_box_tag 'user[settings[comment]]', '1', resource.settings(:email).comment
               %span Mail me when people comment on taxes I manage
           %li
             %label
-              = check_box_tag 'user[settings[email.tax_message]]', '1', resource.settings(:email).tax_message
+              = check_box_tag 'user[settings[tax_message]]', '1', resource.settings(:email).tax_message
               %span Mail me news and updates from tax managers
 
         %br/
