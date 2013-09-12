@@ -18,7 +18,6 @@ class RegistrationsController < Devise::RegistrationsController
         set_flash_message :notice, flash_key || :updated
       end
       sign_in resource_name, resource, :bypass => true
-      respond_with resource, :location => after_update_path_for(resource)
       redirect_to edit_user_registration_path
     else
       clean_up_passwords resource
