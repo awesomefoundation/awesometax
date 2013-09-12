@@ -42,7 +42,7 @@ LoveTax3::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  # config.action_mailer.default_url_options = { :host => 'awesometax.awesomestudies.org' }
+  config.action_mailer.default_url_options = { :host => 'awesometax-test.herokuapp.com' }
   # Rails.application.routes.default_url_options[:host] = 'awesometax.awesomestudies.org'
 
   ActionMailer::Base.smtp_settings = {
