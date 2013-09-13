@@ -64,6 +64,10 @@ LoveTax3::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+  end
+
   config.middleware.use ExceptionNotifier,
     :email_prefix => "[LoveTax production] ",
     :sender_address => %{"Exception Notifier" <errors@makeloveland.com>},
