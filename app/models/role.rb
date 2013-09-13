@@ -10,7 +10,7 @@ class Role < ActiveRecord::Base
   TRUSTEE  = 3
 
   validates_uniqueness_of :user_id, :scope => [:tax_id, :kind]
-  validate :user_is_not_manager_and_trustee
+  # validate :user_is_not_manager_and_trustee
 
   scope :admin, where('kind IN (?)', [Role::MANAGER, Role::TRUSTEE])
 
