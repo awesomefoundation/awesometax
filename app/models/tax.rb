@@ -36,6 +36,11 @@ class Tax < ActiveRecord::Base
   before_save :update_slug
   after_create :notify_admins
 
+  def self.find_tax(tax_id)
+    tax = Tax.find_by_slug(tax_id.to_s)
+    tax || Tax.find(tax_id.to_i)
+  end
+
   def meets_goal
     goal.nil? or monthly_income > goal
   end

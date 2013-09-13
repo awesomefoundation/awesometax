@@ -7,7 +7,7 @@ class TaxesController < ApplicationController
   end
 
   def show
-    @tax = Tax.find_by_slug(params[:id]) || Tax.find(params[:id])
+    @tax = Tax.find_tax(params[:id])
     @pledge = Pledge.new(:amount => 10, :tax_id => @tax.id)
     @pledges = @tax.pledges.active.order('amount desc')
     @pledgers = @tax.pledgers
@@ -50,7 +50,7 @@ class TaxesController < ApplicationController
       redirect_to account_path and return
     end
 
-    @tax = Tax.find_by_slug(params[:id]) || Tax.find(params[:id])
+    @tax = Tax.find_tax(params[:id])
   end
 
   def update
@@ -58,7 +58,7 @@ class TaxesController < ApplicationController
       redirect_to account_path and return
     end
 
-    @tax = Tax.find_by_slug(params[:id]) || Tax.find(params[:id])
+    @tax = Tax.find_tax(params[:id])
     redirect_to :controller => 'taxes', :action => 'show', :id => @tax.slug
     logger.info "one"
     return unless admin? or (@tax.managers.include?(current_user) and @tax.active?)
@@ -77,7 +77,7 @@ class TaxesController < ApplicationController
       redirect_to account_path and return
     end
 
-    @tax = Tax.find_by_slug(params[:id]) || Tax.find(params[:id])
+    @tax = Tax.find_tax(params[:tax_id])
     if @tax.managers.include?(current_user) or admin?
       @tax.stop
       redirect_to @tax, :notice => "You have discontinued this tax."

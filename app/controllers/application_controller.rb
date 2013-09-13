@@ -21,12 +21,12 @@ class ApplicationController < ActionController::Base
     end
 
     def has_full_tax_powers?(tax_id)
-      tax = Tax.find_by_slug(tax_id) || Tax.find(tax_id)
+      tax = Tax.find_tax(tax_id)
       admin? || tax.managers.include?(current_user)
     end
 
     def has_partial_tax_powers?(tax_id)
-      tax = Tax.find_by_slug(tax_id) || Tax.find(tax_id)
+      tax = Tax.find_tax(tax_id)
       admin? || tax.managers.include?(current_user) || tax.trustees.include?(current_user)
     end
 

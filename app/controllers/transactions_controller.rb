@@ -5,7 +5,7 @@ class TransactionsController < ApplicationController
       redirect_to account_path and return
     end
 
-    @tax = Tax.find_by_slug(params[:tax_id]) || Tax.find(params[:tax_id])
+    @tax = Tax.find_tax(params[:tax_id])
   end
 
 end

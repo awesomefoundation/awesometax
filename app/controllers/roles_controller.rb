@@ -5,7 +5,7 @@ class RolesController < ApplicationController
       redirect_to account_path and return
     end
 
-    @tax = Tax.find_by_slug(params[:tax_id]) || Tax.find(params[:tax_id])
+    @tax = Tax.find_tax(params[:tax_id])
 
     @supporters = @tax.pledgers - @tax.trustees - @tax.managers
 
@@ -44,7 +44,7 @@ class RolesController < ApplicationController
       redirect_to account_path and return
     end
     @user = User.find(params[:id])
-    @tax = Tax.find_by_slug(params[:tax_id]) || Tax.find(params[:tax_id])
+    @tax = Tax.find_tax(params[:tax_id])
 
     respond_to do |format|
       format.js { render :partial => "users/minitile", locals: {user: @user, promotion_links: true} }
