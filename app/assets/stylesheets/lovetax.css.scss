@@ -191,3 +191,15 @@ input[type=email] { padding: 2px; }
 .profile h2 { padding-bottom: 0.25em; }
 .profile .links { font-weight: bold; }
 a img { border-width: 0px; }
+
+#error_explanation {
+  h2 {
+    font-size: 20px;
+    color: red;
+  }
+
+  li {
+    list-style-type: none;
+    font-size: 20px;
+  }
+}
