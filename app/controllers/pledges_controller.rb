@@ -18,7 +18,11 @@ class PledgesController < ApplicationController
       :status => Pledge::INACTIVE
     }
     unless @pledge.tax.andand.active? and @pledge.save
-      redirect_to @pledge.tax, :notice => @pledge.errors.full_messages.join(", ")
+      respond_to do |format|
+        format.html { redirect_to :back, :notice => @pledge.errors.full_messages.join(", ") }
+        format.json { render json: @pledge.errors.full_messages.join(", "), :status => :unprocessable_entity}
+      end
+
       return
     end
 
@@ -45,10 +49,18 @@ class PledgesController < ApplicationController
 
     if pay_response.success?
       @pledge.update_attribute(:preapproval_key, pay_response['preapprovalKey'])
-      redirect_to pay_response.preapproval_paypal_payment_url
+      respond_to do |format|
+        format.html { redirect_to pay_response.preapproval_paypal_payment_url }
+        format.json { render json: {url: pay_response.preapproval_paypal_payment_url}}
+      end
     else
-      flash[:notice] = pay_response.errors.first['message'] + '... request=' + data.to_json + '... response=' + @response.inspect
-      redirect_to @pledge.tax
+      error_message = pay_response.errors.first['message'] + '... request=' + data.to_json + '... response=' + @response.inspect
+      flash[:notice] = error_message
+
+      respond_to do |format|
+        format.html {redirect_to @pledge.tax}
+        format.json {render json: error_message, :status => :unprocessable_entity}
+      end
     end
   end
 
