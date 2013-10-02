@@ -115,6 +115,7 @@ class Pledge < ActiveRecord::Base
 
   def collect
     logger.info "collect_pledge: #{self.inspect}"
+    default_url_options[:host] = 'awesometax-test.herokuapp.com'
     pay_request = PaypalAdaptive::Request.new
     receiverList = [ { 'email' => tax.paypal_email, 'amount' => recipient_cut.to_s } ]
     receiverList << { 'email' => AppConfig.paypal_email, 'amount' => loveland_cut.to_s } if AppConfig.loveland_fee > 0
