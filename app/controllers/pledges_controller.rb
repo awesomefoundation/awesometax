@@ -18,7 +18,7 @@ class PledgesController < ApplicationController
       :status => Pledge::INACTIVE
     }
     unless @pledge.tax.andand.active? and @pledge.save
-      redirect_to @pledge.tax, :notice => "That wasn't allowed, sorry."
+      redirect_to @pledge.tax, :notice => @pledge.errors.full_messages.join(", ")
       return
     end
 

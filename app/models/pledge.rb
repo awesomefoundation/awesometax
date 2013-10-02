@@ -17,6 +17,7 @@ class Pledge < ActiveRecord::Base
 
   validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than => 10000
   validates_presence_of :tax
+  validates :user_id, :uniqueness => {:scope => :tax_id, :message => "already funds this tax"}
 
   @@fuzzies = [
     [1,     'a little bit'],
