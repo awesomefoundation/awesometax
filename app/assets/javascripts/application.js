@@ -5,5 +5,6 @@
 //= require jquery.ui.autocomplete
 //= require_tree ./lib
 //= require "user_search"
+//= require "confirm_pledge"
 //= require_self
 //

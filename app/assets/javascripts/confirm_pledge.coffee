@@ -10,4 +10,5 @@ submitPledge = ->
       $('.topbar-wrapper').after('<div class="centered alert-message">'+data.responseText+'</div>')
 
 $(document).ready ->
-  setTimeout submitPledge, 2000
+  if $('body').hasClass('confirm_pledge')
+    setTimeout submitPledge, 2000
