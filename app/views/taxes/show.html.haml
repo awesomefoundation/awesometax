@@ -4,7 +4,9 @@
 
 .container_12.container
   .grid_12
-    %h2=h @tax.name
+    %h2
+      =h @tax.name
+    %h4="Next Collection Date: " + Date.today.at_beginning_of_month.next_month.strftime("%A, %B %e") + " (" + distance_of_time_in_words(Date.today, Date.today.at_beginning_of_month.next_month) + " from now)"
 
   .grid_8
     = raw auto_link(markdown(@tax.description))
