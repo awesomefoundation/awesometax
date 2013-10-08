@@ -7,7 +7,7 @@
         %th Date
         %th Amount
     %tbody
-      - @sorted.each do |x, y|
+      - @sorted.each do |time, transactions|
         %tr{:style => 'border-top: 1px dotted #aaa;'}
-          %td= x.strftime('%d-%m-%y')
-          %td= number_to_currency(y.inject(0){|sum,t| sum + t.amount })
+          %td= time.strftime('%d-%m-%y')
+          %td= number_to_currency(transactions.inject(0){|sum,t| sum + t.amount })
