@@ -153,7 +153,7 @@ class Pledge < ActiveRecord::Base
   # This generally runs as a rake task, "rake taxes:collect"
   def self.collect_all
     if Rails.env.production?
-      unless (Transaction.count == 0) or (Date.today - Transaction.last.created_at.to_date).to_i > 5
+      unless (Transaction.count == 0) or Date.today.month == Transaction.last.created_at.month
         puts "There has already been a collection recently. No can do. This is a safeguard that's very easy to override if you mean it."
         return
       end
