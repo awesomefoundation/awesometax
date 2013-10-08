@@ -16,6 +16,7 @@ LoveTax3::Application.routes.draw do
   resource  :account, :controller => 'users'
   match     'account' => 'users#show', :as => :my_account, :method => :get
   resources :taxes do
+    match "history" => 'taxes#history'
     resources :roles
     resources :transactions, :only => :index
     match "search/:id" => 'roles#user_search'

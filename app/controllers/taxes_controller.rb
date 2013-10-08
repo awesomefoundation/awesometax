@@ -14,6 +14,12 @@ class TaxesController < ApplicationController
     @my_pledges = user_signed_in? ? @tax.pledges.active.where(:user_id => current_user.id) : []
   end
 
+  def history
+    @tax = Tax.find_tax(params[:tax_id])
+    @transactions = @tax.transactions.received
+    @sorted = @transactions.group_by {|t| t.created_at.beginning_of_day}
+  end
+
   def new
     @tax = Tax.new(:goal => AppConfig.minimum_goal)
     fill_paypal_details(@tax)

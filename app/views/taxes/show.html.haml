@@ -23,7 +23,7 @@
           = "#{number_to_currency(@tax.monthly_income)} monthly from #{pluralize(@tax.unique_supporters.count, 'person')}"
         - unless @tax.goal.nil? or @tax.goal == 0
           (#{number_to_currency(@tax.goal, :precision => 0)} needed)
-
+        = link_to "Collection History", "#{@tax.slug}/history"
 
     = render :partial => 'shared/share', :locals => {:url => request.url, :text => "#{h(@tax.name)} | AwesomeTax" }
 
