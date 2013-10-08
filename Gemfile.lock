@@ -43,6 +43,10 @@ GEM
     andand (1.3.3)
     arel (3.0.2)
     awesome_print (1.1.0)
+    aws-sdk (1.11.1)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
     bluecloth (2.2.0)
     bootstrap-sass (2.3.2.2)
@@ -221,6 +225,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -231,6 +236,7 @@ DEPENDENCIES
   activemerchant
   andand
   awesome_print
+  aws-sdk
   bluecloth
   bootstrap-sass
   coffee-rails (~> 3.2.1)

@@ -47,6 +47,15 @@ LoveTax3::Application.configure do
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['AWS_BUCKET'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    }
+  }
   # Enable threaded mode
   # config.threadsafe!
 
@@ -66,6 +75,5 @@ LoveTax3::Application.configure do
     :sender_address => %{"Exception Notifier" <info@makeloveland.com>},
     :exception_recipients => %w{awesome@kateray.net}
 
-  Paperclip.options[:command_path] = "/usr/bin"
 end
 
