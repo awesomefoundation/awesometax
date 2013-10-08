@@ -42,7 +42,7 @@ class Mailer < ActionMailer::Base
 
   private
   def tag(str)
-    "[AwesomeTax#{Rails.env == 'production' ? '' : (' ' + Rails.env)}] #{str}"
+    "[AwesomeTax#{Rails.env == 'staging' ? (' ' + Rails.env) : ''}] #{str}"
   end
   def category(c)
     headers({ 'X-SMTPAPI' => { 'category' => "tax_#{Rails.env}_#{c}" }.to_json })
