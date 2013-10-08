@@ -21,3 +21,8 @@ Role.where(kind: Role::FUNDER).each do |r|
     Role.create(kind: Role::TRUSTEE, user_id: r.user_id, tax_id: r.tax_id)
   end
 end
+
+#hacky way of ensuring that tax collection will not run till 1st of next month
+t = Transaction.last
+t.created_at = Time.zone.now
+t.save
