@@ -99,8 +99,8 @@ class User < ActiveRecord::Base
 
   def modify
     logger.info "Modify gets: #{picture_file_name}"
-    self.picture.instance_write(:file_name, transliterate_file_name(self.picture_file_name))
-    logger.info "and ends with: #{picture_file_name}"
+    # self.picture.instance_write(:file_name, transliterate_file_name(self.picture_file_name))
+    # logger.info "and ends with: #{picture_file_name}"
   end
 
 end
