@@ -152,11 +152,9 @@ class Pledge < ActiveRecord::Base
 
   # This generally runs as a rake task, "rake taxes:collect"
   def self.collect_all
-    if Rails.env.production?
-      unless (Transaction.count == 0) or Date.today.month == Transaction.last.created_at.month
-        puts "There has already been a collection recently. No can do. This is a safeguard that's very easy to override if you mean it."
-        return
-      end
+    unless (Transaction.count == 0) or Date.today.month == Transaction.last.created_at.month
+      puts "There has already been a collection recently. No can do. This is a safeguard that's very easy to override if you mean it."
+      return
     end
 
     done = 0
@@ -180,7 +178,7 @@ class Pledge < ActiveRecord::Base
     puts "Running transactions:"
     pledges.each do |p|
       puts "  Considering pledge #{p.id}..."
-      next if Rails.env.production? && !p.transactions.empty? and Time.zone.now - p.transactions.last.created_at < 1.day  # Safety net to not run twice in the same day
+      next if !p.transactions.empty? and Date.today.month == Transaction.last.created_at.month  # Safety net to not run twice in the same month
       if p.collect
         puts "  Successfully collected pledge #{p.id} for $#{p.amount}"
         done += 1
