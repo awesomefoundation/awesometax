@@ -24,6 +24,7 @@ gem 'psych'
 gem 'sass'
 gem 'rails_autolink'
 gem 'rails3-jquery-autocomplete'
+gem 'unicorn'
 
 group :assets do
   gem 'bootstrap-sass'
