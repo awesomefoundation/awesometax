@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130828191855) do
+ActiveRecord::Schema.define(:version => 20131008174633) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -22,13 +22,14 @@ ActiveRecord::Schema.define(:version => 20130828191855) do
   end
 
   create_table "messages", :force => true do |t|
-    t.integer  "tax_id",                    :null => false
-    t.integer  "user_id",                   :null => false
-    t.integer  "status",     :default => 0, :null => false
+    t.integer  "tax_id",                                                  :null => false
+    t.integer  "user_id",                                                 :null => false
+    t.integer  "status",     :default => 0,                               :null => false
     t.string   "title"
-    t.text     "body",                      :null => false
+    t.text     "body",                                                    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "from",       :default => "contact@awesomefoundation.org"
   end
 
   create_table "pledges", :force => true do |t|

@@ -1,8 +1,8 @@
 class Mailer < ActionMailer::Base
   default :from => "contact@awesomefoundation.org"
   @@admins = [ 'larry@makeloveland.com', 'jerry@makeloveland.com', 'mary@makeloveland.com' ]
-  
-  
+
+
   def welcome(user)
     @user = user
     category 'welcome'
@@ -21,26 +21,26 @@ class Mailer < ActionMailer::Base
     category 'new_pledge'
     mail(:to => managers.collect { |u| u.email }, :subject => tag("You have a new taxpayer on #{pledge.tax.name}"))
   end
-  
+
   def comment(recipients, comment)
     @comment = comment
     category 'comment'
     mail(:to => recipients.collect { |u| u.email }, :subject => tag("#{comment.user.name} commented on your tax, #{comment.tax.name}"))
   end
-  
+
   def admin_notification(subj, message)
     @message = message
     category 'admin_notification'
     mail(:to => @@admins, :subject => tag(subj))
   end
-  
+
   def tax_message(message)
     @message = message
     category 'message'
-    mail(:to => message.recipients.collect { |u| u.email }, :subject => message.effective_title)
+    mail(:to => message.recipients.collect { |u| u.email }, :from => message.from, :subject => message.effective_title)
   end
 
-  private  
+  private
   def tag(str)
     "[AwesomeTax#{Rails.env == 'production' ? '' : (' ' + Rails.env)}] #{str}"
   end

@@ -2,11 +2,15 @@
   = f.label 'To funders of'
   .input
     = f.select :tax_id, options_for_select(tax_options, message.tax_id)
-  %br/ 
+  %br/
   = f.label "Subject"
   .input
     = f.text_field :title, :class => 'span8'
     .help-block If you leave this blank we'll make one up for you with the tax name and date.
+  %br/
+  = f.label :from
+  .input
+    = f.email_field :from, :class => 'span8', :value => "contact@awesomefoundation.org"
   %br/
   = f.label :body
   .input
@@ -16,10 +20,10 @@
   .input
     = f.select :status, options_for_select([ ['Save as Draft', Message::DRAFT], ['Save, Publish and Send', Message::PUBLISHED], ['Trash', Message::TRASH] ], message.status)
 
-  %br/    
+  %br/
   .input
     = f.submit 'Save as Draft', :class => 'btn'
-    
+
 :javascript
   var labels = {
     0: 'Save as Draft',
@@ -43,4 +47,3 @@
     var val = $('#message_status').val();
     $('#message_submit').val(labels[val]);
   });
-    
