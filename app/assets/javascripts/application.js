@@ -6,5 +6,6 @@
 //= require_tree ./lib
 //= require "user_search"
 //= require "confirm_pledge"
+//= require "tax"
 //= require_self
 //

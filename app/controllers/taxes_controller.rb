@@ -22,17 +22,10 @@ class TaxesController < ApplicationController
 
   def new
     @tax = Tax.new(:goal => AppConfig.minimum_goal)
-    fill_paypal_details(@tax)
   end
 
   def create
-    unless verify_paypal(params[:tax][:paypal_email], params[:paypal_first], params[:paypal_last])
-      redirect_to new_tax_path, :notice => "Sorry, we couldn't verify that PayPal account."
-      return
-    end
-
     @tax = Tax.new(params[:tax])
-    fill_paypal_details(@tax)
     if @tax.goal < AppConfig.minimum_goal
       flash[:notice] = "Your monthly minimum needs to be at least $#{AppConfig.minimum_goal}."
       render :action => 'new'
@@ -44,10 +37,15 @@ class TaxesController < ApplicationController
 
     if @tax.save
       @tax.managers << current_user
-      redirect_to tax_path(@tax.slug)
+      respond_to do |format|
+        format.html { redirect_to redirect_to tax_path(@tax.slug) }
+        format.json { render json: {url: tax_path(@tax.slug)}}
+      end
     else
-      flash[:notice] = "You need to fill out all the boxes. Don't forget to cross your i's and dot your t's!"
-      render :action => 'new'
+      respond_to do |format|
+        format.html { redirect_to new_tax_path, :notice => @tax.errors.full_messages.join(", ") }
+        format.json { render json: @tax.errors.full_messages.join(", "), :status => :unprocessable_entity}
+      end
     end
   end
 
@@ -90,35 +88,6 @@ class TaxesController < ApplicationController
     else
       redirect_to @tax, :notice => "You don't own that tax so you can't end it."
     end
-  end
-
-
-  private
-
-  def fill_paypal_details(tax)
-    if Rails.env == 'production'
-      tax.paypal_email = current_user.email
-      @paypal_first = @paypal_last = nil
-    else
-      tax.paypal_email = 'sherad_1274768045_per@gmail.com'
-      @paypal_first = 'Test'
-      @paypal_last = 'User'
-    end
-  end
-
-  # Return true if it's valid, false if we can't tell
-  def verify_paypal(email, first, last)
-   data = {
-     "emailAddress"   => email,
-     "matchCriteria"  => "NAME",
-     "firstName"      => first,
-     "lastName"       => last,
-    }
-    request = PaypalAdaptive::Request.new
-    logger.info data.inspect
-    response = request.get_verified_status(data)
-    logger.info response.inspect
-    return (response.success? and response['accountStatus'] == 'VERIFIED')
   end
 
 
