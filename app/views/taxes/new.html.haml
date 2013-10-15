@@ -33,25 +33,25 @@
           %em Leave it blank or "0" for no minimum.
       %br/
 
-      %h3 PayPal Details
-      - unless Rails.env == 'production'
-        %p
-          %b TESTING NOTE: Don't enter real PayPal info here, just use the info we've pre-filled for you. :)
-
-      = f.label "Email Address"
+      %h3 Payment Details
+      %br
+      = f.label "Routing Number"
       .input
-        = f.text_field :paypal_email, :style => 'width: 100%;'
+        - if Rails.env.production?
+          = text_field_tag :routing_number
+        - else
+          = text_field_tag :routing_number, '110000000'
         .help-block
-          The email address you'll receive funding at. We'll verify that this is registered, so the
-          first and last names you provide below must match what's on the PayPal account.
-      %br/
-      = f.label "First Name"
+          US Bank Accounts Only
+      %br
+      = f.label "Account Number"
       .input
-        = text_field_tag :paypal_first, @paypal_first, :style => 'width: 100%;'
-      %br/
-      = f.label "Last Name"
-      .input
-        = text_field_tag :paypal_last, @paypal_last, :style => 'width: 100%;'
+        - if Rails.env.production?
+          = text_field_tag :account_number
+        - else
+          = text_field_tag :account_number, '000123456789'
+        .help-block
+          No dashes or spaces please
       %br/
       %br/
       = f.submit 'Create It', :class => 'btn'
