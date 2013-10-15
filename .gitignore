@@ -2,3 +2,5 @@ db/*.sql
 /log/*
 /tmp/*
 .sass-cache/*
+/config/local_env.yml
+/public/system/pictures/*
