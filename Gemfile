@@ -20,12 +20,12 @@ gem 'omniauth'
 gem 'oa-oauth', :require => 'omniauth/oauth'
 gem 'paperclip'
 gem 'aws-sdk'
-gem 'paypal_adaptive'
 gem 'psych'
 gem 'sass'
 gem 'rails_autolink'
 gem 'rails3-jquery-autocomplete'
 gem 'unicorn'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 group :assets do
   gem 'bootstrap-sass'
