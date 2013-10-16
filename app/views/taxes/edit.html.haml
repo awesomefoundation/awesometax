@@ -31,8 +31,7 @@
 
       %br/
       %p.input
-        Funds will go to the PayPal account
-        %b= "#{h(@tax.paypal_email)}."
+        Funds will go to the Bank account you supplied on setup
         %br/
         You can't change this, but you can always
         = link_to 'discontinue this tax', { :controller => 'taxes', :action => 'destroy', :id => @tax.id }, { :method => :delete, :confirm => "Are you sure you want to stop collecting this tax? You cannot undo this!" }

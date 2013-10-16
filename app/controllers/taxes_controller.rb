@@ -33,7 +33,7 @@ class TaxesController < ApplicationController
     end
 
     @tax.status = Tax::ACTIVE
-    @tax.owner = current_user # Deprecated, just holds the creator (ie person who entered paypal recipient info)
+    @tax.owner = current_user # Deprecated, just holds the creator (ie person who entered banking info)
 
     if @tax.save
       @tax.managers << current_user

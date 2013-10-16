@@ -27,14 +27,12 @@
     %h3 Terms of Use
     %ul
       %li
-        You must abide by
-        = link_to "PayPal's Acceptable Use Policy", "https://cms.paypal.com/us/cgi-bin/marketingweb?cmd=_render-content&content_ID=ua/AcceptableUse_full&locale.x=en_US"
-        while using AwesomeTax. In short, don't do anything illegal here or we'll cancel all future funding and
+        In short, don't do anything illegal here or we'll cancel all future funding and
         revoke your membership.
       %li We make no guarantee about what the recipients of your taxes do with the money. As such, we cannot offer refunds if they fail to live up to the promises they have written on our site.
       %li
         While it's free to start a tax, when you receive your monthly funding, the standard
-        = link_to 'PayPal fees', 'https://www.paypal.com/cgi-bin/webscr?cmd=_display-receiving-fees-outside&countries='
+        = link_to 'Stripe fees', 'https://stripe.com/us/help/pricing'
         will be subtracted from your "paycheck."
 
     %h3 Contact info
@@ -48,8 +46,8 @@
       %ol
         %li #{link_to 'Find a tax', taxes_path} you want to contribute to.
         %li Type in how much you want to pay each month.
-        %li Click the "Checkout with PayPal" button.
-        %li Follow the directions at the PayPal site to start payments.
+        %li Click the "Pay Card" button.
+        %li Fill out the form to start payments.
         %li Invite your friends to do it too.
         %li Bask in joy.
 
@@ -65,6 +63,6 @@
         %h3 How to start your own
         %ol
           %li Go to #{link_to 'this page', new_tax_path}
-          %li Enter the email address you use for #{link_to 'PayPal', 'http://paypal.com'}. #{link_to 'Signing up', 'https://www.paypal.com/cgi-bin/webscr?cmd=_registration-run'} is free and quick.
           %li Enter a title and write a brief description, and then press "Create it."
+          %li Add your bank account info
           %li Invite your friends and social networks to contribute!
