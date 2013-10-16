@@ -14,9 +14,9 @@ We're set up for Apache + Passenger with RVM and Ruby 1.9.3. I have a .rvmrc tha
 
 Monthly collection
 ------------------
-We have rake tasks that run through all current taxes, do the PayPal transactions, and send email notifications to the affected users.
+We have rake tasks that run through all current taxes, do the Stripe transactions, and send email notifications to the affected users.
 
-    bundle exec rake taxes:collect --trace    
+    bundle exec rake taxes:collect --trace
 
 To automate this, I have a script called collect_taxes.sh. It emails the output of the rake script to me. Of course the particulars here will vary depending on your server setup:
 
