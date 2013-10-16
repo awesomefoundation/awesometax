@@ -9,98 +9,27 @@ class PledgesController < ApplicationController
   end
 
   def create
-
+    #create pledge
     @pledge = Pledge.new(params[:pledge])
     @pledge.attributes = {
       :user => current_user,
       :starts => Time.zone.now,
       :ends => Time.zone.now + 1.year,
-      :status => Pledge::INACTIVE
+      :status => Pledge::ACTIVE,
+      :stripe_token => params[:stripeToken]
     }
-    unless @pledge.tax.andand.active? and @pledge.save
+
+    if @pledge.save
       respond_to do |format|
-        format.html { redirect_to :back, :notice => @pledge.errors.full_messages.join(", ") }
-        format.json { render json: @pledge.errors.full_messages.join(", "), :status => :unprocessable_entity}
-      end
-
-      return
-    end
-
-    pay_request = PaypalAdaptive::Request.new
-    receiverList = [ { 'email' => @pledge.tax.paypal_email, 'amount' => @pledge.recipient_cut.to_s } ]
-    receiverList << { 'email' => AppConfig.paypal_email, 'amount' => @pledge.loveland_cut.to_s } if AppConfig.loveland_fee > 0
-
-    data = {
-      'actionType'          => 'PAY',
-      'requestEnvelope'     => { 'errorLanguage' => 'en_US' },
-      'currencyCode'        => 'USD',
-      'returnUrl'           => url_for(:controller => 'pledges', :action => 'completed', :id => @pledge.id, :only_path => false),
-      'cancelUrl'           => url_for(:controller => 'pledges', :action => 'canceled',  :id => @pledge.id, :only_path => false),
-      'receiverList'        => { 'receiver' => receiverList },
-      'fees_payer'          => 'EACHRECEIVER',
-      'ipnNotificationUrl'  => url_for(:controller => 'pledges', :action => 'notify'),
-      'maxTotalAmountOfAllPayments' => (12 * @pledge.amount).to_s,
-      'maxAmountPerPayment'         => @pledge.amount.to_s,
-      'maxNumberOfPayments'         => '12',
-      'startingDate'                => @pledge.starts.strftime('%Y-%m-%dT%H:%M:%S-00:00'),
-      'endingDate'                  => @pledge.ends.strftime('%Y-%m-%dT%H:%M:%S-00:00')
-    }
-    pay_response = @response = pay_request.preapproval(data)
-
-    if pay_response.success?
-      @pledge.update_attribute(:preapproval_key, pay_response['preapprovalKey'])
-      respond_to do |format|
-        format.html { redirect_to pay_response.preapproval_paypal_payment_url }
-        format.json { render json: {url: pay_response.preapproval_paypal_payment_url}}
+        format.html { redirect_to @pledge.tax, :notice => "Thanks, you created a monthly pledge of $#{params[:pledge][:amount]}" }
+        format.json { render html: "<h2>Thanks, you created a monthly pledge of <strong>$#{params[:pledge][:amount]}</strong>!</h2>"}
       end
     else
-      error_message = pay_response.errors.first['message'] + '... request=' + data.to_json + '... response=' + @response.inspect
-      flash[:notice] = error_message
-
       respond_to do |format|
-        format.html {redirect_to @pledge.tax}
-        format.json {render json: error_message, :status => :unprocessable_entity}
+        format.html { redirect_to @pledge.tax, :notice => @pledge.errors.full_messages.join(", ") }
+        format.json { render json: @pledge.errors.full_messages.join(", "), :status => :unprocessable_entity}
       end
     end
-  end
-
-
-  def completed
-    pledge = Pledge.find params[:id]
-    pledge.user ||= current_user
-    preapproval_key = pledge.preapproval_key
-    pay_request = PaypalAdaptive::Request.new
-    data = {
-      'preapprovalKey' => preapproval_key,
-      'requestEnvelope' => { 'errorLanguage' => 'en_US' },
-      'currencyCode' => 'USD'
-      }
-    response = pay_request.preapproval_details(data)
-    logger.info response.inspect
-    unless response['approved'] == 'true'
-      flash[:notice] = "We couldn't verify your preapproval..."
-      redirect_to pledge.tax
-      return
-    end
-    if pledge.amount != response['maxAmountPerPayment'].to_f
-      flash[:notice] = "There was a mismatch between our pledge amount and PayPal's."
-      redirect_to pledge.tax
-      return
-    end
-
-    pledge.update_attribute(:status, Pledge::ACTIVE)
-    pledge.tax.funders << current_user
-
-    begin
-      Mailer.new_pledge(pledge.tax.managers.select { |u| u.settings(:email).new_pledge }, pledge).deliver
-    rescue => e
-      logger.info e.inspect
-      logger.info e.backtrace
-    end
-
-    flash[:notice] = 'Thank you for pledging!'
-    #redirect_to :action => 'thanks', :id => pledge.id
-    redirect_to pledge.tax
   end
 
   def thanks

@@ -7,7 +7,7 @@ class Pledge < ActiveRecord::Base
 
   INACTIVE  = 0 # has not been confirmed yet
   ACTIVE    = 1
-  PAUSED    = 3 # you can do this thru paypal site ("suspended") or ours
+  PAUSED    = 3 # you can do this thru account page
   FINISHED  = 4 # voluntarily
   FAILED    = 5 # a problem. failed, cancelled, expired...
 
@@ -17,8 +17,9 @@ class Pledge < ActiveRecord::Base
 
   validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than => 10000
   validates_presence_of :tax
-  validates :user_id, :uniqueness => {:scope => :tax_id, :message => "already funds this tax"}
+  # validates :user_id, :uniqueness => {:scope => :tax_id, :message => "already funds this tax"}
   validates :amount, :numericality => { :greater_than_or_equal_to => 5, :message => " must be at least $5" }
+  validate :tax_is_active
 
   @@fuzzies = [
     [1,     'a little bit'],
@@ -60,14 +61,13 @@ class Pledge < ActiveRecord::Base
   end
 
   # Fees and where the money goes
-  def loveland_cut
-    AppConfig.loveland_fee * amount
-  end
   def recipient_cut
-    amount - loveland_cut - paypal_cut
+    amount - stripe_cut
   end
-  def paypal_cut
-    0 # TODO: calculate it
+  def stripe_cut
+    #from https://stripe.com/us/help/pricing
+    #charge cut + transfer cut
+    (amount*0.029) + 0.55
   end
 
   def start
@@ -77,38 +77,14 @@ class Pledge < ActiveRecord::Base
     update_attribute(:status, Pledge::PAUSED)
   end
   def stop
-    # Tell paypal it's over
-    pay_request = PaypalAdaptive::Request.new
-    data = {
-      'requestEnvelope' => { 'errorLanguage' => 'en_US' },
-      'preapprovalKey' => preapproval_key
-    }
-    pay_response = pay_request.cancel_preapproval(data)
-    logger.info "pay_response: #{pay_response.inspect}"
+    customer = Stripe::Customer.retrieve(self.stripe_token)
+    response = customer.delete
 
     update_attribute(:status, Pledge::FINISHED)
   end
 
-
-  def create_transactions
-    Transaction.create({
-      :user_id => user_id,
-      :pledge_id => id,
-      :amount => amount,
-      :kind => Transaction::SENT
-    })
-    Transaction.create({
-      :user_id => tax.owner_id,
-      :pledge_id => id,
-      :amount => recipient_cut,
-      :kind => Transaction::RECEIVED
-    })
-    Transaction.create({
-      :user_id => 0,  # 0 is a fake user, marks it as for the company
-      :pledge_id => id,
-      :amount => loveland_cut,
-      :kind => Transaction::RECEIVED
-    }) if AppConfig.loveland_fee > 0
+  def tax_is_active
+    self.tax.status == Tax::ACTIVE
   end
 
 
@@ -116,37 +92,53 @@ class Pledge < ActiveRecord::Base
 
   def collect
     logger.info "collect_pledge: #{self.inspect}"
-    default_url_options[:host] = 'awesometax-test.herokuapp.com'
-    pay_request = PaypalAdaptive::Request.new
-    receiverList = [ { 'email' => tax.paypal_email, 'amount' => recipient_cut.to_s } ]
-    receiverList << { 'email' => AppConfig.paypal_email, 'amount' => loveland_cut.to_s } if AppConfig.loveland_fee > 0
-    data = {
-      'actionType' => 'PAY',
-      'requestEnvelope' => { 'errorLanguage' => 'en_US' },
-      'currencyCode' => 'USD',
-      'returnUrl' => url_for(:controller => 'pledges', :action => 'completed'),
-      'cancelUrl' => url_for(:controller => 'pledges', :action => 'canceled'),
-      'ipnNotificationUrl' => url_for(:controller => 'pledges', :action => 'notify'),
-      'fees_payer' => 'EACHRECEIVER',
-      'preapprovalKey' => preapproval_key,
-      'receiverList' => { 'receiver' => receiverList },
-    }
 
-    pay_response = pay_request.pay(data)
-
-    logger.info "pay_response: #{pay_response.inspect}"
-    if pay_response.success?
-      Pledge.transaction do
-        update_attribute(:cumulative, cumulative + amount)
-        create_transactions
-      end
-      logger.info "Success"
-      return true
-    else
-      update_attribute(:status, Pledge::FAILED)
-      logger.info "Failure"
-      return false
+    begin
+      Stripe::Charge.create(
+        :amount => (amount*100).to_i, # amount in cents, again
+        :currency => "usd",
+        :card => stripe_token,
+        :description => "#{tax.name}"
+      )
+    rescue => e
+      logger.info "error: #{e.message}"
+      errors[:base] << "#{e.message}"
+      return
     end
+
+    charge = Transaction.create({
+      :user_id => user_id,
+      :pledge_id => id,
+      :amount => amount,
+      :kind => Transaction::SENT
+    })
+
+    if charge.save
+
+      begin
+        Stripe::Transfer.create(
+          :amount => (recipient_cut*100).to_i, # amount in cents
+          :currency => "usd",
+          :recipient => tax.recipient_id,
+          :statement_descriptor => "#{tax.name}"
+        )
+      rescue => e
+        logger.info "error: #{e.message}"
+        errors[:base] << "#{e.message}"
+        return
+      end
+
+      transfer = Transaction.create({
+        :user_id => tax.owner_id,
+        :pledge_id => id,
+        :amount => recipient_cut,
+        :kind => Transaction::RECEIVED
+      })
+    else
+      errors[:base] << charge.errors.full_messages.join(", ")
+      return
+    end
+
   end
 
 
