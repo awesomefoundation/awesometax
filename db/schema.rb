@@ -33,15 +33,16 @@ ActiveRecord::Schema.define(:version => 20131015154957) do
   end
 
   create_table "pledges", :force => true do |t|
-    t.integer  "user_id",                                                   :null => false
+    t.integer  "user_id",                                                     :null => false
     t.integer  "tax_id"
-    t.datetime "starts",                                                    :null => false
+    t.datetime "starts",                                                      :null => false
     t.datetime "ends"
-    t.integer  "status",                                                    :null => false
-    t.decimal  "amount",     :precision => 8, :scale => 2,                  :null => false
-    t.decimal  "cumulative", :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.integer  "status",                                                      :null => false
+    t.decimal  "amount",       :precision => 8, :scale => 2,                  :null => false
+    t.decimal  "cumulative",   :precision => 8, :scale => 2, :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "stripe_token"
   end
 
   create_table "roles", :force => true do |t|
@@ -74,15 +75,16 @@ ActiveRecord::Schema.define(:version => 20131015154957) do
   add_index "settings", ["target_type", "target_id", "var"], :name => "index_settings_on_target_type_and_target_id_and_var", :unique => true
 
   create_table "taxes", :force => true do |t|
-    t.string   "name",                       :null => false
-    t.text     "description",                :null => false
-    t.integer  "owner_id",                   :null => false
+    t.string   "name",                        :null => false
+    t.text     "description",                 :null => false
+    t.integer  "owner_id",                    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status",      :default => 1, :null => false
+    t.integer  "status",       :default => 1, :null => false
     t.integer  "goal"
     t.string   "slug"
     t.string   "bank_token"
+    t.string   "recipient_id"
   end
 
   create_table "transactions", :force => true do |t|
@@ -121,7 +123,6 @@ ActiveRecord::Schema.define(:version => 20131015154957) do
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
-    t.string   "stripe_token"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
