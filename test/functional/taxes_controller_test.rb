@@ -6,10 +6,16 @@ class TaxesControllerTest < ActionController::TestCase
     :name => "Awesome PDX",
     :description => "Quick brown foxes jumping over lazy dogs.",
     :goal => 1500,
-    :paypal_email => 'sherad_1274768045_per@gmail.com',
+    :bank_token => 'btok_2lVK2WWdvctLOj'
   }
 
   def setup
+    # account = Stripe::BankAccount.create(
+    #   :country => "US",
+    #   :routing_number => "110000000",
+    #   :account_number => "000123456789"
+    # )
+    # @@tax_params['bank_token'] = account.id
   end
 
   def teardown
@@ -22,7 +28,7 @@ class TaxesControllerTest < ActionController::TestCase
     sign_in u
 
     assert_difference('Tax.count', 0) do
-      post :create, { :tax => @@tax_params, :paypal_first => 'Test', :paypal_last => 'User' }
+      post :create, { :tax => @@tax_params }
     end
     assert_redirected_to root_path
   end

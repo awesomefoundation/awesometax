@@ -11,8 +11,6 @@ class TaxTest < ActiveSupport::TestCase
 
   # end
 
-  # test collecting with a mocked paypal
-
   # stopping it
 
 end

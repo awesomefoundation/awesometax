@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :user do
-    name 'John'
+    name 'John User'
     email 'john@johnson.com'
     password 'lettuce'
     status User::NORMAL
@@ -10,7 +10,7 @@ FactoryGirl.define do
   end
 
   factory :admin, :class => User do
-    name 'Admin'
+    name 'Admin User'
     email 'admin@example.com'
     password 'lettuce'
     status User::ADMIN
@@ -48,7 +48,8 @@ FactoryGirl.define do
     association :owner, :factory => :admin
     description 'Awesome PDX. We intend to make it even awesomer.'
     goal 200
-    paypal_email 'nobody@lemonary.com'
+    bank_token = Stripe::Token.create(:bank_account => {:country => "US", :routing_number => "110000000", :account_number => "000123456789",},).id
+    recipient_id 'rp_102lW02HxIFZsDb1Jy8tD5aK'
   end
 
   factory :pledge do
@@ -56,7 +57,7 @@ FactoryGirl.define do
     association :user
     association :tax, :factory => :tax
     status Pledge::ACTIVE
-    preapproval_key 'PA-23059293TY1820902'
+    stripe_token 'tok_102lVw2HxIFZsDb1g5Mlt8QH'
     starts Time.now
     ends Time.now + 1.year
   end
