@@ -7,7 +7,7 @@ class Tax < ActiveRecord::Base
   ACTIVE   = 1
   ENDED    = 2
 
-  belongs_to :owner, :class_name => 'User' # Deprecated mostly, just marks who started it (ie entered the paypal recipient info)
+  belongs_to :owner, :class_name => 'User' # Deprecated mostly, just marks who started it (ie entered the banking info)
   has_many :pledges
   has_many :active_pledges, :class_name => 'Pledge', :conditions => {:status => Pledge::ACTIVE}
   has_many :pledgers, :through => :active_pledges, :source => :user, :uniq => true
@@ -26,12 +26,13 @@ class Tax < ActiveRecord::Base
 
   scope :active, where(:status => Tax::ACTIVE)
 
-  attr_accessible :name, :description, :paypal_email, :video_type, :video_id, :goal, :bank_token
+  attr_accessible :name, :description, :video_type, :video_id, :goal, :bank_token, :recipient_id
   validates_length_of :name, :minimum => 5
   validates_length_of :name, :maximum => 40
   validates_length_of :description, :minimum => 20
   validates :goal, :numericality => { :greater_than_or_equal_to => AppConfig.minimum_goal }
   #validates_presence_of :owner_id
+  validate :create_stripe_recipient, on: :create
 
   before_save :update_slug
   after_create :notify_admins
@@ -91,6 +92,24 @@ class Tax < ActiveRecord::Base
   def update_slug
     s = self.name.clone
     self.slug = transliterate(s)
+  end
+
+  def create_stripe_recipient
+    begin
+      recipient = Stripe::Recipient.create(
+        :name => self.owner.name,
+        :type => "individual",
+        :email => self.owner.email,
+        :bank_account => bank_token
+      )
+    rescue => e
+      logger.info "error: #{e.message}"
+      errors[:base] << "#{e.message}"
+      return
+    end
+
+    self.recipient_id = recipient.id
+
   end
 
   def notify_admins
