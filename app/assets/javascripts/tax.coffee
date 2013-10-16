@@ -1,5 +1,3 @@
-Stripe.setPublishableKey('pk_test_hnVIdVRGRqFRKl5VvCO8VbAW')
-
 submitForm = (data) ->
   $.ajax
     type: "POST"
