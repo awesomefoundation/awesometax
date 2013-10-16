@@ -10,10 +10,13 @@ submitForm = (data) ->
       window.location = data.url
     error: (data) ->
       $('.topbar-wrapper').after('<div class="centered alert-message">'+data.responseText+'</div>')
+    complete: ->
+      $('#new_tax').find('input[type="submit"]').removeAttr('disabled')
 
 stripeResponseHandler = (status, response) ->
   if response.error
-    #TODO HANDLE ERROR
+    $('.topbar-wrapper').after('<div class="centered alert-message">'+response.error.message+'</div>')
+    $('#new_tax').find('input[type="submit"]').removeAttr('disabled')
   else
     data = {}
     data['tax[name]'] = $('#tax_name').val()
@@ -32,5 +35,6 @@ createToken = ->
 
 $(document).ready ->
   $('#new_tax').submit (e) ->
+    $(this).find('input[type="submit"]').attr('disabled', 'true')
     e.preventDefault()
     createToken()
