@@ -24,7 +24,9 @@
         %br/
       %div
         = f.label :password
-        .input= f.password_field :password
+        .input
+          = f.password_field :password
+          .help-block Minimum six characters
         %br/
       %div
         = f.label 'Password (again)'
