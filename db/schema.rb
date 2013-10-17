@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20131015154957) do
     t.integer  "user_id"
     t.integer  "tax_id"
     t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "messages", :force => true do |t|
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(:version => 20131015154957) do
     t.integer  "status",     :default => 0,                               :null => false
     t.string   "title"
     t.text     "body",                                                    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
     t.string   "from",       :default => "contact@awesomefoundation.org"
   end
 
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(:version => 20131015154957) do
     t.integer  "status",                                                      :null => false
     t.decimal  "amount",       :precision => 8, :scale => 2,                  :null => false
     t.decimal  "cumulative",   :precision => 8, :scale => 2, :default => 0.0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
     t.string   "stripe_token"
   end
 
@@ -49,27 +49,27 @@ ActiveRecord::Schema.define(:version => 20131015154957) do
     t.integer  "kind",       :null => false
     t.integer  "user_id",    :null => false
     t.integer  "tax_id",     :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "settings", :force => true do |t|
-    t.string   "var",                       :default => "", :null => false
+    t.string   "var",                       :null => false
     t.text     "value"
     t.integer  "target_id"
     t.string   "target_type", :limit => 30
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "settings", ["target_type", "target_id", "var"], :name => "index_settings_on_target_type_and_target_id_and_var", :unique => true
@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(:version => 20131015154957) do
     t.string   "name",                        :null => false
     t.text     "description",                 :null => false
     t.integer  "owner_id",                    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "status",       :default => 1, :null => false
     t.integer  "goal"
     t.string   "slug"
@@ -93,19 +93,19 @@ ActiveRecord::Schema.define(:version => 20131015154957) do
     t.decimal  "amount",     :precision => 8, :scale => 2, :null => false
     t.integer  "kind",                                     :null => false
     t.integer  "method"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
+    t.string   "name",                                  :null => false
     t.integer  "status"
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => ""
+    t.string   "email",                                 :null => false
+    t.string   "encrypted_password"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -114,9 +114,10 @@ ActiveRecord::Schema.define(:version => 20131015154957) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.string   "authentication_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "url"
     t.string   "bio"
     t.string   "twitter"
