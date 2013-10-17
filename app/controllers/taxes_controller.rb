@@ -81,13 +81,9 @@ class TaxesController < ApplicationController
       redirect_to account_path and return
     end
 
-    @tax = Tax.find_tax(params[:tax_id])
-    if @tax.managers.include?(current_user) or admin?
-      @tax.stop
-      redirect_to @tax, :notice => "You have discontinued this tax."
-    else
-      redirect_to @tax, :notice => "You don't own that tax so you can't end it."
-    end
+    @tax = Tax.find_tax(params[:id])
+    @tax.stop
+    redirect_to account_path, :notice => "You have discontinued this tax."
   end
 
 
