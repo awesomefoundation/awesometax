@@ -97,7 +97,7 @@ class Pledge < ActiveRecord::Base
       Stripe::Charge.create(
         :amount => (amount*100).to_i, # amount in cents, again
         :currency => "usd",
-        :card => stripe_token,
+        :customer => stripe_token,
         :description => "#{tax.name}"
       )
     rescue => e
@@ -117,7 +117,8 @@ class Pledge < ActiveRecord::Base
 
       begin
         Stripe::Transfer.create(
-          :amount => (recipient_cut*100).to_i, # amount in cents
+          #i know this is weird, but stripe adds on the extra 25 cents
+          :amount => (100*amount).to_i - 25, # amount in cents
           :currency => "usd",
           :recipient => tax.recipient_id,
           :statement_descriptor => "#{tax.name}"

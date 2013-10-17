@@ -9,6 +9,16 @@ class PledgesController < ApplicationController
   end
 
   def create
+    begin
+      customer = Stripe::Customer.create(
+        :card => params[:stripeToken],
+        :description => "payinguser@example.com"
+      )
+    rescue => e
+      errors[:base] << "#{e.message}"
+      return
+    end
+
     #create pledge
     @pledge = Pledge.new(params[:pledge])
     @pledge.attributes = {
@@ -16,7 +26,7 @@ class PledgesController < ApplicationController
       :starts => Time.zone.now,
       :ends => Time.zone.now + 1.year,
       :status => Pledge::ACTIVE,
-      :stripe_token => params[:stripeToken]
+      :stripe_token => customer.id
     }
 
     if @pledge.save
