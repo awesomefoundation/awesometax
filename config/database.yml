@@ -3,7 +3,7 @@ local: &local
   pool: 5
   timeout: 5000
   username: root
-  password: 
+  password: zaxzax
   host: localhost
   encoding: utf8
 
@@ -21,7 +21,7 @@ lime: &lime
 development:
   <<: *local
   database: lovetax_local
-  
+
 test:
   <<: *local
   database: lovetax_test
