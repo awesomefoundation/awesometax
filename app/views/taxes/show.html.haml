@@ -55,11 +55,12 @@
         %h3= number_to_currency(@tax.transactions.sent.where(:user_id => current_user.id).sum(:amount), :precision => 0)
         = link_to 'Manage your payments', account_path
 
-    .callout
-      - if !@tax.active?
-        %h4 This tax is no longer active.
-      - else
-        = render partial: "/shared/new_pledge", locals: {pledge: @pledge}
+    - unless (current_user && current_user.pledges.active.include?(@pledge)) == false
+      .callout
+        - if !@tax.active?
+          %h4 This tax is no longer active.
+        - else
+          = render partial: "/shared/new_pledge", locals: {pledge: @pledge}
 
     - if has_partial_tax_powers?(@tax.id)
       .callout
