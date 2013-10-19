@@ -20,7 +20,9 @@
         %br/
       %div
         = f.label :name
-        .input= f.text_field :name
+        .input
+          = f.text_field :name
+          .help-block First and last name, please
         %br/
       %div
         = f.label :password

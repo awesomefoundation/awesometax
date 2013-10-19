@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
   attr_accessible :settings, :url, :bio, :twitter, :picture
   validates_length_of :bio, :maximum => 140
   validates :email, :uniqueness => true
+  validates :name, :presence => true,
+    :format => { :with => /^[a-zA-Z]+\s[a-zA-Z]+$/, :message => " should contain first and last name" }
 
   has_many :pledges
   has_many :transactions
