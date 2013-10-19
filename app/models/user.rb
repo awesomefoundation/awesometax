@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   validates :email, :uniqueness => true
   validates :name, :presence => true,
     :format => { :with => /^[a-zA-Z]+\s[a-zA-Z]+$/, :message => " should contain first and last name" }
+  before_validation :strip_whitespace, :only => [:name, :email]
 
   has_many :pledges
   has_many :transactions
@@ -50,6 +51,12 @@ class User < ActiveRecord::Base
 
   after_create :notify_created
   before_picture_post_process :modify
+
+
+  def strip_whitespace
+    self.name = self.name.strip
+    self.email = self.email.strip
+  end
 
   def admin?
     status == ADMIN
