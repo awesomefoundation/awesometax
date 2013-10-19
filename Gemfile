@@ -26,6 +26,7 @@ gem 'rails_autolink'
 gem 'rails3-jquery-autocomplete'
 gem 'unicorn'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'newrelic_rpm'
 
 group :assets do
   gem 'bootstrap-sass'
