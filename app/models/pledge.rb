@@ -17,9 +17,9 @@ class Pledge < ActiveRecord::Base
 
   validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than => 10000
   validates_presence_of :tax
-  # validates :user_id, :uniqueness => {:scope => :tax_id, :message => "already funds this tax"}
   validates :amount, :numericality => { :greater_than_or_equal_to => 5, :message => " must be at least $5" }
   validate :tax_is_active
+  validate :only_once_per_tax
 
   @@fuzzies = [
     [1,     'a little bit'],
@@ -83,10 +83,15 @@ class Pledge < ActiveRecord::Base
     update_attribute(:status, Pledge::FINISHED)
   end
 
+  def only_once_per_tax
+    if user.pledges.active.where('tax_id = ? AND id != ?', tax_id, id || 0).any?
+      errors[:base] << "You already fund this tax"
+    end
+  end
+
   def tax_is_active
     self.tax.status == Tax::ACTIVE
   end
-
 
   #------------
 
