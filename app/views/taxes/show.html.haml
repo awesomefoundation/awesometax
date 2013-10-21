@@ -55,7 +55,7 @@
         %h3= number_to_currency(@tax.transactions.sent.where(:user_id => current_user.id).sum(:amount), :precision => 0)
         = link_to 'Manage your payments', account_path
 
-    - unless (current_user && current_user.pledges.active.include?(@pledge)) == false
+    - unless current_user && @tax.pledgers.include?(current_user)
       .callout
         - if !@tax.active?
           %h4 This tax is no longer active.
