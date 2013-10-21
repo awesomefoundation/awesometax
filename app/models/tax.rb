@@ -13,6 +13,7 @@ class Tax < ActiveRecord::Base
   has_many :pledgers, :through => :active_pledges, :source => :user, :uniq => true
   has_many :comments
   has_many :transactions, :through => :pledges
+  has_many :transfers, :class_name => 'Transaction', as: :parent
   has_many :messages
 
   has_many :roles, :dependent => :destroy

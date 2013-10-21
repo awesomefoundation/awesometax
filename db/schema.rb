@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131015154957) do
+ActiveRecord::Schema.define(:version => 20131021193336) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -88,13 +88,14 @@ ActiveRecord::Schema.define(:version => 20131015154957) do
   end
 
   create_table "transactions", :force => true do |t|
-    t.integer  "user_id",                                  :null => false
-    t.integer  "pledge_id",                                :null => false
-    t.decimal  "amount",     :precision => 8, :scale => 2, :null => false
-    t.integer  "kind",                                     :null => false
+    t.integer  "user_id",                                                         :null => false
+    t.integer  "parent_id",                                                       :null => false
+    t.decimal  "amount",      :precision => 8, :scale => 2,                       :null => false
+    t.integer  "kind",                                                            :null => false
     t.integer  "method"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
+    t.string   "parent_type",                               :default => "pledge"
   end
 
   create_table "users", :force => true do |t|

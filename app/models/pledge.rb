@@ -3,7 +3,7 @@ class Pledge < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :tax
-  has_many   :transactions
+  has_many   :transactions, as: :parent
 
   INACTIVE  = 0 # has not been confirmed yet
   ACTIVE    = 1
@@ -113,33 +113,14 @@ class Pledge < ActiveRecord::Base
 
     charge = Transaction.create({
       :user_id => user_id,
-      :pledge_id => id,
+      :parent_id => id,
+      :parent_type => 'Pledge',
       :amount => amount,
       :kind => Transaction::SENT
     })
 
     if charge.save
-
-      begin
-        Stripe::Transfer.create(
-          #i know this is weird, but stripe adds on the extra 25 cents
-          :amount => (100*amount).to_i - 25, # amount in cents
-          :currency => "usd",
-          :recipient => tax.recipient_id,
-          :statement_descriptor => "#{tax.name}"
-        )
-      rescue => e
-        logger.info "error: #{e.message}"
-        errors[:base] << "#{e.message}"
-        return
-      end
-
-      transfer = Transaction.create({
-        :user_id => tax.owner_id,
-        :pledge_id => id,
-        :amount => recipient_cut,
-        :kind => Transaction::RECEIVED
-      })
+      return true
     else
       errors[:base] << charge.errors.full_messages.join(", ")
       return
