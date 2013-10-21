@@ -47,6 +47,45 @@ class Tax < ActiveRecord::Base
     goal.nil? or monthly_income > goal
   end
 
+  def make_transfer
+    total = 0
+
+    puts "Running #{self.pledges.active.count.to_s} transactions for #{self.name}"
+    self.pledges.active.each do |p|
+      puts "  Considering pledge #{p.id}..."
+      next if Rails.env.production? && !p.transactions.empty? and Date.today.month == Transaction.last.created_at.month  # Safety net to not run twice in the same month
+      if p.collect
+        total += p.recipient_cut
+        puts "  Successfully collected pledge #{p.id} for $#{p.amount}"
+      else
+        puts "  Problem collecting pledge #{p.id}"
+      end
+    end
+
+    begin
+      puts "Going to transfer $#{total} to #{self.name}"
+      Stripe::Transfer.create(
+        #i know this is weird, but stripe adds on the extra 25 cents
+        :amount => (100*total).to_i - 25, # amount in cents
+        :currency => "usd",
+        :recipient => self.recipient_id,
+        :statement_descriptor => "#{name}"
+      )
+    rescue => e
+      logger.info "error: #{e.message}"
+      errors[:base] << "#{e.message}"
+      return
+    end
+
+    transfer = Transaction.create({
+      :user_id => self.owner_id,
+      :parent_id => self.id,
+      :parent_type => 'Tax',
+      :amount => total - 0.25,
+      :kind => Transaction::RECEIVED
+    })
+  end
+
   #TODO: Could this be faster with an activerecord relation?
   def supervisors
     (self.managers + self.trustees).uniq
