@@ -13,7 +13,7 @@ class Tax < ActiveRecord::Base
   has_many :pledgers, :through => :active_pledges, :source => :user, :uniq => true
   has_many :comments
   has_many :transactions, :through => :pledges
-  has_many :transfers, :class_name => 'Transaction', as: :parent
+  has_many :transfers
   has_many :messages
 
   has_many :roles, :dependent => :destroy
@@ -47,7 +47,7 @@ class Tax < ActiveRecord::Base
     goal.nil? or monthly_income > goal
   end
 
-  def make_transfer
+  def collect_pledges
     total = 0
 
     puts "Running #{self.pledges.active.count.to_s} transactions for #{self.name}"
@@ -56,34 +56,19 @@ class Tax < ActiveRecord::Base
       next if Rails.env.production? && !p.transactions.empty? and Date.today.month == Transaction.last.created_at.month  # Safety net to not run twice in the same month
       if p.collect
         total += p.recipient_cut
+        puts "new total #{total}"
         puts "  Successfully collected pledge #{p.id} for $#{p.amount}"
       else
         puts "  Problem collecting pledge #{p.id}"
       end
     end
 
-    begin
-      puts "Going to transfer $#{total} to #{self.name}"
-      Stripe::Transfer.create(
-        #i know this is weird, but stripe adds on the extra 25 cents
-        :amount => (100*total).to_i - 25, # amount in cents
-        :currency => "usd",
-        :recipient => self.recipient_id,
-        :statement_descriptor => "#{name}"
-      )
-    rescue => e
-      logger.info "error: #{e.message}"
-      errors[:base] << "#{e.message}"
-      return
-    end
-
-    transfer = Transaction.create({
-      :user_id => self.owner_id,
-      :parent_id => self.id,
-      :parent_type => 'Tax',
+    transfer = Transfer.create({
+      :tax_id => self.id,
       :amount => total - 0.25,
-      :kind => Transaction::RECEIVED
+      :completed => false
     })
+
   end
 
   #TODO: Could this be faster with an activerecord relation?
@@ -101,7 +86,7 @@ class Tax < ActiveRecord::Base
   end
 
   def total_income
-    transactions.received.sum(:amount)
+    transfers.sum(:amount)
   end
 
   # aka "funders" assoc

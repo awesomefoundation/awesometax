@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131021193336) do
+ActiveRecord::Schema.define(:version => 20131212184124) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -91,11 +91,22 @@ ActiveRecord::Schema.define(:version => 20131021193336) do
     t.integer  "user_id",                                                         :null => false
     t.integer  "parent_id",                                                       :null => false
     t.decimal  "amount",      :precision => 8, :scale => 2,                       :null => false
-    t.integer  "kind",                                                            :null => false
     t.integer  "method"
     t.datetime "created_at",                                                      :null => false
     t.datetime "updated_at",                                                      :null => false
     t.string   "parent_type",                               :default => "pledge"
+  end
+
+  create_table "transfers", :force => true do |t|
+    t.integer  "tax_id"
+    t.decimal  "amount",             :precision => 8, :scale => 2,                    :null => false
+    t.boolean  "completed",                                        :default => false
+    t.string   "stripe_transfer_id"
+    t.string   "bank_token"
+    t.string   "bank_last4"
+    t.datetime "completed_at"
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
   end
 
   create_table "users", :force => true do |t|

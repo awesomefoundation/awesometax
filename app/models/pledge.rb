@@ -139,7 +139,7 @@ class Pledge < ActiveRecord::Base
     end
 
     Tax.active.each do |t|
-      t.make_transfer
+      t.collect_pledges
     end
 
     # Send emails
