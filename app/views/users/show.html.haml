@@ -74,8 +74,6 @@
                 %h3= pluralize(@supervised.count, 'tax')
                 %h4 Monthly Total:
                 %h3= number_to_currency(@supervised_sum)
-                %h4 Income to Date:
-                %h3= number_to_currency(@total_received)
 
               - if admin?
                 .callout
@@ -111,21 +109,19 @@
             - if @transactions.blank?
               %p You don't have any transactions yet.
 
-            - unless @transactions.blank?
+            - else
               %br/
               %table{:width => '100%'}
                 %thead
                   %tr
                     %th Tax
                     %th Amount
-                    %th Type
                     %th Date
                 %tbody
                   - @transactions.each do |t|
                     %tr{:style => 'border-top: 1px dotted #aaa;'}
-                      %td= link_to t.pledge.tax.name, tax_path(t.pledge.tax.slug)
+                      %td= link_to t.tax.name, tax_path(t.tax.slug)
                       %td= number_to_currency(t.amount)
-                      %td= t.kind == Transaction::SENT ? 'Sent' : 'Received'
                       %td= t.created_at.to_date
 
         .grid_4.omega

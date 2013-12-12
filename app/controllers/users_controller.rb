@@ -20,8 +20,7 @@ class UsersController < ApplicationController
       @supervised_count  = supervised_pledges.count
       @supervised_sum    = supervised_pledges.inject(0) { |sum,i| sum + i.amount }
 
-      @total_given    = @user.transactions.sent.sum(:amount)
-      @total_received = @user.transactions.received.sum(:amount)
+      @total_given    = @user.transactions.sum(:amount)
       @transactions   = @user.transactions.sort { |a,b| b.id <=> a.id }
 
       @messages       = @user.messages.published
