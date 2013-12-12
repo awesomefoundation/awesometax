@@ -52,7 +52,7 @@
         %h4 My monthly pledge:
         %h3 #{number_to_currency(@my_pledges.sum(:amount), :precision => 0)} / mo.
         %h4 Total given to date:
-        %h3= number_to_currency(@tax.transactions.sent.where(:user_id => current_user.id).sum(:amount), :precision => 0)
+        %h3= number_to_currency(@tax.sent.where(:user_id => current_user.id).sum(:amount), :precision => 0)
         = link_to 'Manage your payments', account_path
 
     - unless current_user && @tax.pledgers.include?(current_user)
