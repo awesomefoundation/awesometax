@@ -12,4 +12,7 @@
         %td= link_to t.tax.name, t.tax
         %td= "$#{t.amount}"
         %td= t.created_at.to_date
-        %td= t.completed_at.to_date
+        - if t.completed_at
+          %td= t.completed_at.to_date
+        - else
+          %td= "Pending"
