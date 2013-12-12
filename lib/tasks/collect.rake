@@ -11,7 +11,6 @@ namespace :taxes do
   task :collect_succeeded => :environment do
     puts "Collecting monthly taxes..."
     Tax.active.each do |tax|
-      next unless tax.meets_goal
       puts "Doing #{tax.name}"
       tax.pledges.active.find_each do |pledge|
         puts "  #{pledge.user.name} for $#{pledge.amount}"
