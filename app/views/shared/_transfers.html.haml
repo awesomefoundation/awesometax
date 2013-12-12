@@ -1,0 +1,15 @@
+%h3 Transfers
+%table{:width => '100%'}
+  %thead
+    %tr
+      %th Tax
+      %th Amount
+      %th Created
+      %th Completed
+  %tbody
+    - @transfers.each do |t|
+      %tr
+        %td= link_to t.tax.name, t.tax
+        %td= "$#{t.amount}"
+        %td= t.created_at.to_date
+        %td= t.completed_at.to_date

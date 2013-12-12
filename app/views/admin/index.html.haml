@@ -10,6 +10,7 @@
       %li.active= link_to "Taxes (#{@taxes.length})", '#taxes', 'data-toggle' => 'tab'
       %li{'data-toggle' => 'tab'}= link_to "Users (#{@users.length})", '#users', 'data-toggle' => 'tab'
       %li= link_to "Transactions (#{@transactions.length})", '#transactions', 'data-toggle' => 'tab'
+      %li= link_to "Transfers (#{@transfers.length})", '#transfers', 'data-toggle' => 'tab'
       %li= link_to "Comments (#{@comments.length})", '#comments', 'data-toggle' => 'tab'
     :javascript
       $(document).ready(function() {
@@ -47,6 +48,8 @@
       #transactions
         = render :partial => 'shared/transactions', :locals => {transactions: @transactions}
 
+      #transfers
+        = render :partial => 'shared/transfers', :locals => {transactions: @transfers}
       #comments
         %h3 Comments
         %table{:width => '100%'}
