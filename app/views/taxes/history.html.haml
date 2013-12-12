@@ -1,13 +1,4 @@
 .grid_12
   %h2
     = link_to @tax.name, @tax
-  %table
-    %thead
-      %tr
-        %th Date
-        %th Amount
-    %tbody
-      - @sorted.each do |time, transactions|
-        %tr{:style => 'border-top: 1px dotted #aaa;'}
-          %td= time.strftime('%d-%m-%y')
-          %td= number_to_currency(transactions.inject(0){|sum,t| sum + t.amount })
+  = render :partial => 'shared/transfers', :locals => {transactions: @transfers}

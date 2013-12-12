@@ -16,8 +16,7 @@ class TaxesController < ApplicationController
 
   def history
     @tax = Tax.find_tax(params[:tax_id])
-    @transactions = @tax.transactions.received
-    @sorted = @transactions.group_by {|t| t.created_at.beginning_of_day}
+    @transfers = @tax.transfers
   end
 
   def new
