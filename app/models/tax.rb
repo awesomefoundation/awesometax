@@ -60,6 +60,7 @@ class Tax < ActiveRecord::Base
         puts "  Successfully collected pledge #{p.id} for $#{p.amount}"
       else
         puts "  Problem collecting pledge #{p.id}"
+        return
       end
     end
 
