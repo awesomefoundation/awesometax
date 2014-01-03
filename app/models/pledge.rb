@@ -148,16 +148,16 @@ class Pledge < ActiveRecord::Base
     # Send emails
     pledges = Pledge.active.includes(:transactions, :tax)
     users = pledges.collect { |p| p.user }.uniq.select { |u| u.settings(:email).payment }
-    puts "Going to email #{users.size} users: #{users.collect { |u| u.email }.join(', ')}"
-    users.each do |u|
-      begin
-        Mailer.payment(u, u.pledges.active).deliver
-      rescue => e
-        logger.info "Error sending mail to #{u.email}"
-        logger.info e.inspect
-        logger.info e.backtrace
-      end
-    end
+    # puts "Going to email #{users.size} users: #{users.collect { |u| u.email }.join(', ')}"
+    # users.each do |u|
+    #   begin
+    #     Mailer.payment(u, u.pledges.active).deliver
+    #   rescue => e
+    #     logger.info "Error sending mail to #{u.email}"
+    #     logger.info e.inspect
+    #     logger.info e.backtrace
+    #   end
+    # end
   end
 
 end
