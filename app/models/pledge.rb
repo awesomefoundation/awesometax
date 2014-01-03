@@ -96,6 +96,10 @@ class Pledge < ActiveRecord::Base
   #------------
 
   def collect
+    if Date.today.month == self.transactions.last.created_at.month
+      logger.info "already collected pledge #{self.id.to_s} this month"
+      return false
+    end
     logger.info "collect_pledge: #{self.inspect}"
 
     begin
