@@ -108,22 +108,21 @@ class Pledge < ActiveRecord::Base
     rescue => e
       logger.info "error: #{e.message}"
       errors[:base] << "#{e.message}"
-      return
+      return false
     end
 
     charge = Transaction.create({
       :user_id => user_id,
       :parent_id => id,
       :parent_type => 'Pledge',
-      :amount => amount,
-      :kind => Transaction::SENT
+      :amount => amount.to_i
     })
 
     if charge.save
       return true
     else
       errors[:base] << charge.errors.full_messages.join(", ")
-      return
+      return false
     end
 
   end
