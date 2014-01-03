@@ -53,7 +53,6 @@ class Tax < ActiveRecord::Base
     puts "Running #{self.pledges.active.count.to_s} transactions for #{self.name}"
     self.pledges.active.each do |p|
       puts "  Considering pledge #{p.id}..."
-      next if Rails.env.production? && !p.transactions.empty? and Date.today.month == Transaction.last.created_at.month  # Safety net to not run twice in the same month
       if p.collect
         total += p.recipient_cut
         puts "new total #{total}"
