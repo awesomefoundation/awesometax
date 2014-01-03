@@ -134,12 +134,12 @@ class Pledge < ActiveRecord::Base
 
   # This generally runs as a rake task, "rake taxes:collect"
   def self.collect_all
-    # if (Time.new.day != 1) ||
-    #   (Transaction.count == 0) ||
-    #   (Date.today.month == Transaction.last.created_at.month)
-    #   puts "There has already been a collection recently. No can do. This is a safeguard that's very easy to override if you mean it."
-    #   return
-    # end
+    if (Time.new.day != 1) ||
+      (Transaction.count == 0) ||
+      (Date.today.month == Transaction.last.created_at.month)
+      puts "There has already been a collection recently. No can do. This is a safeguard that's very easy to override if you mean it."
+      return
+    end
 
     Tax.active.each do |t|
       t.collect_pledges
@@ -148,16 +148,16 @@ class Pledge < ActiveRecord::Base
     # Send emails
     pledges = Pledge.active.includes(:transactions, :tax)
     users = pledges.collect { |p| p.user }.uniq.select { |u| u.settings(:email).payment }
-    # puts "Going to email #{users.size} users: #{users.collect { |u| u.email }.join(', ')}"
-    # users.each do |u|
-    #   begin
-    #     Mailer.payment(u, u.pledges.active).deliver
-    #   rescue => e
-    #     logger.info "Error sending mail to #{u.email}"
-    #     logger.info e.inspect
-    #     logger.info e.backtrace
-    #   end
-    # end
+    puts "Going to email #{users.size} users: #{users.collect { |u| u.email }.join(', ')}"
+    users.each do |u|
+      begin
+        Mailer.payment(u, u.pledges.active).deliver
+      rescue => e
+        logger.info "Error sending mail to #{u.email}"
+        logger.info e.inspect
+        logger.info e.backtrace
+      end
+    end
   end
 
 end
