@@ -62,7 +62,7 @@ class Tax < ActiveRecord::Base
       end
     end
 
-    if Date.today.month == Transaction.last.created_at.month #more safety to ensure transaction was created
+    if self.transactions.any? && Date.today.month == self.transactions.last.created_at.month #more safety to ensure transaction was created
       transfer = Transfer.create({
         :tax_id => self.id,
         :amount => total - 0.25,
