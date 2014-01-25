@@ -47,9 +47,7 @@
     = render :partial => 'shared/comments', :locals => { :comments => @tax.comments, :tax => @tax }
 
   .grid_4
-    HALLo
     - unless @my_pledges.empty?
-      lkasd
       .callout.stats
         %h4 My monthly pledge:
         %h3 #{number_to_currency(@my_pledges.sum(:amount), :precision => 0)} / mo.
