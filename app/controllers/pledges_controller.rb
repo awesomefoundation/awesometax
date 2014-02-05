@@ -21,6 +21,7 @@ class PledgesController < ApplicationController
         format.html { redirect_to @pledge.tax, :notice => @pledge.errors.full_messages.join(", ") }
         format.json { render json: @pledge.errors.full_messages.join(", "), :status => :unprocessable_entity}
       end
+      return
     end
 
     #create pledge
