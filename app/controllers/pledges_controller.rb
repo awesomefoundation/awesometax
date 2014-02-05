@@ -17,7 +17,10 @@ class PledgesController < ApplicationController
       )
     rescue => e
       @pledge.errors[:base] << "#{e.message}"
-      return
+      respond_to do |format|
+        format.html { redirect_to @pledge.tax, :notice => @pledge.errors.full_messages.join(", ") }
+        format.json { render json: @pledge.errors.full_messages.join(", "), :status => :unprocessable_entity}
+      end
     end
 
     #create pledge
