@@ -137,8 +137,8 @@ class Pledge < ActiveRecord::Base
 
   # This generally runs as a rake task, "rake taxes:collect"
   def self.collect_all
-    if (Time.new.day != 4) ||
-      (Transaction.count == 0) ||
+    # if (Time.new.day != 4) ||
+    if (Transaction.count == 0) ||
       (Date.today.month == Transaction.last.created_at.month)
       puts "There has already been a collection recently. No can do. This is a safeguard that's very easy to override if you mean it."
       return
