@@ -13,7 +13,7 @@ class PledgesController < ApplicationController
     begin
       customer = Stripe::Customer.create(
         :card => params[:stripeToken],
-        :description => "payinguser@example.com"
+        :description => current_user.email
       )
     rescue => e
       @pledge.errors[:base] << "#{e.message}"
