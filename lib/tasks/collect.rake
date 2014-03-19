@@ -3,6 +3,19 @@ namespace :taxes do
   desc "Do monthly tax collection for all taxes, no minimum"
   task :collect => :environment do
     puts "Collecting monthly taxes..."
+    if (Time.new.day != 1) ||
+      (Transaction.count == 0) ||
+      (Date.today.month == Transaction.last.created_at.month)
+      puts "There has already been a collection recently. No can do. This is a safeguard that's very easy to override if you mean it."
+    else
+      Pledge.collect_all
+    end
+    puts "Done!"
+  end
+
+  desc "Run collection even if it has been run in last month"
+  task :collect_override => :environment do
+    puts "Collecting monthly taxes even if they have been recently collected..."
     Pledge.collect_all
     puts "Done!"
   end
@@ -30,4 +43,3 @@ namespace :taxes do
   end
 
 end
-
