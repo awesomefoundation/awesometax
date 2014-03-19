@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     #@funded = @user.funded_taxes.order('status, created_at desc')
 
     if @myself
-      @pledges        = @user.pledges.order('status, created_at desc').where('status > 0')
+      @pledges        = @user.pledges.order('status, created_at desc')
       @active_sum     = @user.pledges.active.sum(:amount)
       @active_count   = @user.pledges.active.count
 
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       @messages       = @user.messages.published
       @sent           = @user.sent_messages
     else
-      @pledges = @user.pledges.active.order('created_at desc')
+      @pledges = @user.pledges.order('created_at desc')
     end
   end
 
