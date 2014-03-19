@@ -34,6 +34,17 @@ class Mailer < ActionMailer::Base
     mail(:to => @@admins, :subject => tag(subj))
   end
 
+  def credit_card_declined(pledge)
+    user = pledge.user
+    mail(:to => user.email, :subject => "AwesomeTax: Credit Card Declined")
+  end
+
+  def admin_credit_card_declined(pledge)
+    @user = pledge.user
+    managers = pledge.tax.managers
+    mail(:to => managers.collect { |u| u.email }, :subject => "Pledger Credit Card Declined")
+  end
+
   def tax_message(message)
     @message = message
     category 'message'

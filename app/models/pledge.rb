@@ -113,6 +113,12 @@ class Pledge < ActiveRecord::Base
         :description => "#{tax.name}"
       )
     rescue => e
+      self.status = INACTIVE
+      self.save
+      puts "Credit Card Declined. Going to email user and managers"
+      Mailer.credit_card_declined(self).deliver
+      Mailer.admin_credit_card_declined(self).deliver
+
       logger.info "error: #{e.message}"
       errors[:base] << "#{e.message}"
       return false
