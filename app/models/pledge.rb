@@ -13,7 +13,7 @@ class Pledge < ActiveRecord::Base
 
   scope :active,   where(:status => ACTIVE)
   scope :approved, where('status > 0')
-  scope :inactive, where(:stauts => INACTIVE)
+  scope :inactive, where(:status => INACTIVE)
 
   validates_numericality_of :amount, :greater_than_or_equal_to => 1, :less_than => 10000
   validates_presence_of :tax
