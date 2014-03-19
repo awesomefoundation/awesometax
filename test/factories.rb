@@ -57,7 +57,7 @@ FactoryGirl.define do
     association :user
     association :tax, :factory => :tax
     status Pledge::ACTIVE
-    stripe_token 'tok_102lVw2HxIFZsDb1g5Mlt8QH'
+    stripe_token 'cus_3RJJJRQgkwGoKM'
     starts Time.now
     ends Time.now + 1.year
   end
@@ -75,14 +75,3 @@ FactoryGirl.define do
   end
 
 end
-
-# FactoryGirl.define :no_login, :class => User do |i|
-#   i.email nil
-#   i.password nil
-#   i.facebook_uid nil
-# end
-
-
-
-
-
